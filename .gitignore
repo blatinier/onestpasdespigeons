@@ -1,0 +1,5 @@
+npm-debug.log
+yarn-error.log
+js/node_modules/
+js/lib/
+js/dist/client-bundle.js
