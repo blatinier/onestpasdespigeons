@@ -5,6 +5,7 @@ from mongoengine import Document, fields
 # TODO field validation
 class User(Document):
     meta = {
+        'collection': 'users',
         'indexes': [
             'name',
             'email',
@@ -13,3 +14,4 @@ class User(Document):
 
     name = fields.StringField(required=True)
     email = fields.StringField(required=True)
+    role = fields.StringField(required=True)
