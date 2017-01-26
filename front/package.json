@@ -35,7 +35,8 @@
             "List"
           ]
         }
-      ]
+      ],
+      "no-debugger": [0]
     },
     "env": {
       "browser": true

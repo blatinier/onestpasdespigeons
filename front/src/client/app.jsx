@@ -5,19 +5,19 @@ import ReactDOM from 'react-dom';
 import { combineReducers } from 'redux-immutable';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import dogReducer from './reducers/dog-reducer';
-import BarkMessage from './containers/bark-message';
-import BarkButton from './containers/bark-button';
+import menuReducer from './reducers/menu-reducer';
+import MainMenu from './containers/main-menu';
+import MenuContainer from './containers/menu-container';
 
 const store = createStore(combineReducers({
-  dog: dogReducer,
+  menu: menuReducer,
 }));
 
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <BarkMessage />
-      <BarkButton />
+      <MainMenu />
+      <MenuContainer />
     </div>
   </Provider>
   , document.querySelector('.app')
