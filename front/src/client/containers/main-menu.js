@@ -3,7 +3,7 @@ import MainMenu from '../components/main-menu';
 import { goToHomeMenu, goToWorkflowMenu } from '../actions/menu-actions';
 
 const mapStateToProps = state => ({
-  currentMenu: state.get('menu').get('menu')
+  currentMenu: state.get('menu').get('section')
 });
 
 const mapDispatchToProps = dispatch => ({

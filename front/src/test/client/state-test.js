@@ -20,9 +20,9 @@ describe('App State', () => {
     });
     describe('goToWorkflow', () => {
       it('should change menu to workflow', () => {
-        store.getState().getIn(['menu', 'menu']).should.equal('home');
+        store.getState().getIn(['menu', 'section']).should.equal('home');
         store.dispatch(goToWorkflowMenu());
-        store.getState().getIn(['menu', 'menu']).should.equal('workflow');
+        store.getState().getIn(['menu', 'section']).should.equal('workflow');
       });
     });
   });
