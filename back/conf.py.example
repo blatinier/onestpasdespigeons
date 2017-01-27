@@ -1,4 +1,4 @@
-PLATFORM_URL = 'http://www.melmelboo-voyage.fr'
+PLATFORM_URL = 'http://www.onestpasdespigeons.fr'
 SECRET_KEY = 'test'
 
 MAIL_SENDER_ADDR = 'my@email.com'

@@ -4,3 +4,6 @@ front/node_modules/
 front/lib/
 front/dist/client-bundle.js
 front/dist/client-bundle.js.map
+__pycache__
+*.pyc
+back/conf.py
