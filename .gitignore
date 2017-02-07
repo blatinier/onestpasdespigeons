@@ -7,3 +7,4 @@ front/dist/client-bundle.js.map
 __pycache__
 *.pyc
 back/conf.py
+venv/
