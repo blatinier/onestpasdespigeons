@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
+    "build": "gulp build",
     "test": "gulp test"
   },
   "babel": {
