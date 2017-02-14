@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
-sudo pip install --upgrade pip
-sudo pip install -r back/requirements.freeze.txt
+pip install --upgrade pip
+pip install -r requirements/freeze.pip
 cd front && yarn install && yarn build
