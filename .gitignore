@@ -7,4 +7,5 @@ front/dist/client-bundle.js.map
 __pycache__
 *.pyc
 back/conf.py
+back/config/gunicorn.py
 venv/
