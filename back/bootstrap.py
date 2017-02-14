@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import conf
+import config.main as conf
 from urllib.parse import urlsplit
 from flask import Flask
 from flask_mail import Mail

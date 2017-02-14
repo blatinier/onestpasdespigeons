@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import render_template
 
-import conf
+import config.main as conf
 from bootstrap import application
 
 
