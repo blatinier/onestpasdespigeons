@@ -4,7 +4,8 @@ SECRET_KEY = 'test'
 MAIL_SENDER_ADDR = 'my@email.com'
 MAIL_SENDER_MDP = 'test'
 
+TOKEN_LIFESPAN = 3600  # In seconds
+
 MONGODB = {'user': "USER",
            'pwd': "PASSWORD",
            'db': 'onestpasdespigeons'}
-

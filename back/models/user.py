@@ -14,4 +14,11 @@ class User(Document):
 
     name = fields.StringField(required=True)
     email = fields.StringField(required=True)
+    provider = fields.StringField(required=True, defaut="email")
+    password = fields.StringField(required=True)
     role = fields.StringField(required=True)
+
+    # Contains access tokens by clients
+    tokens = fields.DictField()
+
+    # TODO delete expired tokens on each save

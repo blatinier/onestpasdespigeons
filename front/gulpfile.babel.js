@@ -58,7 +58,7 @@ gulp.task('watch', () => {
 
 gulp.task('test', ['build'], () =>
   gulp.src(paths.allLibTests)
-    .pipe(mocha())
+    .pipe(mocha({ reporter: 'json' }))
 );
 
 gulp.task('default', ['watch', 'main']);
