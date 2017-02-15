@@ -1,9 +1,28 @@
+# App stuff
 PLATFORM_URL = 'http://www.onestpasdespigeons.fr'
 SECRET_KEY = 'test'
 
-MAIL_SENDER_ADDR = 'my@email.com'
+# Mail stuff
+FROM_NAME = ''
+FROM_ADDR = 'my@email.com'
 MAIL_SENDER_MDP = 'test'
+REGISTER_MAIL_SUBJECT = 'Registering on OnEstPasDesPigeons'
+PWD_RESET_MAIL_BODY = """
+Hello!
 
+Did not resqueted this email? Delete it!
+You asked to reset your password on OnEstPasDesPigeons?
+Follow this link: {callback_url}
+"""
+REGISTER_MAIL_BODY = """
+Hello!
+
+Thanks for registering on OnEstPasDesPigeons!
+Please follow this link to confirm:
+{callback_url}
+"""
+
+# Token stuff
 TOKEN_LIFESPAN = 3600  # In seconds
 
 MONGODB = {'user': "USER",

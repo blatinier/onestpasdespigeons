@@ -15,7 +15,7 @@ mail = Mail()
 application.config["MAIL_SERVER"] = "smtp.gmail.com"
 application.config["MAIL_PORT"] = 465
 application.config["MAIL_USE_SSL"] = True
-application.config["MAIL_USERNAME"] = conf.MAIL_SENDER_ADDR
+application.config["MAIL_USERNAME"] = conf.FROM_ADDR
 application.config["MAIL_PASSWORD"] = conf.MAIL_SENDER_MDP
 
 mail.init_app(application)
