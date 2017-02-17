@@ -3,3 +3,8 @@ SECRET_KEY = 'test'
 
 MAIL_SENDER_ADDR = 'my@email.com'
 MAIL_SENDER_MDP = 'test'
+
+MONGODB = {'user': "USER",
+           'pwd': "PASSWORD",
+           'db': 'onestpasdespigeons'}
+
