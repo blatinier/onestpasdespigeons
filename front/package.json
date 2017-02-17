@@ -24,10 +24,7 @@
       "flowtype"
     ],
     "rules": {
-      "comma-dangle": [
-        "error",
-        "ignore"
-      ],
+      "comma-dangle": 0,
       "new-cap": [
         2,
         {
