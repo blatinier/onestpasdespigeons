@@ -1,5 +1,6 @@
 import time
 from mongoengine import Document, fields
+from mongoengine import signals as mongoengine_signals
 
 from lib.auth import generate_token
 
@@ -10,6 +11,7 @@ class User(Document):
         'indexes': [
             'name',
             'email',
+            'login'
         ],
     }
 
@@ -51,16 +53,20 @@ class User(Document):
                 "login": self.login,
                 "role": self.role}
 
-    def save(self):
+    @classmethod
+    def pre_save(cls, sender, document, **kwargs):
         """
-        Tweak `save` to delete expired tokens on each save operation
+        Delete expired tokens on each save operation.
+        Hooked on pre_save mongoengine signal (see end of file)
         """
         to_del = []
         now = int(time.time())
-        for access_token, clients in self.tokens.items():
+        for access_token, clients in document.tokens.items():
             for client, expiry in clients.items():
                 if expiry < now:
                     to_del.append((access_token, client))
         for token in to_del:
-            self._invalidate_token(*token)
-        super().save()
+            document._invalidate_token(*token)
+
+
+mongoengine_signals.pre_save.connect(User.pre_save, sender=User)
