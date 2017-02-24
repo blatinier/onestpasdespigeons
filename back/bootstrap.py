@@ -4,6 +4,7 @@ import config.main as conf
 from urllib.parse import urlsplit
 from flask import Flask
 from flask_mail import Mail
+import mongoengine
 
 application = Flask(__name__)
 application.config.from_object(conf)
@@ -19,3 +20,9 @@ application.config["MAIL_USERNAME"] = conf.MAIL_SENDER_ADDR
 application.config["MAIL_PASSWORD"] = conf.MAIL_SENDER_MDP
 
 mail.init_app(application)
+
+# Init mongoengine connection
+mongoengine.connect(db=conf.MONGODB['db'],
+                    host=conf.MONGODB['host'],
+                    username=conf.MONGODB['user'],
+                    password=conf.MONGODB['pwd'])

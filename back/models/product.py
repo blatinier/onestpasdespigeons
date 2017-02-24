@@ -12,6 +12,7 @@ class Product(Document):
             "product_name",
             "generic_name"
         ],
+        'strict': False  # Ignore extra fields
     }
 
     copy_dump_field = ["code", "url_OFF", "product_name", "generic_name",
