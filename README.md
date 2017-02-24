@@ -6,6 +6,15 @@ Health devel: [![Code Health](https://landscape.io/github/blatinier/onestpasdesp
 
 Frontend in front/
 
+Need to have node, npm and yarn install in your system.
+
+For Ubuntu:
+
+    # sudo apt install nodejs npm
+    # curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    # echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    # sudo apt update && sudo apt install yarn
+
 To compile front, go into front/ and launch `yarn install`.
 To begin to code with live update of your modifications launch `yarn start`.
 
