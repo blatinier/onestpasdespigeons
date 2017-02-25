@@ -52,4 +52,5 @@ def import_OFF_db():
                     prod = Product.objects.get(code=product_off.code)
                     prod.update_with_OFF_product(product_off)
                 except Product.DoesNotExist:
-                    Product(**product_off.copy_dump()).save()
+                    new_p = product_off.copy()
+                    new_p.save()

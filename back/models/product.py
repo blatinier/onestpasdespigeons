@@ -15,12 +15,6 @@ class Product(Document):
         'strict': False  # Ignore extra fields
     }
 
-    copy_dump_field = ["code", "url_OFF", "product_name", "generic_name",
-                       "quantity", "packaging", "packaging_tags",
-                       "brands", "brands_tags", "categories",
-                       "categories_tags", "categories_fr", "labels",
-                       "labels_tags", "labels_fr", "purchase_places",
-                       "image_url"]
     # fields which source is from OFF and should be updated accordingly
     sourced_OFF_fields = ["url_OFF", "product_name", "generic_name",
                           "quantity", "packaging", "packaging_tags",
@@ -50,14 +44,14 @@ class Product(Document):
     purchase_places = fields.StringField()
     image_url = fields.StringField()
 
-    def copy_dump(self):
+    def copy(self):
         """
         Dump all fields
         """
         dump = {}
-        for attr in self.copy_dump_field:
+        for attr in self._data:
             dump[attr] = getattr(self, attr)
-        return dump
+        return self.__class__(**dump)
 
     def update_with_OFF_product(self, product_off):
         """
