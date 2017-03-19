@@ -1,11 +1,8 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import render_template
-
 import config.main as conf
 from bootstrap import application
+from api.auth import auth_bp
 
 
-@application.route("/", methods=['GET'])
-def home():
-    return render_template('index.html')
+application.register_blueprint(auth_bp)

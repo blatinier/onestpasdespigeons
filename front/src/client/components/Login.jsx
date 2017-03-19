@@ -1,10 +1,8 @@
 import React from 'react';
+import { EmailSignUpForm } from 'redux-auth/bootstrap-theme';
 
 const Login = () => (
-  <p>
-    Login
-  </p>
+  <EmailSignUpForm />
 );
-
 
 export default Login;
