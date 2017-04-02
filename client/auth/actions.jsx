@@ -111,7 +111,7 @@ export function registerUserFailure(error) {
 }
 
 export function registerUser(email, password) {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(registerUserRequest());
     return createUser(email, password)
       .then(parseJSON)
