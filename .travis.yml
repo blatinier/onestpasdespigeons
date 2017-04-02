@@ -11,5 +11,5 @@ install: ./install_script.sh
 
 # command to run tests
 script:
-    - cd front && yarn test
+    - yarn test
     #- cd back && nosetests tests
