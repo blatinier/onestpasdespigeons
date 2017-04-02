@@ -12,7 +12,9 @@ import { RegisterView } from './register/view';
 import { NotFoundView } from './common/notFoundView';
 
 // Auth
-import { determineAuth, requireNoAuthentication, requireAuthentication } from './auth/utils';
+import requireNoAuthentication from './auth/requireNoAuthentication';
+import requireAuthentication from './auth/requireAuthentication';
+import determineAuth from './auth/determineAuth';
 
 
 const routes = (
