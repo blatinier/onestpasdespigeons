@@ -5,11 +5,11 @@ import { Route } from 'react-router';
 import { Main } from './main/container';
 
 // View
-import { HomeView } from './home/view';
-import { StatisticView } from './statistic/view';
-import { LoginView } from './login/view';
-import { RegisterView } from './register/view';
-import { NotFoundView } from './common/notFoundView';
+import HomeView from './home/view';
+import StatisticView from './statistic/view';
+import LoginView from './login/view';
+import RegisterView from './register/view';
+import NotFoundView from './common/notFoundView';
 
 // Auth
 import requireNoAuthentication from './auth/requireNoAuthentication';
