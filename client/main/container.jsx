@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 
 const Main = ({ children }) => (
-  <div className="container-fluid">
+  <div>
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
@@ -24,11 +24,7 @@ const Main = ({ children }) => (
         </LinkContainer>
       </Nav>
     </Navbar>
-    <section>
-      <div>
-        {children}
-      </div>
-    </section>
+    {children}
   </div>
 );
 
