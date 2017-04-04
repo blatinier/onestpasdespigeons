@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // Main Container
-import { Main } from './main/container';
+import Main from './main/container';
 
 // View
 import HomeView from './home/view';
