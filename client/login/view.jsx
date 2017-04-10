@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl,
-         HelpBlock, Button } from 'react-bootstrap';
+         HelpBlock, Button, Col } from 'react-bootstrap';
 
 const FieldGroup = ({ id, label, help, ...props }) => (
   <FormGroup controlId={id}>
@@ -17,7 +17,7 @@ FieldGroup.propTypes = {
 };
 
 const LoginView = () => (
-  <div>
+  <Col lgOffset={4} lg={4}>
     <h1>
       Login
     </h1>
@@ -35,7 +35,7 @@ const LoginView = () => (
       />
       <Button type="submit">Submit</Button>
     </form>
-  </div>
+  </Col>
 );
 
 export default LoginView;
