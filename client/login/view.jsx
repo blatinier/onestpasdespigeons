@@ -1,20 +1,6 @@
-import React, { PropTypes } from 'react';
-import { FormGroup, ControlLabel, FormControl,
-         HelpBlock, Button, Col } from 'react-bootstrap';
-
-const FieldGroup = ({ id, label, help, ...props }) => (
-  <FormGroup controlId={id}>
-    <ControlLabel>{label}</ControlLabel>
-    <FormControl {...props} />
-    {help && <HelpBlock>{help}</HelpBlock>}
-  </FormGroup>
-);
-
-FieldGroup.propTypes = {
-  id: PropTypes.string,
-  label: PropTypes.string,
-  help: PropTypes.string
-};
+import React from 'react';
+import { Button, Col } from 'react-bootstrap';
+import FieldGroup from '../common/fieldgroup';
 
 const LoginView = () => (
   <Col lgOffset={4} lg={4}>
@@ -33,7 +19,7 @@ const LoginView = () => (
         label="Password"
         type="password"
       />
-      <Button type="submit">Submit</Button>
+      <Button type="submit">Login!</Button>
     </form>
   </Col>
 );
