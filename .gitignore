@@ -1,11 +1,6 @@
-npm-debug.log
-yarn-error.log
-node_modules/
-lib/
-dist/client-bundle.js
-dist/client-bundle.js.map
 __pycache__
 *.pyc
-server/config/main.py
-server/config/gunicorn.py
+pigeon/pigeon/settings.py
+pigeon/config/main.py
+pigeon/config/gunicorn.py
 venv/
