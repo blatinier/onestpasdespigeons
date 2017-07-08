@@ -46,7 +46,10 @@ def import_OFF_db():
 
     # Clean up
     print('[4/4] Clean tmp dir')
-    shutil.rmtree(tmp_dir)
+    try:
+        shutil.rmtree(tmp_dir)
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":
