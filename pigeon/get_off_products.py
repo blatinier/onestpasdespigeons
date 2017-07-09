@@ -11,7 +11,7 @@ from collections import Counter
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pigeon.settings")
 OFF_DB_LINK = "http://world.openfoodfacts.org/data/fr.openfoodfacts.org.products.csv"
 django.setup()
-from pigeon.weights.models import Product
+from weights.models import Product
 
 
 def import_OFF_db():
