@@ -64,7 +64,7 @@ def list_measures(request):
     List of all measures with all possible manipulation
     we can imagine.
     """
-    # TODO
+    # TODO #49
     return render(request, 'weights/list_measures.html', {})
 
 
@@ -81,7 +81,7 @@ def user_account(request):
     """
     Everything about user managing his account.
     """
-    # TODO
+    # TODO #1
     return render(request, 'weights/user_account.html', {})
 
 
@@ -90,7 +90,7 @@ def contribute(request):
     Page to explain how to crontibute.
     (e.g issu github, add measures, add products, ideas, ...)
     """
-    # TODO
+    # TODO #48
     return render(request, 'weights/contribute.html', {})
 
 
