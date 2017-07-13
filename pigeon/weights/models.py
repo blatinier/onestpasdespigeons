@@ -1,4 +1,15 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
+
+
+class PigeonUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    score = models.IntegerField(default=1)
+    achivements = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+    language = models.CharField(max_length=3, default="en")
+    country = models.CharField(max_length=3, default="us")
+
 
 
 class Product(models.Model):
