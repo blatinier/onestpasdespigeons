@@ -34,27 +34,28 @@ def password_reset(request):
     return render(request, 'weights/password_reset.html', {})
 
 
-def logout(request):
+def logout_page(request):
     """
     Logout page.
     """
     logout(request)
-    return redirect("/")
+    return redirect("home")
 
 
 def login(request):
     """
     Login page.
     """
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        redirect('/overview')
-    else:
-        # TODO #1 Return an 'invalid login / register' error message.
-        pass
+    if "username" in request.POST:
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            redirect('overview')
+        else:
+            # TODO #1 Return an 'invalid login / register' error message.
+            pass
     return render(request, 'weights/login.html', {})
 
 
