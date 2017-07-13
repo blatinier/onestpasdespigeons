@@ -42,7 +42,7 @@ def logout_page(request):
     return redirect("home")
 
 
-def login(request):
+def user_login(request):
     """
     Login page.
     """

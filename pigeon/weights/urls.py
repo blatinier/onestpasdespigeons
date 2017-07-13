@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 
+# TODO auth views https://docs.djangoproject.com/en/1.11/topics/auth/default/#using-the-views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^login$', views.login, name='login'),
