@@ -4,7 +4,7 @@ from . import views
 # TODO auth views https://docs.djangoproject.com/en/1.11/topics/auth/default/#using-the-views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^login$', views.login, name='login'),
+    url(r'^login$', views.user_login, name='login'),
     url(r'^logout$', views.logout_page, name='logout'),
     url(r'^overview$', views.overview, name='overview'),
     url(r'^about$', views.about, name='about'),

@@ -1,6 +1,6 @@
 __pycache__
 *.pyc
-pigeon/pigeon/settings.py
+pigeon/pigeon/local_settings.py
 pigeon/config/main.py
 pigeon/config/gunicorn.py
 venv/
