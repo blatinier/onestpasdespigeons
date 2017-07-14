@@ -6,10 +6,10 @@ from django.contrib.postgres.fields import ArrayField
 class PigeonUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     score = models.IntegerField(default=1)
-    achivements = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+    achievements = ArrayField(models.CharField(max_length=200), blank=True,
+                              null=True)
     language = models.CharField(max_length=3, default="en")
     country = models.CharField(max_length=3, default="us")
-
 
 
 class Product(models.Model):
@@ -32,7 +32,8 @@ class Product(models.Model):
     generic_name = models.CharField(max_length=1024, db_index=True)
     quantity = models.CharField(max_length=512, blank=True, null=True)
 
-    packaging = models.CharField(max_length=512, blank=True, null=True)  # shape, material
+    # shape, material
+    packaging = models.CharField(max_length=512, blank=True, null=True)
     packaging_tags = models.CharField(max_length=512, blank=True, null=True)
     brands = models.CharField(max_length=512, blank=True, null=True)
     brands_tags = models.CharField(max_length=512, blank=True, null=True)
