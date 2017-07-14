@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^my_measures$', views.my_measures, name='my_measures'),
     url(r'^list_measures$', views.list_measures, name='list_measures'),
 
+    url(r'^register$', views.register, name='register'),
     url('^', include('django.contrib.auth.urls')),
     #url(r'^password_change/$', auth_views.PasswordChangeView.as_view()),
     #url(r'^password_change/done/$', auth_views.PasswordChangeDoneView.as_view()),
@@ -21,5 +22,4 @@ urlpatterns = [
     #url(r'^reset/done/$', auth_views.PasswordResetCompleteView.as_view()),
 
     #url(r'^password_reset$', views.password_reset, name='password_reset'),
-    #url(r'^register$', views.register, name='register'),
 ]

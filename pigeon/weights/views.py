@@ -23,40 +23,7 @@ def register(request):
     Register page.
     """
     # TODO #1
-    return render(request, 'weights/register.html', {})
-
-
-def password_reset(request):
-    """
-    Reset password page.
-    """
-    # TODO #1
-    return render(request, 'weights/password_reset.html', {})
-
-
-def logout_page(request):
-    """
-    Logout page.
-    """
-    logout(request)
-    return redirect("home")
-
-
-def user_login(request):
-    """
-    Login page.
-    """
-    if "username" in request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            redirect('overview')
-        else:
-            # TODO #1 Return an 'invalid login / register' error message.
-            pass
-    return render(request, 'weights/login.html', {})
+    return render(request, 'registration/register.html', {})
 
 
 @login_required
