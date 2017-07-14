@@ -1,0 +1,42 @@
+{% extends 'weights/layout.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row offset-from-menu">
+  <h1 class="col-lg-12 text-center">Comment contribuer ?</h1>
+
+  <div class="col-lg-12">
+    <div class="col-lg-2">
+      <img alt="logo" title="Alfred le pigeon"
+           src="{% static 'images/pigeon.svg' %}" />
+    </div>
+    <div class="col-lg-10">
+      <h2>Pesez !</h2>
+      <div class="contribute-text">
+        La première et la plus importantes des contributions qui vous
+        puissiez faire c'est de peser vos courses et de mettre les
+        résultats ici même ! C'est l'ensemble de toutes les mesures
+        ainsi récupérées qui font ce site et permettent l'élaboration
+        de joli statistiques vous aidant dans vos choix au magasin.
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <div class="col-lg-10">
+      <h2>Sur Github</h2>
+      <div class="contribute-text">
+        Vous aimez ce site et vous y avez trouvé un bug ?
+        Une fonctionnalité vous manque ?
+        Vous pensez qu'il est possible d'améliorer les fonctionnalités
+        existante ? Alors n'hésitez pas une seconde et passez sur le
+        <a href="//github.com/blatinier/onestpasdespigeons/issues">dépôt Github du projet</a>
+        pour nous proposer votre idée ! (Et même la programmer si vous
+        le souhaitez !)
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <img class="col-lg-12" alt="Github" title="Octocat"
+           src="{% static 'images/Octocat.png' %}" />
+    </div>
+  </div>
+</div>
+{% endblock %}
