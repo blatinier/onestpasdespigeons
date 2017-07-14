@@ -1,0 +1,38 @@
+{% extends 'weights/layout.html' %}
+{% block content %}
+
+<div class="row offset-from-menu">
+  <div class="col-lg-6 col-lg-offset-3">
+  {% if form.errors %}
+  <p>Votre combinaison login/password n'a pas fonctionné. Veuillez réessayer.</p>
+  {% endif %}
+
+  {% if next %}
+      {% if user.is_authenticated %}
+      <p>Vous n'avez pas accès à la page demandée. Pour y accéder veuillez vous connecter avec un compte ayant les droits suffisants.</p>
+      {% else %}
+      <p>Veuillez vous connecter pour accéder à la page demandée.</p>
+      {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="row">
+      <p class="col-lg-offset-3 col-lg-9">{{ form.username.label_tag }}</p>
+      <p class="col-lg-offset-3 col-lg-9">{{ form.username }}</p>
+    </div>
+    <div class="row">
+      <p class="col-lg-offset-3 col-lg-9">{{ form.password.label_tag }}</p>
+      <p class="col-lg-offset-3 col-lg-9">{{ form.password }}</p>
+    </div>
+    <div class="col-lg-12 text-center">
+      <input type="submit" class="btn btn-success" value="Login !" />
+    </div>
+    <div class="col-lg-12 text-center">
+      <a href="{% url 'password_reset' %}">Mot de passe perdu ?</a>
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  </div>
+</div>
+{% endblock %}

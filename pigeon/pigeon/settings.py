@@ -117,6 +117,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 # Login
 LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/my_measures'
+LOGOUT_REDIRECT_URL = '/'
 
 try:
     from pigeon.local_settings import *
