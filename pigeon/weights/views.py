@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from weights.forms import UserForm, ProfileForm
 
 
 def home(request):
@@ -22,8 +23,21 @@ def register(request):
     """
     Register page.
     """
-    # TODO #1
-    return render(request, 'registration/register.html', {})
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, prefix='user')
+        profile_form = ProfileForm(request.POST, prefix='profile')
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            return redirect('home')
+    else:
+        user_form = UserForm(prefix='user')
+        profile_form = ProfileForm(prefix='profile')
+    context = {'user_form': user_form, 'profile_form': profile_form}
+    return render(request, 'registration/register.html', context)
 
 
 @login_required
