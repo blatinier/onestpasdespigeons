@@ -27,11 +27,11 @@ def register(request):
         user_form = UserForm(request.POST, prefix='user')
         profile_form = ProfileForm(request.POST, prefix='profile')
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save(commit=False)
+            user = user_form.save()
+            user.refresh_from_db()  # load the profile
+            user.pigeonuser.language = profile_form.cleaned_data.get('language')
+            user.pigeonuser.country = profile_form.cleaned_data.get('country')
             user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
             return redirect('home')
     else:
         user_form = UserForm(prefix='user')
