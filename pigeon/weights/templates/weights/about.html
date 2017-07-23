@@ -1,6 +1,6 @@
 {% extends 'weights/layout.html' %}
+{% load staticfiles %}
 {% block content %}
-
 <br />
 <div>
   <!-- Nav tabs -->
@@ -23,10 +23,32 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="who">
       <h1>Who are we?</h1>
-      <ul>
-        <li>Fabien Bourrel</li>
-        <li>Benoît Latinier</li>
-      </ul>
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <img alt="logo" title="Fabien"
+               src="{% static 'images/fabien.png' %}" />
+        </div>
+        <div class="col-lg-8">
+          <h2>Fabien Bourrel</h2>
+          <ul>
+            <li><a href="https://github.com/Far3t">Github</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="col-lg-4">
+          <img alt="logo" title="Benoît"
+               src="{% static 'images/benoit.png' %}" />
+        </div>
+        <div class="col-lg-8">
+          <h2>Benoît Latinier</h2>
+          <ul>
+            <li><a href="https://github.com/blatinier">Github</a></li>
+            <li><a href="https://stackoverflow.com/users/1450754/beno%c3%aet-latinier">StackOverflow</li>
+            <li><a href="https://www.linkedin.com/in/beno%C3%AEt-latinier-53132717/">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="privacy">
       <h1>User Privacy</h1>
