@@ -15,7 +15,6 @@ def about(request):
     """
     Everything about licensing/opensource/OpenFoodFacts...
     """
-    # TODO #20
     return render(request, 'weights/about.html', {})
 
 
