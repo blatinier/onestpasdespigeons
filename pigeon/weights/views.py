@@ -31,7 +31,10 @@ def register(request):
             user.pigeonuser.language = profile_form.cleaned_data.get('language')
             user.pigeonuser.country = profile_form.cleaned_data.get('country')
             user.save()
-            return redirect('home')
+            raw_password = user_form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('my_measures')
     else:
         user_form = UserForm(prefix='user')
         profile_form = ProfileForm(prefix='profile')
