@@ -72,7 +72,6 @@ def contribute(request):
     Page to explain how to crontibute.
     (e.g issu github, add measures, add products, ideas, ...)
     """
-    # TODO #48
     return render(request, 'weights/contribute.html', {})
 
 
