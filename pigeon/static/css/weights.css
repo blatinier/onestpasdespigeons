@@ -15,3 +15,7 @@ body {
 .contribute-text {
   font-size: 1.3em;
 }
+
+.input-form-space {
+  padding-bottom: 5px;
+}

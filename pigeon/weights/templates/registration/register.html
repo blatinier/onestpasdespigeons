@@ -1,34 +1,17 @@
 {% extends 'weights/layout.html' %}
+{% load bootstrap3 %}
 {% block content %}
   <h2>Register</h2>
-  <form method="post" autocomplete="off">
+  <form method="post" autocomplete="off" class="form-contact">
     {% csrf_token %}
-    <div>
-      {% for field in user_form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-          {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-          {% endif %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
-      {% for field in profile_form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-          {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-          {% endif %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
+    {% for field in user_form %}
+      {% bootstrap_field field layout="horizontal" field_class="col-md-9 input-form-space" %}
+    {% endfor %}
+    {% for field in profile_form %}
+      {% bootstrap_field field layout="horizontal" field_class="col-md-9 input-form-space" %}
+    {% endfor %}
+    <div class="col-md-12 text-center">
+      {% bootstrap_button "Register" button_type="submit" button_class="btn-primary" size="large" %}
     </div>
-    <input type="submit" value="Register" />
   </form>
 {% endblock %}
