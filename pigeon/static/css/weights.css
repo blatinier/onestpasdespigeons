@@ -19,3 +19,15 @@ body {
 .input-form-space {
   padding-bottom: 5px;
 }
+
+.logo-container {
+  height: 100px;
+  min-width: 100px;
+  max-width: auto;
+  float: left;
+}
+
+.logo-container > img {
+  max-height: 100px;
+  width: auto;
+}
