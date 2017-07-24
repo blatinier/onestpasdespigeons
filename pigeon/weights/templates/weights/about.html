@@ -17,6 +17,12 @@
         Privacy
       </a>
     </li>
+    <li role="presentation">
+      <a href="#press" aria-controls="press"
+         role="tab" data-toggle="tab">
+        Press
+      </a>
+    </li>
   </ul>
 
   <!-- Tab panes -->
@@ -56,7 +62,29 @@
       full and only property. You can require editing/deleting these
       information at any time by contacting us on
       <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">Github</a>.</p>
-    <div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="press">
+      <div class="col-lg-6">
+        <h1>Talking about us</h1>
+        <p>Not yet :(. You are a journalist and what to talk about us?
+        Please <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">contact us</a>!</p>
+      </div>
+      <div class="col-lg-6">
+        <h1>Talking about the problem</h1>
+        <div class="col-lg-3">
+          <img alt="logo" title="60 Millions de consomateurs"
+               class="padding-top-20"
+               src="{% static 'images/logo-60M-conso.png' %}" />
+        </div>
+        <div class="col-lg-9">
+          <h3>60 Millions de consomateurs (French)</h3>
+          <ul>
+            <li><a href="http://www.60millions-mag.com/2014/06/19/chez-casino-le-bio-pese-lourd-7936">Chez Casino, le bio pèse lourd</li>
+            <li><a href="http://www.60millions-mag.com/2017/01/24/poids-des-aliments-parfois-paquet-ment-10922">Le poids des aliments, parfois le paquet ment</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}
