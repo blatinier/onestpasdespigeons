@@ -27,11 +27,12 @@
           <img id="logo" alt="logo" title="Alfred le pigeon" src="{% static 'images/pigeon.svg' %}" />
           <a class="navbar-brand" href="{% url 'home' %}">OnEstPasDesPigeons</a>
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'overview' %}">Statistiques</a></li>
+            <li><a href="{% url 'overview' %}">Statistics</a></li>
             {% if user.is_authenticated %}
-              <li><a href="{% url 'list_measures' %}">Toutes les mesures</a></li>
+              <li><a href="{% url 'my_measures' %}">My measures</a></li>
+              <li><a href="{% url 'list_measures' %}">All measures</a></li>
             {% endif %}
-            <li><a href="{% url 'about' %}">À propos</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">

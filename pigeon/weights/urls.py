@@ -24,6 +24,9 @@ urlpatterns = [
     url(r'^account$', views.user_account, name='user_account'),
     url(r'^contribute$', views.contribute, name='contribute'),
     url(r'^my_measures$', views.my_measures, name='my_measures'),
+    url(r'^add_measure$', views.add_measure, name='add_measure'),
+    url(r'^edit_measure/(?P<measure_id>[0-9]+)$', views.edit_measure, name='edit_measure'),
+    url(r'^delete_measure/(?P<measure_id>[0-9]+)$', views.delete_measure, name='delete_measure'),
     url(r'^list_measures$', views.list_measures, name='list_measures'),
 
     url(r'^register/$', views.register, name='register'),

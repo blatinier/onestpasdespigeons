@@ -101,3 +101,11 @@ class Measure(models.Model):
     package_weight = models.IntegerField()
     measured_weight = models.IntegerField()
     measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+
+    @property
+    def percent_diff(self):
+        return self.diff / 100
+
+    @property
+    def diff(self):
+        return self.measured_weight - self.package_weight

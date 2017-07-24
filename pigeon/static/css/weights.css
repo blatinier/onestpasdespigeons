@@ -35,3 +35,15 @@ body {
   max-height: 100px;
   width: auto;
 }
+
+.green {
+  color: #0f0;
+}
+
+.red {
+  color: #f00;
+}
+
+.product_img {
+  width: 100px;
+}

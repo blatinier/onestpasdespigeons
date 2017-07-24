@@ -18,6 +18,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from weights.forms import UserForm, ProfileForm
+from weights.models import Measure
 
 
 def home(request):
@@ -96,7 +97,35 @@ def contribute(request):
 @login_required
 def my_measures(request):
     """
+    Page to list your own measurements.
+    """
+    measures = Measure.objects.filter(user=request.user.pigeonuser)
+    return render(request, 'weights/my_measures.html',
+                  {'measures': measures})
+
+
+@login_required
+def add_measure(request):
+    """
     Page to add your own measurements.
     """
-    # TODO
-    return render(request, 'weights/my_measures.html', {})
+    # TODO #9
+    return render(request, 'weights/add_measures.html', {})
+
+
+@login_required
+def edit_measure(request, measure_id):
+    """
+    Page to edit your own measurements.
+    """
+    # TODO #9
+    return render(request, 'weights/edit_measures.html', {})
+
+
+@login_required
+def delete_measure(request, measure_id):
+    """
+    Page to delete your own measurements.
+    """
+    Measure.objects.filter(id=measure_id).delete()
+    return redirect('my_measures')
