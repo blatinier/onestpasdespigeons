@@ -23,3 +23,15 @@ body {
 .padding-top-20 {
   padding-top: 20px;
 }
+
+.logo-container {
+  height: 100px;
+  min-width: 100px;
+  max-width: auto;
+  float: left;
+}
+
+.logo-container > img {
+  max-height: 100px;
+  width: auto;
+}
