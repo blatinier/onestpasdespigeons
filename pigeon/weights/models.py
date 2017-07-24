@@ -73,3 +73,15 @@ class Product(models.Model):
             off_field = getattr(product_off, field)
             if off_field != getattr(self, field):
                 setattr(self, field, off_field)
+
+
+def get_image_path(instance, filename):
+    return os.path.join('measures', str(instance.user.username), filename)
+
+
+class Measure(models.Model):
+    user = models.ForeignKey(PigeonUser)
+    product = models.ForeignKey(Product)
+    package_weight = models.IntegerField()
+    measured_weight = models.IntegerField()
+    measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
