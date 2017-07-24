@@ -1,15 +1,15 @@
 sudo: required
-language: node_js
-node_js:
-  - "6"
+language: python
+python:
+    - "3.5"
 
-before_install:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash
-    - export PATH=$HOME/.yarn/bin:$PATH
+#before_install:
+#    - curl -o- -L https://yarnpkg.com/install.sh | bash
+#    - export PATH=$HOME/.yarn/bin:$PATH
 
 install: ./install_script.sh
 
 # command to run tests
 script:
-    - yarn test
-    #- cd back && nosetests tests
+    #- yarn test
+    #- cd pigeon && python manage.py test
