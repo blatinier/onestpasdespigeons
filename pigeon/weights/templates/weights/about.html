@@ -1,5 +1,6 @@
 {% extends 'weights/layout.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block content %}
 <br />
 <div>
@@ -8,19 +9,19 @@
     <li role="presentation" class="active">
       <a href="#who" aria-controls="who"
          role="tab" data-toggle="tab">
-        Who are we?
+          {% trans "Who are we?" %}
       </a>
     </li>
     <li role="presentation">
       <a href="#privacy" aria-controls="privacy"
          role="tab" data-toggle="tab">
-        Privacy
+          {% trans "Privacy" %}
       </a>
     </li>
     <li role="presentation">
       <a href="#press" aria-controls="press"
          role="tab" data-toggle="tab">
-        Press
+          {% trans "Press" %}
       </a>
     </li>
   </ul>
@@ -28,7 +29,7 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="who">
-      <h1>Who are we?</h1>
+        <h1>{% trans "Who are we?" %}</h1>
       <div class="col-lg-12">
         <div class="col-lg-2 logo-container">
           <img alt="logo" title="Fabien"
@@ -58,30 +59,29 @@
       </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="privacy">
-      <h1>User Privacy</h1>
-      <p>All personnal information you put on this website is your
-      full and only property. You can require editing/deleting these
-      information at any time by contacting us on
+      <h1>{% trans "User Privacy" %}</h1>
+      <p>{% trans "All personnal information you put on this website is your full and only property. " %}
+      {% trans "You can require editing/deleting these information at any time by contacting us on" %}
       <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">Github</a>.</p>
     </div>
     <div role="tabpanel" class="tab-pane" id="press">
       <div class="col-lg-6">
-        <h1>Talking about us</h1>
-        <p>Not yet :(. You are a journalist and what to talk about us?
-        Please <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">contact us</a>!</p>
+        <h1>{% trans "Talking about us" %}</h1>
+        <p>{% trans "Not yet :(. You are a journalist and what to talk about us?" %}
+        {% trans "Please" %} <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">{% trans "contact us" %}</a>!</p>
       </div>
       <div class="col-lg-6">
-        <h1>Talking about the problem</h1>
+          <h1>{% trans "Talking about the problem" %}</h1>
         <div class="col-lg-3">
           <img alt="logo" title="60 Millions de consomateurs"
                class="padding-top-20"
                src="{% static 'images/logo-60M-conso.png' %}" />
         </div>
         <div class="col-lg-9">
-          <h3>60 Millions de consomateurs (French)</h3>
+          <h3>{% trans "60 Millions de consomateurs (French)" %}</h3>
           <ul>
-            <li><a href="http://www.60millions-mag.com/2014/06/19/chez-casino-le-bio-pese-lourd-7936">Chez Casino, le bio pèse lourd</li>
-            <li><a href="http://www.60millions-mag.com/2017/01/24/poids-des-aliments-parfois-paquet-ment-10922">Le poids des aliments, parfois le paquet ment</a></li>
+              <li><a href="http://www.60millions-mag.com/2014/06/19/chez-casino-le-bio-pese-lourd-7936">{% trans "Chez Casino, le bio pèse lourd" %}</li>
+              <li><a href="http://www.60millions-mag.com/2017/01/24/poids-des-aliments-parfois-paquet-ment-10922">{% trans "Le poids des aliments, parfois le paquet ment" %}</a></li>
           </ul>
         </div>
       </div>
