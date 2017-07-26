@@ -6,8 +6,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pigeon',
-        'USER': 'pigeon_test',
-        'PASSWORD': 'test',
+        'USER': 'postgres',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'POST': '',
     }
