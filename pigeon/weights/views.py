@@ -110,7 +110,7 @@ def add_measure(request):
     Page to add your own measurements.
     """
     # TODO #9
-    return render(request, 'weights/add_measures.html', {})
+    return render(request, 'weights/add_measure.html', {})
 
 
 @login_required
@@ -119,7 +119,7 @@ def edit_measure(request, measure_id):
     Page to edit your own measurements.
     """
     # TODO #9
-    return render(request, 'weights/edit_measures.html', {})
+    return render(request, 'weights/edit_measure.html', {})
 
 
 @login_required
