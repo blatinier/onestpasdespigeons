@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'weights',
+    'autotranslate',
 ]
 
 MIDDLEWARE = [

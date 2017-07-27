@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-25 06:52+0000\n"
+"POT-Creation-Date: 2017-07-27 15:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,35 +25,40 @@ msgstr "Qui sommes-nous ?"
 
 #: weights/templates/weights/about.html:18
 msgid "Privacy"
-msgstr ""
+msgstr "Privé"
 
 #: weights/templates/weights/about.html:24
 msgid "Press"
-msgstr ""
+msgstr "Presse"
 
 #: weights/templates/weights/about.html:62
 msgid "User Privacy"
-msgstr ""
+msgstr "Vie Privée"
 
 #: weights/templates/weights/about.html:63
 msgid ""
 "All personnal information you put on this website is your full and only "
 "property. "
 msgstr ""
+"Toutes les informations que vous mettez sur ce site est votre entière "
+"propriété."
 
 #: weights/templates/weights/about.html:64
 msgid ""
-"You can require editing/deleting these information at any time by contacting "
-"us on"
+"You can require editing/deleting these information at any time by contacting"
+" us on"
 msgstr ""
+"Vous pouvez exiger la modification / suppression de ces informations à tout "
+"moment en nous contactant sur"
 
 #: weights/templates/weights/about.html:69
 msgid "Talking about us"
-msgstr ""
+msgstr "On parle de nous"
 
 #: weights/templates/weights/about.html:70
-msgid "Not yet :(. You are a journalist and what to talk about us?"
+msgid "Not yet :(. You are a journalist and want to talk about us?"
 msgstr ""
+"Pas encore :(. Vous êtes journaliste et vous voulez parler de nous ?"
 
 #: weights/templates/weights/about.html:71
 msgid "Please"
@@ -61,20 +66,20 @@ msgstr "S'il vous plaît"
 
 #: weights/templates/weights/about.html:71
 msgid "contact us"
-msgstr "contactez-nous"
+msgstr "Contactez-nous"
 
 #: weights/templates/weights/about.html:74
 msgid "Talking about the problem"
-msgstr "On parle du problème"
+msgstr "Parler du problème"
 
 #: weights/templates/weights/about.html:81
 msgid "60 Millions de consomateurs (French)"
-msgstr ""
+msgstr "60 millions de consomateurs"
 
 #: weights/templates/weights/about.html:83
 msgid "Chez Casino, le bio pèse lourd"
-msgstr ""
+msgstr "Chez Casino, le bio pèse lourd"
 
 #: weights/templates/weights/about.html:84
 msgid "Le poids des aliments, parfois le paquet ment"
-msgstr ""
+msgstr "Le poids des aliments, parfois le paquet ment"
