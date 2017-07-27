@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'django_select2',
     'weights',
     'autotranslate',
 ]
@@ -121,6 +122,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -145,6 +153,11 @@ LOCALE_PATHS = (
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/my_measures'
 LOGOUT_REDIRECT_URL = '/'
+
+# Select2
+SELECT2_JS = '/static/js/select2.min.js'
+SELECT2_CSS = '/static/css/select2.min.css'
+SELECT2_I18N_PATH = '/static/js/select2-i18n'
 
 try:
     from pigeon.local_settings import *

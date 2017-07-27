@@ -31,4 +31,5 @@ urlpatterns = [
 
     url(r'^register/$', views.register, name='register'),
     url('^', include('django.contrib.auth.urls')),
+    url(r'^select2/', include('django_select2.urls')),
 ]

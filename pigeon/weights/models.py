@@ -72,6 +72,9 @@ class Product(models.Model):
     purchase_places = models.CharField(max_length=256, blank=True, null=True)
     image_url = models.CharField(max_length=256, blank=True, null=True)
 
+    def __str__(self):
+        return "{product_name}".format(product_name=self.product_name)
+
     def copy(self):
         """
         Dump all models
@@ -99,8 +102,8 @@ def get_image_path(instance, filename):
 class Measure(models.Model):
     user = models.ForeignKey(PigeonUser)
     product = models.ForeignKey(Product)
-    package_weight = models.IntegerField()
-    measured_weight = models.IntegerField()
+    package_weight = models.DecimalField()
+    measured_weight = models.DecimalField()
     measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     @property

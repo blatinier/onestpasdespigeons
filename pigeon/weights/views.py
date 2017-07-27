@@ -17,7 +17,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from weights.forms import UserForm, ProfileForm
+from weights.forms import UserForm, ProfileForm, AddMeasureForm
 from weights.models import Measure
 
 
@@ -110,7 +110,9 @@ def add_measure(request):
     Page to add your own measurements.
     """
     # TODO #9
-    return render(request, 'weights/add_measure.html', {})
+    add_measure_form = AddMeasureForm()
+    return render(request, 'weights/add_measure.html',
+                  {'add_measure_form': add_measure_form})
 
 
 @login_required
