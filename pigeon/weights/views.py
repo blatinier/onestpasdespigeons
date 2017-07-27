@@ -110,7 +110,14 @@ def add_measure(request):
     Page to add your own measurements.
     """
     # TODO #9
-    add_measure_form = AddMeasureForm()
+    if request.method == 'POST':
+        measure_inst = Measure(user=request.user)
+        add_measure_form = AddMeasureForm(request.POST, request.FILES,
+                                          instance=measure_inst)
+        if add_measure_form.is_valid():
+            add_measure_form.save()
+    else:
+        add_measure_form = AddMeasureForm()
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form})
 
