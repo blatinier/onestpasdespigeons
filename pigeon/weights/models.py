@@ -102,8 +102,8 @@ def get_image_path(instance, filename):
 class Measure(models.Model):
     user = models.ForeignKey(PigeonUser)
     product = models.ForeignKey(Product)
-    package_weight = models.DecimalField()
-    measured_weight = models.DecimalField()
+    package_weight = models.DecimalField(decimal_places=3, max_digits=12)
+    measured_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
 
     @property
