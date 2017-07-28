@@ -96,7 +96,8 @@ class Product(models.Model):
 
 
 def get_image_path(instance, filename):
-    return os.path.join('measures', str(instance.user.username), filename)
+    return os.path.join('upload', 'measures',
+                        str(instance.user.user.username), filename)
 
 
 class Measure(models.Model):

@@ -50,12 +50,15 @@ class ProductSelect2Widget(ModelSelect2Widget):
 
 
 class AddMeasureForm(forms.ModelForm):
-    product = forms.ChoiceField(widget=ModelSelect2Widget(
-            model=Product,
-            search_fields=['product_name__icontains',
-                           'generic_name__icontains'],
+    product = forms.ModelChoiceField(
+            widget=ModelSelect2Widget(
+                model=Product,
+                search_fields=['product_name__icontains',
+                               'generic_name__icontains'],
+                queryset=Product.objects.all(),
+            ),
             queryset=Product.objects.all(),
-        ))
+        )
     package_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measure_image = forms.ImageField()

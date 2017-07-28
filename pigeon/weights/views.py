@@ -109,9 +109,8 @@ def add_measure(request):
     """
     Page to add your own measurements.
     """
-    # TODO #9
     if request.method == 'POST':
-        measure_inst = Measure(user=request.user)
+        measure_inst = Measure(user=request.user.pigeonuser)
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
                                           instance=measure_inst)
         if add_measure_form.is_valid():
