@@ -21,11 +21,11 @@
       {% for measure in measures %}
         <tr>
           <td><img class="product_img" src="{{measure.measure_image.url}}" alt="" /></td>
-          <td>{{ measure.product.product_name }}</td>
-          <td>{{ measure.package_weight }}</td>
-          <td>{{ measure.measured_weight }}</td>
-          <td class="{% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff }}</td>
-          <td>
+          <td class="list_product">{{ measure.product.product_name }}</td>
+          <td class="list_product">{{ measure.package_weight }}</td>
+          <td class="list_product">{{ measure.measured_weight }}</td>
+          <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff }}</td>
+          <td class="list_product">
             <a href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-pencil"></i></a>
             <a href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-times"></i></a>
           </td>
