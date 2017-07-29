@@ -5,3 +5,4 @@ pigeon/config/main.py
 pigeon/config/gunicorn.py
 venv/
 pigeon/static/node_modules
+OnEstPasDesPigeons.add_lcs.log
