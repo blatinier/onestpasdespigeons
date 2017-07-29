@@ -115,10 +115,13 @@ def add_measure(request):
                                           instance=measure_inst)
         if add_measure_form.is_valid():
             add_measure_form.save()
+            return redirect('my_measures')
+            # TODO ticket add a btn to not redir, flash msg + add new measure
     else:
         add_measure_form = AddMeasureForm()
     return render(request, 'weights/add_measure.html',
-                  {'add_measure_form': add_measure_form})
+                  {'add_measure_form': add_measure_form,
+                   'btn_text': 'Add!'})
 
 
 @login_required
@@ -126,8 +129,15 @@ def edit_measure(request, measure_id):
     """
     Page to edit your own measurements.
     """
-    # TODO #9
-    return render(request, 'weights/edit_measure.html', {})
+    if request.method == 'POST':
+        pass
+        # TODO #9
+    else:
+        measure = Measure.objects.get(id=measure_id)
+        add_measure_form = AddMeasureForm(instance=measure)
+    return render(request, 'weights/add_measure.html',
+                  {'add_measure_form': add_measure_form,
+                   'btn_text': 'Edit'})
 
 
 @login_required
@@ -135,5 +145,6 @@ def delete_measure(request, measure_id):
     """
     Page to delete your own measurements.
     """
+    # TODO #9, redirect doesn't take the deletion in account, refresh needed... concurrency problem?
     Measure.objects.filter(id=measure_id).delete()
     return redirect('my_measures')
