@@ -16,6 +16,7 @@
 #
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from weights.forms import UserForm, ProfileForm, AddMeasureForm
@@ -116,10 +117,10 @@ def add_measure(request):
                                           instance=measure_inst)
         if add_measure_form.is_valid():
             add_measure_form.save()
-            # TODO flash message OK
-            # https://docs.djangoproject.com/en/1.11/ref/contrib/messages/
+            messages.success(request, "Measure added!")
             return redirect(reverse(my_measures))
-            # TODO ticket add a btn to not redir, flash msg + add new measure
+        else:
+            messages.error(request, "Error in form.")
     add_measure_form = AddMeasureForm()
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
@@ -138,7 +139,7 @@ def edit_measure(request, measure_id):
                                               instance=measure)
             if add_measure_form.is_valid():
                 add_measure_form.save()
-                # TODO flash message OK
+                messages.success(request, "Measure edited!")
                 return redirect(reverse(my_measures))
         else:
             return HttpResponseForbidden()
@@ -153,10 +154,10 @@ def delete_measure(request, measure_id):
     """
     Page to delete your own measurements.
     """
-    # TODO #9, redirect doesn't take the deletion in account, refresh needed... concurrency problem?
     measure = get_object_or_404(Measure, pk=measure_id)
     if measure.user == request.user.pigeonuser:
         measure.delete()
+        messages.success(request, "Measure deleted!")
     else:
         return HttpResponseForbidden()
     return redirect(reverse(my_measures))
