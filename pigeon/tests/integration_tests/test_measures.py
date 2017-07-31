@@ -49,11 +49,20 @@ class AuthTestCase(TestCase):
         self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
 
         # Go to edit measure
-        self.client.get("/edit_measure/1")
-        # TODO edit measure
-        # TODO assert on listing + flash msg
+        resp = self.client.get("/edit_measure/1")
+        self.assertIn(b'Edit', resp.content)
+        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+            resp = self.client.post("/edit_measure/1",
+                                    {"product": "0000000003087",
+                                     "package_weight": 1000,
+                                     "measured_weight": 800,
+                                     "measure_image": data},
+                                    format="multipart",
+                                    follow=True)
+        self.assertIn(b"Measure edited!", resp.content)
+        self.assertIn(b"800", resp.content)
         # Delete measure
-        self.client.get("/delete_measure/1")
+        resp = self.client.get("/delete_measure/1", follow=True)
         self.assertIn(b"Measure deleted!", resp.content)
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
 
