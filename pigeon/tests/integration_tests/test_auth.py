@@ -5,6 +5,8 @@ from weights.models import Measure, PigeonUser, Product
 
 
 class AuthTestCase(TestCase):
+    fixtures = ['user.json']
+
     def setUp(self):
         self.client = Client()
 
@@ -90,5 +92,38 @@ class AuthTestCase(TestCase):
         """
         Test failed register and check for error messages:
         - A user with that username already exists.
-        - List TODO"""
-        pass  # TODO
+        - Password too short.
+        - Password too common (eg: aaaaaaaa)
+        - Password confirmation do not match"""
+
+        # Username already exists
+        user_data = {"user-username": "ab",
+                     "user-password1": "plokijuh",
+                     "user-password2": "plokijuh"}
+        resp = self.client.post("/register/", user_data, follow=True)
+        self.assertIn(b"A user with that username already exists.", resp.content)
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
+
+        # Password too short
+        user_data = {"user-username": "abcdefgh",
+                     "user-password1": "plo",
+                     "user-password2": "plo"}
+        resp = self.client.post("/register/", user_data, follow=True)
+        self.assertIn(b"This password is too short. It must contain at least 8 characters.", resp.content)
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
+
+        # Password too common
+        user_data = {"user-username": "abcdefgh",
+                     "user-password1": "aaaaaaaa",
+                     "user-password2": "aaaaaaaa"}
+        resp = self.client.post("/register/", user_data, follow=True)
+        self.assertIn(b"This password is too common.", resp.content)
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
+
+        # Password confirmation do not match
+        user_data = {"user-username": "abcdefgh",
+                     "user-password1": "poiuytreza",
+                     "user-password2": "plokijuhygtf"}
+        resp = self.client.post("/register/", user_data, follow=True)
+        self.assertIn(b"The two password fields didn&#39;t match.", resp.content)
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
