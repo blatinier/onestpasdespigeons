@@ -11,6 +11,7 @@ class AuthTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
+        self.client.force_login(User.objects.get(username="ab"))
 
     def test_add_edit_list_delete(self):
         """
@@ -20,8 +21,6 @@ class AuthTestCase(TestCase):
         - List measure
         - Delete measure
         """
-        self.client.force_login(User.objects.get(username="ab"))
-
         # Go to listing
         resp = self.client.get("/my_measures")
         self.assertEqual(resp.status_code, 200)
@@ -65,10 +64,3 @@ class AuthTestCase(TestCase):
         resp = self.client.get("/delete_measure/1", follow=True)
         self.assertIn(b"Measure deleted!", resp.content)
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
-
-    def test_add_measure(self):
-        """
-        Test failures:
-        - Missing field
-        """
-        pass  # TODO
