@@ -1,7 +1,5 @@
 from django.contrib import auth
-from django.contrib.auth.models import User
 from django.test import Client, TestCase
-from weights.models import Measure, PigeonUser, Product
 
 
 class AuthTestCase(TestCase):
