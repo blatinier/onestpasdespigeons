@@ -5,6 +5,8 @@ from weights.models import Measure, PigeonUser, Product
 
 
 class AuthTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
 
     def test_regular_register_logout_login(self):
         """
@@ -13,10 +15,8 @@ class AuthTestCase(TestCase):
         - Logout
         - Login
         """
-        c = Client()
-
         # Go to register page:
-        resp = c.get("/register/")
+        resp = self.client.get("/register/")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b"Register", resp.content)
 
@@ -29,23 +29,23 @@ class AuthTestCase(TestCase):
                      "user-password2": "plokijuh",
                      "profile-language": "en",
                      "profile-country": "us"}
-        resp = c.post("/register/", user_data, follow=True)
+        resp = self.client.post("/register/", user_data, follow=True)
         self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
         self.assertIn(b"My measures", resp.content)
-        self.assertTrue(auth.get_user(c).is_authenticated())
+        self.assertTrue(auth.get_user(self.client).is_authenticated())
 
         # Logout
-        resp = c.get("/logout/", follow=True)
+        resp = self.client.get("/logout/", follow=True)
         self.assertEqual(resp.redirect_chain, [("/", 302)])
-        self.assertFalse(auth.get_user(c).is_authenticated())
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # Login
         login_data = {"username": "azec",
                       "password": "plokijuh"}
-        resp = c.post("/login/", login_data, follow=True)
+        resp = self.client.post("/login/", login_data, follow=True)
         self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
         self.assertIn(b"My measures", resp.content)
-        self.assertTrue(auth.get_user(c).is_authenticated())
+        self.assertTrue(auth.get_user(self.client).is_authenticated())
 
     def test_fail_login(self):
         """

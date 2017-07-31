@@ -121,7 +121,8 @@ def add_measure(request):
             return redirect(reverse(my_measures))
         else:
             messages.error(request, "Error in form.")
-    add_measure_form = AddMeasureForm()
+    else:
+        add_measure_form = AddMeasureForm()
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
                    'btn_text': 'Add!'})
