@@ -17,4 +17,10 @@
 #
 pip install --upgrade pip
 pip install -r requirements/freeze.pip
+
+if [ $# -gt 0 ]; then
+  if [ "$1" == "test" ]; then
+    pip install -r requirements/tests.pip
+  fi
+fi
 #cd front && yarn install && yarn build

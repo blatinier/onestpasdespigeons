@@ -14,4 +14,6 @@ install: ./install_script.sh
 
 # command to run tests
 script:
-    - cd pigeon && python manage.py test
+    - cd pigeon && coverage run manage.py test
+after_success:
+  - coveralls
