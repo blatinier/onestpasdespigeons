@@ -13,10 +13,10 @@
             <span aria-hidden="true">&times;</span>
           </button>
           <strong>
-          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
-          {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}Warning: {% endif %}
-          {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}Success: {% endif %}
-          {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}Information: {% endif %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}{% trans "Error:" %} {% endif %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}{% trans "Warning:" %} {% endif %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}{% trans "Success:" %} {% endif %}
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}{% trans "Information:" %} {% endif %}
           </strong>
           {{ message }}
         </div>

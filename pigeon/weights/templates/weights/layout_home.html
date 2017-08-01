@@ -20,20 +20,20 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{% trans "Toggle navigation" %}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img id="logo" alt="logo" title="Alfred le pigeon" src="{% static 'images/pigeon.svg' %}" />
+          <img id="logo" alt="logo" title="{% trans "Alfred le pigeon" %}" src="{% static 'images/pigeon.svg' %}" />
           <a class="navbar-brand" href="{% url 'home' %}">OnEstPasDesPigeons</a>
           <ul class="nav navbar-nav">
-            <li><a href="{% url 'overview' %}">Statistics</a></li>
+            <li><a href="{% url 'overview' %}">{% trans "Statistics" %}</a></li>
             {% if user.is_authenticated %}
-              <li><a href="{% url 'my_measures' %}">My measures</a></li>
-              <li><a href="{% url 'list_measures' %}">All measures</a></li>
+              <li><a href="{% url 'my_measures' %}">{% trans "My measures" %}</a></li>
+              <li><a href="{% url 'list_measures' %}">{% trans "All measures" %}</a></li>
             {% endif %}
-            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'about' %}">{% trans "About" %}</a></li>
           </ul>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -47,15 +47,15 @@
                   {{ user.username }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a href="{% url 'my_measures' %}">Mes mesures</a></li>
-                  <li><a href="{% url 'user_account' %}">Mon compte</a></li>
-                  <li><a href="{% url 'contribute' %}">Contribuer</a></li>
+                  <li><a href="{% url 'my_measures' %}">{% trans "My measures" %}</a></li>
+                  <li><a href="{% url 'user_account' %}">{% trans "My account" %}</a></li>
+                  <li><a href="{% url 'contribute' %}">{% trans "Contribute" %}</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                  <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
                 </ul>
               </div>
             {% else %}
-              <a href="{% url 'login' %}" class="btn btn-success">Sign in</a>
+              <a href="{% url 'login' %}" class="btn btn-success">{% trans "Sign in" %}</a>
             {% endif %}
           </div>
         </div>
@@ -69,4 +69,3 @@
 
   </body>
 </html>
-

@@ -19,6 +19,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.utils.translation import ugettext as _
 from weights.forms import UserForm, ProfileForm, AddMeasureForm
 from weights.models import Measure
 
@@ -117,15 +118,17 @@ def add_measure(request):
                                           instance=measure_inst)
         if add_measure_form.is_valid():
             add_measure_form.save()
-            messages.success(request, "Measure added!")
+            messages.success(request, _("Measure added!"))
             return redirect(reverse(my_measures))
         else:
-            messages.error(request, "Error in form.")
+            messages.error(request, _("Error in the form."))
     else:
         add_measure_form = AddMeasureForm()
+    title = _('Add a measure')
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
-                   'btn_text': 'Add!'})
+                   'btn_text': _('Add!'),
+                   'title': title})
 
 
 @login_required
@@ -133,6 +136,7 @@ def edit_measure(request, measure_id):
     """
     Page to edit your own measurements.
     """
+    # TODO, check user own the measure
     measure = get_object_or_404(Measure, pk=measure_id)
     if request.method == 'POST':
         if measure.user == request.user.pigeonuser:
@@ -140,14 +144,16 @@ def edit_measure(request, measure_id):
                                               instance=measure)
             if add_measure_form.is_valid():
                 add_measure_form.save()
-                messages.success(request, "Measure edited!")
+                messages.success(request, _("Measure edited!"))
                 return redirect(reverse(my_measures))
         else:
             return HttpResponseForbidden()
     add_measure_form = AddMeasureForm(instance=measure)
+    title = _('Edit measure {measure_id}').format(measure_id=measure.id)
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
-                   'btn_text': 'Edit'})
+                   'btn_text': _('Edit'),
+                   'title': title})
 
 
 @login_required
@@ -155,10 +161,11 @@ def delete_measure(request, measure_id):
     """
     Page to delete your own measurements.
     """
+    # TODO, check user own the measure
     measure = get_object_or_404(Measure, pk=measure_id)
     if measure.user == request.user.pigeonuser:
         measure.delete()
-        messages.success(request, "Measure deleted!")
+        messages.success(request, _("Measure deleted!"))
     else:
         return HttpResponseForbidden()
     return redirect(reverse(my_measures))
