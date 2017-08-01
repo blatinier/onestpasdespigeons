@@ -13,13 +13,6 @@
     <div class="col-lg-10">
       <h2>{% trans "Weight!" %}</h2>
       <div class="contribute-text">
-        {% comment %}Translators:
-        La première et la plus importantes des contributions qui vous
-        puissiez faire c'est de peser vos courses et de mettre les
-        résultats ici même ! C'est l'ensemble de toutes les mesures
-        ainsi récupérées qui font ce site et permettent l'élaboration
-        de joli statistiques vous aidant dans vos choix au magasin.
-        {% endcomment %}
         {% blocktrans trimmed %}
         The first and most important contribution you could
         make is to weight your groceries and upload the result
@@ -31,19 +24,11 @@
       </div>
     </div>
   </div>
+
   <div class="col-lg-12">
     <div class="col-lg-10">
       <h2>{% trans "On Github" %}</h2>
       <div class="contribute-text">
-        {% comment %}Translators:
-        Vous aimez ce site et vous y avez trouvé un bug ?
-        Une fonctionnalité vous manque ?
-        Vous pensez qu'il est possible d'améliorer les fonctionnalités
-        existante ? Alors n'hésitez pas une seconde et passez sur le
-        <a href="//github.com/blatinier/onestpasdespigeons/issues">dépôt Github du projet</a>
-        pour nous proposer votre idée ! (Et même la programmer si vous
-        le souhaitez !)
-        {% endcomment %}
         {% blocktrans trimmed %}
         You like this website and found a bug?
         You're missing a feature?
@@ -55,6 +40,23 @@
     <div class="col-lg-2">
       <img class="col-lg-12" alt="Github" title="Octocat"
            src="{% static 'images/Octocat.png' %}" />
+    </div>
+  </div>
+
+  <div class="col-lg-12 margin-top-50">
+    <div class="col-lg-2">
+      <img class="col-lg-10 padding-top-20" alt="POEditor" title="POEditor"
+           src="{% static 'images/poeditor.png' %}" />
+    </div>
+    <div class="col-lg-10">
+      <h2>{% trans "Translate" %}</h2>
+      <div class="contribute-text">
+        {% blocktrans trimmed %}
+        You found a translation error?
+        You would like to see this website translated in another language?
+        Go on our <a href="https://poeditor.com/join/project/bKxuAMSSBx">POEditor project</a> and contribute translations!
+        {% endblocktrans %}
+      </div>
     </div>
   </div>
 </div>
