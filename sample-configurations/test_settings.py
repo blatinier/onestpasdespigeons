@@ -11,9 +11,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright © 2017 Benoît Latinier, Fabien Bourrel
+#  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
-from django.test import TestCase
+SECRET_KEY = 'test_key'
+DEBUG = False
+ALLOWED_HOSTS = ['test.pigeon.latinier.fr']
 
-# Create your tests here.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pigeon',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'POST': '',
+    }
+}

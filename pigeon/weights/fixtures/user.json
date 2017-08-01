@@ -1,0 +1,29 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 42,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$psdsiWkbmAEF$JnN9xIIe/ok9GxhLSKTDf+QXtubvrT9qYNuwgTpvOIk=",
+      "last_login": "2017-07-31T18:50:46.234Z",
+      "is_superuser": false,
+      "username": "ab",
+      "first_name": "a",
+      "last_name": "a",
+      "email": "a@pipo.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-07-31T18:50:46.048Z",
+      "groups": [],
+      "user_permissions": []}
+  },
+  {
+    "model": "weights.pigeonuser",
+    "pk": 11111111,
+    "fields": {
+      "user": 42,
+      "score": 1,
+      "achievements": null,
+      "language": "en",
+      "country": "us"}
+  }
+]

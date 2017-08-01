@@ -11,13 +11,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright © 2017 Benoît Latinier, Fabien Bourrel
+#  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from weights.models import PigeonUser
+from django_select2.forms import ModelSelect2Widget
+from weights.models import PigeonUser, Product, Measure
 
 
 LANGUAGE_CHOICES = (('en', 'en'), ('fr', 'fr'))
@@ -38,3 +39,30 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = PigeonUser
         fields = ('language', 'country')
+
+
+
+class ProductSelect2Widget(ModelSelect2Widget):
+    search_fields = [
+            'product_name__icontains',
+            'generic_name__icontains',
+        ]
+
+
+class AddMeasureForm(forms.ModelForm):
+    product = forms.ModelChoiceField(
+            widget=ModelSelect2Widget(
+                model=Product,
+                search_fields=['product_name__icontains',
+                               'generic_name__icontains'],
+                queryset=Product.objects.all(),
+            ),
+            queryset=Product.objects.all(),
+        )
+    package_weight = forms.DecimalField(min_value=0, decimal_places=3)
+    measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
+    measure_image = forms.ImageField()
+    class Meta:
+        model = Measure
+        fields = ('product', 'package_weight', 'measured_weight',
+                  'measure_image')

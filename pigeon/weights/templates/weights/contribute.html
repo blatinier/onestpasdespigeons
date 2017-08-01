@@ -1,29 +1,41 @@
 {% extends 'weights/layout.html' %}
+{% load i18n %}
 {% load staticfiles %}
 {% block content %}
 <div class="row offset-from-menu">
-  <h1 class="col-lg-12 text-center">Comment contribuer ?</h1>
+  <h1 class="col-lg-12 text-center">{% trans "How to contribute" %}</h1>
 
   <div class="col-lg-12">
     <div class="col-lg-2">
-      <img alt="logo" title="Alfred le pigeon"
+      <img alt="logo" title="{% trans 'Alfred le pigeon' %}"
            src="{% static 'images/pigeon.svg' %}" />
     </div>
     <div class="col-lg-10">
-      <h2>Pesez !</h2>
+      <h2>{% trans "Weight!" %}</h2>
       <div class="contribute-text">
+        {% comment %}Translators:
         La première et la plus importantes des contributions qui vous
         puissiez faire c'est de peser vos courses et de mettre les
         résultats ici même ! C'est l'ensemble de toutes les mesures
         ainsi récupérées qui font ce site et permettent l'élaboration
         de joli statistiques vous aidant dans vos choix au magasin.
+        {% endcomment %}
+        {% blocktrans trimmed %}
+        The first and most important contribution you could
+        make is to weight your groceries and upload the result
+        right here! It the whole lot of measurements made by you
+        which make this website what it is and allow us to create
+        pretty graphs helping the future you to make your choices
+        wisely in the supermarket.
+        {% endblocktrans %}
       </div>
     </div>
   </div>
   <div class="col-lg-12">
     <div class="col-lg-10">
-      <h2>Sur Github</h2>
+      <h2>{% trans "On Github" %}</h2>
       <div class="contribute-text">
+        {% comment %}Translators:
         Vous aimez ce site et vous y avez trouvé un bug ?
         Une fonctionnalité vous manque ?
         Vous pensez qu'il est possible d'améliorer les fonctionnalités
@@ -31,6 +43,13 @@
         <a href="//github.com/blatinier/onestpasdespigeons/issues">dépôt Github du projet</a>
         pour nous proposer votre idée ! (Et même la programmer si vous
         le souhaitez !)
+        {% endcomment %}
+        {% blocktrans trimmed %}
+        You like this website and found a bug?
+        You're missing a feature?
+        You think we could improve some existing feature?
+        Hop on our <a href="//github.com/blatinier/onestpasdespigeons/issues">Github repository</a> and fill a ticket with your ideas! (And even code it if you feel like it!!)
+        {% endblocktrans %}
       </div>
     </div>
     <div class="col-lg-2">

@@ -20,6 +20,10 @@ body {
   padding-bottom: 5px;
 }
 
+.margin-top-20 {
+  margin-top: 20px;
+}
+
 .padding-top-20 {
   padding-top: 20px;
 }
@@ -34,4 +38,20 @@ body {
 .logo-container > img {
   max-height: 100px;
   width: auto;
+}
+
+.green {
+  color: #0f0;
+}
+
+.red {
+  color: #f00;
+}
+
+.product_img {
+  width: 50px;
+}
+
+.table > tbody > tr > td.list_product {
+  line-height: 50px;
 }

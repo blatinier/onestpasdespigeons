@@ -2,16 +2,16 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright © 2017 Benoît Latinier, Fabien Bourrel
+#  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
 """
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'django_select2',
     'weights',
     'autotranslate',
 ]
@@ -121,6 +122,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -145,6 +153,11 @@ LOCALE_PATHS = (
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/my_measures'
 LOGOUT_REDIRECT_URL = '/'
+
+# Select2
+SELECT2_JS = '/static/js/select2.min.js'
+SELECT2_CSS = '/static/css/select2.min.css'
+SELECT2_I18N_PATH = '/static/js/select2-i18n'
 
 try:
     from pigeon.local_settings import *

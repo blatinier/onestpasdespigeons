@@ -1,14 +1,34 @@
 {% extends 'weights/layout_home.html' %}
+{% load i18n %}
 {% block container %}
   <div class="jumbotron">
     <div class="container">
-      <h1>De combien se fait-on pigeonner ?</h1>
-      <p>Répondre à cette question est l'objectif de ce petit site.
+      <h1>
+        {% comment %}Translators:
+        De combien se fait-on pigeonner ?
+        {% endcomment %}
+        {% blocktrans trimmed %}
+        How much are we taken for a ride?
+        {% endblocktrans %}
+      </h1>
+      <p>
+        {% comment %}Translators:
+        Répondre à cette question est l'objectif de ce petit site.
         Tout commence lorsqu'une connaissance nous lance
         « J'ai pesé mon pâquet de 1kg de riz, bah il faisait 960g ! ».
         Et l'expérience s'est réitérée plusieurs fois.
         Pourquoi alors ne pas créer une base de donnée de toutes ces mesures ?
-        Et découvrir à quel point on se fait pigeonner ?</p>
+        Et découvrir à quel point on se fait pigeonner ?
+        {% endcomment %}
+        {% blocktrans trimmed %}
+        Answering this question is the objective of this small website.
+        Everything starts when a friend tells us:
+        "I weight my 1kg packet of rice, it weighted 960g!"
+        The experiment could be reproduced several times.
+        Why not create a database of all these weights and find out
+        how much we are taken for a ride?
+        {% endblocktrans %}
+      </p>
     </div>
   </div>
   <div class="row">

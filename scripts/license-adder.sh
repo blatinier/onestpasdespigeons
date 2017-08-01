@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 #
-#  Copyright © 2016 Andi Palo
+#  Copyright (c) 2016 Andi Palo
 #  This file is part of project: License Adder
 #
 
@@ -47,7 +47,7 @@ slashComments=("c" "h" "cpp" "hpp" "m" "java" "js")
 hashComments=("py" "sh")
 
 log=$1/$project.add_lcs.log
-find $1 -type f -not -path "$1/.git/*" -not -path "$1/pigeon/static/node_modules/*" -not -path "$1/pigeon/static/admin/*" -not -path "$1/venv/*" | while read f; do
+find $1 -type f -not -path "$1/.git/*" -not -path "$1/pigeon/static/*" -not -path "$1/venv/*" | while read f; do
   if (grep -Eq '(?:PURPOSE AND NONINFRINGEMENT|GNU General Public License|Copyright)' "$f");then
     echo "No need to copy the License Header to $f" >> $log
   else
@@ -69,7 +69,7 @@ find $1 -type f -not -path "$1/.git/*" -not -path "$1/pigeon/static/node_modules
         #see http://stackoverflow.com/a/9588622/1073786
         awk '{print "'"$comment"'" $0;}' $2 > "$f.new"
         echo $comment >> "$f.new"
-        echo "$comment Copyright © $(date +"%Y") $author" >> "$f.new"
+        echo "$comment Copyright (c) $(date +"%Y") $author" >> "$f.new"
         echo "$comment This file is part of project: $project" >> "$f.new"
         echo $comment >> "$f.new"
         cat "$f" >> "$f.new"

@@ -4,12 +4,16 @@ python:
     - "3.5"
 services: postgresql
 
-#before_install:
+before_install:
+    - cp sample-configurations/test_settings.py pigeon/pigeon/local_settings.py
+    - psql -c 'create database pigeon;' -U postgres
 #    - curl -o- -L https://yarnpkg.com/install.sh | bash
 #    - export PATH=$HOME/.yarn/bin:$PATH
 
-install: ./install_script.sh
+install: ./install_script.sh test
 
 # command to run tests
 script:
-    #- cd pigeon && python manage.py test
+    - cd pigeon && coverage run manage.py test
+after_success:
+  - coveralls
