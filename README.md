@@ -2,6 +2,8 @@ Health master: [![Code Health](https://landscape.io/github/blatinier/onestpasdes
 Health devel: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/devel/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/devel)
 Travis master: [![Travis](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)
 Travis devel: [![Travis](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=devel)](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=devel)
+Coverage master: [![Coverage Status](https://coveralls.io/repos/github/blatinier/onestpasdespigeons/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/onestpasdespigeons?branch=master)
+Coverage devel: [![Coverage Status](https://coveralls.io/repos/github/blatinier/onestpasdespigeons/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/onestpasdespigeons?branch=devel)
 
 
 # Backend

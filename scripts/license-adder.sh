@@ -20,7 +20,7 @@
 # SOFTWARE.
 #
 #
-#  Copyright © 2016 Andi Palo
+#  Copyright (c) 2016 Andi Palo
 #  This file is part of project: License Adder
 #
 
@@ -69,7 +69,7 @@ find $1 -type f -not -path "$1/.git/*" -not -path "$1/pigeon/static/*" -not -pat
         #see http://stackoverflow.com/a/9588622/1073786
         awk '{print "'"$comment"'" $0;}' $2 > "$f.new"
         echo $comment >> "$f.new"
-        echo "$comment Copyright © $(date +"%Y") $author" >> "$f.new"
+        echo "$comment Copyright (c) $(date +"%Y") $author" >> "$f.new"
         echo "$comment This file is part of project: $project" >> "$f.new"
         echo $comment >> "$f.new"
         cat "$f" >> "$f.new"
