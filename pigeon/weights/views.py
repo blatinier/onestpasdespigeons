@@ -136,18 +136,16 @@ def edit_measure(request, measure_id):
     """
     Page to edit your own measurements.
     """
-    # TODO, check user own the measure
     measure = get_object_or_404(Measure, pk=measure_id)
+    if measure.user != request.user.pigeonuser:
+        return HttpResponseForbidden()
     if request.method == 'POST':
-        if measure.user == request.user.pigeonuser:
-            add_measure_form = AddMeasureForm(request.POST, request.FILES,
-                                              instance=measure)
-            if add_measure_form.is_valid():
-                add_measure_form.save()
-                messages.success(request, _("Measure edited!"))
-                return redirect(reverse(my_measures))
-        else:
-            return HttpResponseForbidden()
+        add_measure_form = AddMeasureForm(request.POST, request.FILES,
+                                          instance=measure)
+        if add_measure_form.is_valid():
+            add_measure_form.save()
+            messages.success(request, _("Measure edited!"))
+            return redirect(reverse(my_measures))
     add_measure_form = AddMeasureForm(instance=measure)
     title = _('Edit measure {measure_id}').format(measure_id=measure.id)
     return render(request, 'weights/add_measure.html',
@@ -161,7 +159,6 @@ def delete_measure(request, measure_id):
     """
     Page to delete your own measurements.
     """
-    # TODO, check user own the measure
     measure = get_object_or_404(Measure, pk=measure_id)
     if measure.user == request.user.pigeonuser:
         measure.delete()
