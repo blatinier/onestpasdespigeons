@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
@@ -19,7 +19,7 @@ pip install --upgrade pip
 pip install -r requirements/freeze.pip
 
 if [ $# -gt 0 ]; then
-  if [ "$1" == "test" ]; then
+  if [ "$1" = "test" ]; then
     pip install -r requirements/tests.pip
   fi
 fi
