@@ -1,6 +1,6 @@
-Health master: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/master/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/master)
+Code style master: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/master/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/master)
 
-Health devel: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/devel/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/devel)
+Code style devel: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/devel/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/devel)
 
 Travis master: [![Travis](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)
 
