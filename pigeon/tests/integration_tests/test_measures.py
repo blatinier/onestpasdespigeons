@@ -2,6 +2,7 @@ import os
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from pigeon.settings import STATIC_ROOT
+from weights.models import Measure
 
 
 class AuthTestCase(TestCase):
@@ -9,7 +10,7 @@ class AuthTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.client.force_login(User.objects.get(username="ab"))
+        self.client.force_login(User.objects.get(username="test_user_1"))
 
     def test_add_edit_list_delete(self):
         """
@@ -58,7 +59,27 @@ class AuthTestCase(TestCase):
                                     follow=True)
         self.assertIn(b"Measure edited!", resp.content)
         self.assertIn(b"800", resp.content)
+
         # Delete measure
         resp = self.client.get("/delete_measure/1", follow=True)
         self.assertIn(b"Measure deleted!", resp.content)
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
+
+    def test_delete_measure_not_owned(self):
+        # Create a measure
+        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+            resp = self.client.post("/add_measure",
+                                    {"product": "0000000003087",
+                                     "package_weight": 1000,
+                                     "measured_weight": 900,
+                                     "measure_image": data},
+                                    format="multipart",
+                                    follow=True)
+        # Change user
+        self.client.force_login(User.objects.get(username="test_user_2"))
+
+        # Try to delete measure
+        measure = Measure.objects.filter(product="0000000003087")[0]
+
+        resp = self.client.get("/delete_measure/%d" % measure.id, follow=True)
+        self.assertEqual(resp.status_code, 403)

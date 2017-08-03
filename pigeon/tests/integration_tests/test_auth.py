@@ -95,7 +95,7 @@ class AuthTestCase(TestCase):
         - Password confirmation do not match"""
 
         # Username already exists
-        user_data = {"user-username": "ab",
+        user_data = {"user-username": "test_user_1",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh"}
         resp = self.client.post("/register/", user_data, follow=True)
