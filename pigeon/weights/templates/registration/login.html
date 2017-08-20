@@ -1,5 +1,6 @@
 {% extends 'weights/layout.html' %}
 {% load bootstrap3 %}
+{% load staticfiles %}
 {% block content %}
 <div class="row offset-from-menu">
   <div class="col-lg-6 col-lg-offset-3">
@@ -31,6 +32,21 @@
     </div>-->
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
+  <a class="btn btn-default" href="{% url "social:begin" "google-oauth2" %}">
+    <img src="{% static 'images/google-sign.png' %}" width="25" />Sign in with Google
+  </a>
+  <a class="btn btn-default" href="{% url "social:begin" "facebook" %}">
+    <img src="{% static 'images/facebook-sign.svg' %}" width="25" />
+    Sign in with Facebook
+  </a>
+  <a class="btn btn-default" href="{% url "social:begin" "twitter" %}">
+    <img src="{% static 'images/twitter-sign.svg' %}" width="25" />
+    Sign in with Twitter
+  </a>
+  <a class="btn btn-default" href="{% url "social:begin" "github" %}">
+    <img src="{% static 'images/github-sign.svg' %}" width="25" />
+    Sign in with Github
+  </a>
   </div>
 </div>
 {% endblock %}
