@@ -1,0 +1,104 @@
+{% extends 'weights/layout.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block content %}
+<div class="row offset-from-menu">
+  <div class="row">
+    <h1 class="col-lg-12 text-center">{% trans "Overview" %}</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h4>{% blocktrans %}# Products: {{nb_products}}{% endblocktrans %}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body text-center">
+          <h4>{% blocktrans %}# Measures: {{nb_measures}}{% endblocktrans %}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{% trans "Absolute statistics" %}</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>{% blocktrans %}Min difference: {{abs_min_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Max difference: {{abs_max_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Median difference: {{abs_median_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Mean difference: {{abs_mean_diff}}{% endblocktrans %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{% trans "Relative statistics" %}</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>{% blocktrans %}Min difference: {{rel_min_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Max difference: {{rel_max_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Median difference: {{rel_median_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Mean difference: {{rel_mean_diff}}%{% endblocktrans %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{% trans "By products" %}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-lg-6">
+        <h4>{% trans "Top 5 products" %}</h4>
+        <ul>
+        {% for measure in top_products %}
+          <li>{{ measure.product }}: {{ measure.mdiff|floatformat:2 }} %</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <h4>{% trans "Flop 5 products" %}</h4>
+        <ul>
+        {% for measure in flop_products %}
+          <li>{{ measure.product }}: {{ measure.mdiff|floatformat:2 }} %</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{% trans "By brands" %}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-lg-6">
+        <h4>{% trans "Top 5 brands" %}</h4>
+        <ul>
+        {% for measure in top_brands %}
+          <li>{{ measure.brand }}: {{ measure.mdiff|floatformat:2}} %</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <h4>{% trans "Flop 5 brands" %}</h4>
+        <ul>
+        {% for measure in flop_brands %}
+          <li>{{ measure.brand }}: {{ measure.mdiff|floatformat:2}} %</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

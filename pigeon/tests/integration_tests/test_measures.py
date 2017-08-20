@@ -5,7 +5,7 @@ from pigeon.settings import STATIC_ROOT
 from weights.models import Measure
 
 
-class AuthTestCase(TestCase):
+class MeasureTestCase(TestCase):
     fixtures = ['user.json', 'products.json', 'measures.json']
 
     def setUp(self):
@@ -67,6 +67,9 @@ class AuthTestCase(TestCase):
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
 
     def test_delete_measure_not_owned(self):
+        """
+        Try to delete measure not owned
+        """
         # Create a measure
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
             resp = self.client.post("/add_measure",

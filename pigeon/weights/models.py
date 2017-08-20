@@ -87,7 +87,10 @@ class Product(models.Model):
     image_url = models.CharField(max_length=256, blank=True, null=True)
 
     def __str__(self):
-        return "{product_name} ({brands})".format(product_name=self.product_name, brands=self.brands)
+        if self.brands:
+            return "{product_name} ({brands})".format(product_name=self.product_name, brands=self.brands)
+        else:
+            return self.product_name
 
     def copy(self):
         """
