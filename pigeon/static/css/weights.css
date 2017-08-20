@@ -52,6 +52,21 @@ body {
   color: #f00;
 }
 
+.product_img_big {
+  margin: auto;
+  overflow: hidden;
+  width: 80%;
+}
+
+.product_img_big > div {
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.product_img_big img {
+  width: 100%;
+}
+
 .product_img {
   width: 50px;
 }

@@ -30,7 +30,9 @@ def home(request):
     """
     Pretty home page.
     """
-    return render(request, 'weights/home.html', {})
+    last_measures = Measure.objects.all().order_by('-created_at')[:5]
+    return render(request, 'weights/home.html',
+                  {'last_measures': last_measures})
 
 
 def about(request):
