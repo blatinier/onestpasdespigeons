@@ -6,7 +6,7 @@ from weights.models import Measure
 
 
 class AuthTestCase(TestCase):
-    fixtures = ['user.json', 'products.json']
+    fixtures = ['user.json', 'products.json', 'measures.json']
 
     def setUp(self):
         self.client = Client()
@@ -47,10 +47,11 @@ class AuthTestCase(TestCase):
         self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
 
         # Go to edit measure
-        resp = self.client.get("/edit_measure/1")
+        measure_id = Measure.objects.latest('id').id
+        resp = self.client.get("/edit_measure/%d" % measure_id)
         self.assertIn(b'Edit', resp.content)
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
-            resp = self.client.post("/edit_measure/1",
+            resp = self.client.post("/edit_measure/%d" % measure_id,
                                     {"product": "0000000003087",
                                      "package_weight": 1000,
                                      "measured_weight": 800,
@@ -61,7 +62,7 @@ class AuthTestCase(TestCase):
         self.assertIn(b"800", resp.content)
 
         # Delete measure
-        resp = self.client.get("/delete_measure/1", follow=True)
+        resp = self.client.get("/delete_measure/%d" % measure_id, follow=True)
         self.assertIn(b"Measure deleted!", resp.content)
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
 
@@ -83,3 +84,11 @@ class AuthTestCase(TestCase):
 
         resp = self.client.get("/delete_measure/%d" % measure.id, follow=True)
         self.assertEqual(resp.status_code, 403)
+
+    def test_sort(self):
+        resp1 = self.client.get('/list_measures',
+                                {'order_by': 'pweight', 'sort_order': 'asc'})
+        resp2 = self.client.get('/list_measures',
+                                {'order_by': 'pweight', 'sort_order': 'desc'})
+
+        self.assertTrue(resp1.content != resp2.content)

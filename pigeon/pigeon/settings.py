@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'django_select2',
+    'django_filters',
+    'bootstrap_pagination',
     'weights',
     'autotranslate',
 ]

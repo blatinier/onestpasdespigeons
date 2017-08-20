@@ -14,12 +14,14 @@
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
+import django_filters
 import os
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
+from django.utils import timezone
 from functools import wraps
 
 
@@ -118,11 +120,29 @@ class Measure(models.Model):
     package_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measured_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     @property
     def percent_diff(self):
-        return self.diff / 100
+        return self.diff / self.package_weight * 100
 
     @property
     def diff(self):
         return self.measured_weight - self.package_weight
+
+
+class MeasureFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = Measure
+        fields = {
+            'product__product_name': ['icontains'],
+            'product__brands': ['icontains'],
+            'user__user__username': ['icontains'],
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(MeasureFilter, self).__init__(*args, **kwargs)
+        self.filters['user__user__username__icontains'].label = 'Username'
+        self.filters['product__product_name__icontains'].label = 'Product'
+        self.filters['product__brands__icontains'].label = 'Brand'

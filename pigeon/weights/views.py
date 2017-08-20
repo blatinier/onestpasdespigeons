@@ -14,14 +14,16 @@
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
+import urllib.parse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.forms import UserForm, ProfileForm, AddMeasureForm
-from weights.models import Measure
+from weights.models import Measure, MeasureFilter
 
 
 def home(request):
@@ -68,8 +70,41 @@ def list_measures(request):
     List of all measures with all possible manipulation
     we can imagine.
     """
-    # TODO #49
-    return render(request, 'weights/list_measures.html', {})
+    valid_sorts = {'user': 'user__user__username',
+                   'product': 'product__product_name',
+                   'pweight': 'package_weight',
+                   'mweight': 'measured_weight'}
+    default_sort_key = 'product'
+    default_sort = 'product__product_name'
+    sort_q = request.GET.get('order_by', default_sort_key)
+    sort = valid_sorts.get(sort_q, default_sort)
+    if request.GET.get('sort_order') == 'desc':
+        sort = '-{}'.format(sort)
+
+    page = request.GET.get('page', 1)
+    items_per_page = request.GET.get('items_per_page', 2)
+    measures_list = MeasureFilter(request.GET, queryset=Measure.objects.all())
+    paginator = Paginator(measures_list.qs.order_by(sort), items_per_page)
+    try:
+        measures = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        measures = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        measures = paginator.page(paginator.num_pages)
+    get_args = request.GET.dict()
+    if 'order_by' in get_args:
+        del get_args['order_by']
+    if 'sort_order' in get_args:
+        del get_args['sort_order']
+    get_args = urllib.parse.urlencode(get_args)
+    return render(request, 'weights/all_measures.html',
+                  {'measures': measures,
+                   'filter': measures_list,
+                   'order_by': sort_q,
+                   'sort_order': request.GET.get('sort_order'),
+                   'get_args': get_args})
 
 
 def overview(request):
