@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^overview$', views.overview, name='overview'),
     url(r'^about$', views.about, name='about'),
     url(r'^account$', views.user_account, name='user_account'),
+    url(r'^delete_account$', views.delete_account, name='delete_account'),
     url(r'^contribute$', views.contribute, name='contribute'),
     url(r'^my_measures$', views.my_measures, name='my_measures'),
     url(r'^add_measure$', views.add_measure, name='add_measure'),

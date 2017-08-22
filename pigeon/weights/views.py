@@ -15,7 +15,7 @@
 #  This file is part of project: OnEstPasDesPigeons
 #
 import urllib.parse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -169,7 +169,22 @@ def user_account(request):
     Everything about user managing his account.
     """
     # TODO #1
-    return render(request, 'weights/user_account.html', {})
+    return render(request, 'weights/user_account.html',
+                  {"user": request.user})
+
+
+@login_required
+def delete_account(request):
+    """
+    Delete user account.
+    In fact just inactivate it.
+    """
+    user = request.user
+    user.is_active = False
+    user.save()
+    logout(request)
+    messages.info(request, _("Account deactivated."))
+    return redirect(reverse(home))
 
 
 def contribute(request):

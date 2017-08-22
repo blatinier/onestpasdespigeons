@@ -1,0 +1,66 @@
+{% extends 'weights/layout.html' %}
+{% load i18n %}
+{% block content %}
+<div class="row offset-from-menu">
+  <h1 class="col-lg-12 text-center">{% trans "Manage my account" %}</h1>
+  <div class="row">
+    <h2>{% trans "My informations" %}</h2>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "Username" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.username }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "First name" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.first_name|default:"N/A" }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "Last name" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.last_name|default:"N/A" }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "Email" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.email }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "Country" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.pigeonuser.country }}</strong>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-3">
+        {% trans "Language" %}
+      </div>
+      <div class="col-lg-8">
+        <strong>{{ user.pigeonuser.language }}</strong>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h2>{% trans "Danger zone!" %}</h2>
+    <a href="{% url 'delete_account' %}" class="btn btn-danger"
+       onClick="return confirm(\"{% trans "Are you sure you want to deactivate your account?" %}\");">
+      {% trans "Deactivate my account" %}
+    </a>
+  </div>
+</div>
+{% endblock %}
+
