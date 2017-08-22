@@ -1,5 +1,6 @@
 {% extends 'weights/layout_home.html' %}
 {% load i18n %}
+{% load l10n %}
 {% block container %}
   <div class="jumbotron">
     <div class="container">
@@ -31,7 +32,26 @@
       </p>
     </div>
   </div>
-  <div class="row">
-
+  <div class="row text-center">
+    <h1>
+      {% blocktrans trimmed %}
+      Last measures
+      {% endblocktrans %}
+    </h1>
+    <br />
+    <div class="col-lg-1"></div>
+    {% for measure in last_measures %}
+      <div class="col-lg-2 text-center">
+        <div class="product_img_big">
+          <div><img src="{{measure.measure_image.url}}" /></div>
+        </div>
+        <span class="{% if measure.percent_diff < 0 %}red{% else %}green{% endif %}">
+          {% if measure.percent_diff > 0 %}+{% endif %}
+          {{measure.percent_diff}} %
+        </span><br />
+        {% blocktrans %}Added by {{measure.user.user.username}}{% endblocktrans %}<br/>
+        {{measure.created_at|localize}}
+      </div>
+    {% endfor %}
   </div>
 {% endblock %}

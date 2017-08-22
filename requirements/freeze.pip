@@ -1,9 +1,11 @@
 django-autotranslate==1.0.2
+django-bootstrap-pagination==1.6.2
 django-bootstrap3==9.0.0
+django-filter==1.0.4
 Django-Select2==5.11.1
 gunicorn==19.7.1
 psycopg2==2.7.3
 pytz==2017.2
 Pillow==4.2.1
-Django==1.11.3
+Django==1.11.4
 social-auth-app-django==1.2.0

@@ -25,7 +25,7 @@
           <td class="list_product">{{ measure.product.product_name }}</td>
           <td class="list_product">{{ measure.package_weight }}</td>
           <td class="list_product">{{ measure.measured_weight }}</td>
-          <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff }}</td>
+          <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff|floatformat:"1" }} %</td>
           <td class="list_product">
             <a href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-pencil"></i></a>
             <a href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-times"></i></a>

@@ -95,7 +95,7 @@ class AuthTestCase(TestCase):
         - Password confirmation do not match"""
 
         # Username already exists
-        user_data = {"user-username": "ab",
+        user_data = {"user-username": "test_user_1",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh"}
         resp = self.client.post("/register/", user_data, follow=True)
@@ -125,3 +125,23 @@ class AuthTestCase(TestCase):
         resp = self.client.post("/register/", user_data, follow=True)
         self.assertIn(b"The two password fields didn&#39;t match.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
+
+    def test_delete_account(self):
+        # Register user
+        user_data = {"user-username": "azec",
+                     "user-first_name": "qsd",
+                     "user-last_name": "wxc",
+                     "user-email": "pipo@lala.com",
+                     "user-password1": "plokijuh",
+                     "user-password2": "plokijuh",
+                     "profile-language": "en",
+                     "profile-country": "us"}
+        self.client.post("/register/", user_data, follow=True)
+        self.assertTrue(auth.get_user(self.client).is_authenticated())
+        self.assertTrue(auth.get_user(self.client).is_active)
+        # Deactivate account
+        resp = self.client.get("/delete_account", follow=True)
+        self.assertFalse(auth.get_user(self.client).is_authenticated())
+        self.assertFalse(auth.get_user(self.client).is_active)
+        self.assertEqual(resp.redirect_chain, [("/", 302)])
+        self.assertIn(b"Account deactivated", resp.content)

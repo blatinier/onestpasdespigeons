@@ -20,4 +20,4 @@ class MeasureTestCase(TestCase):
     def test_measure_diff(self):
         """Measures diff tests"""
         self.assertEqual(self.measure.diff, -1)
-        self.assertAlmostEqual(self.measure.percent_diff, -0.01)
+        self.assertAlmostEqual(self.measure.percent_diff, -10)

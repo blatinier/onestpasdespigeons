@@ -14,21 +14,26 @@
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
-from django.contrib.auth import authenticate, login
+import urllib.parse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.forms import UserForm, ProfileForm, AddMeasureForm
-from weights.models import Measure
+from weights.models import Measure, MeasureFilter, Product
 
 
 def home(request):
     """
     Pretty home page.
     """
-    return render(request, 'weights/home.html', {})
+    last_measures = Measure.objects.all().order_by('-created_at')[:5]
+    return render(request, 'weights/home.html',
+                  {'last_measures': last_measures})
 
 
 def about(request):
@@ -68,16 +73,94 @@ def list_measures(request):
     List of all measures with all possible manipulation
     we can imagine.
     """
-    # TODO #49
-    return render(request, 'weights/list_measures.html', {})
+    valid_sorts = {'user': 'user__user__username',
+                   'product': 'product__product_name',
+                   'pweight': 'package_weight',
+                   'mweight': 'measured_weight'}
+    default_sort_key = 'product'
+    default_sort = 'product__product_name'
+    sort_q = request.GET.get('order_by', default_sort_key)
+    sort = valid_sorts.get(sort_q, default_sort)
+    if request.GET.get('sort_order') == 'desc':
+        sort = '-{}'.format(sort)
+
+    page = request.GET.get('page', 1)
+    items_per_page = request.GET.get('items_per_page', 2)
+    measures_list = MeasureFilter(request.GET, queryset=Measure.objects.all())
+    paginator = Paginator(measures_list.qs.order_by(sort), items_per_page)
+    try:
+        measures = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        measures = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        measures = paginator.page(paginator.num_pages)
+    get_args = request.GET.dict()
+    if 'order_by' in get_args:
+        del get_args['order_by']
+    if 'sort_order' in get_args:
+        del get_args['sort_order']
+    get_args = urllib.parse.urlencode(get_args)
+    return render(request, 'weights/all_measures.html',
+                  {'measures': measures,
+                   'filter': measures_list,
+                   'order_by': sort_q,
+                   'sort_order': request.GET.get('sort_order'),
+                   'get_args': get_args})
 
 
 def overview(request):
     """
     Some global statistics with nice graphs.
     """
-    # TODO #19
-    return render(request, 'weights/overview.html', {})
+    measure_count = Measure.objects.count()
+    abs_diff_measures = Measure.objects.annotate(mdiff=F('measured_weight') - F('package_weight'))
+    abs_diff = abs_diff_measures.aggregate(min_diff=Min('mdiff'),
+                                           max_diff=Max('mdiff'),
+                                           avg_diff=Avg('mdiff'))
+    abs_median_diff = abs_diff_measures.order_by('mdiff')[int(measure_count / 2)]
+    rel_diff_measures = Measure.objects.annotate(mdiff=(F('measured_weight') - F('package_weight')) / F('package_weight') * 100)
+    rel_diff = rel_diff_measures.aggregate(min_diff=Min('mdiff'),
+                                           max_diff=Max('mdiff'),
+                                           avg_diff=Avg('mdiff'))
+    rel_median_diff = rel_diff_measures.order_by('mdiff')[int(measure_count / 2)]
+
+    product_measures = Measure.objects.values('product').annotate(mdiff=Avg((F('measured_weight') - F('package_weight')) / F('package_weight') * 100))
+    top_products = [{'product': Product.objects.get(code=d['product']),
+                     'mdiff': d['mdiff']}
+                    for d in product_measures.order_by('-mdiff')[:5]]
+
+    flop_products = [{'product': Product.objects.get(code=d['product']),
+                      'mdiff': d['mdiff']}
+                     for d in product_measures.order_by('mdiff')[:5]]
+
+    brands_measures = Measure.objects.values('product__brands').annotate(mdiff=Avg((F('measured_weight') - F('package_weight')) / F('package_weight') * 100))
+    top_brands = [{'brand': d['product__brands'],
+                   'mdiff': d['mdiff']}
+                  for d in brands_measures.order_by('-mdiff')[:5]
+                  if d['product__brands']]
+
+    flop_brands = [{'brand': d['product__brands'],
+                    'mdiff': d['mdiff']}
+                   for d in brands_measures.order_by('mdiff')[:5]
+                   if d['product__brands']]
+    stats = {'nb_products': Product.objects.count(),
+             'nb_measures': measure_count,
+             'abs_min_diff': abs_diff['min_diff'],
+             'abs_max_diff': abs_diff['max_diff'],
+             'abs_median_diff': abs_median_diff.mdiff,
+             'abs_mean_diff': abs_diff['avg_diff'],
+             'rel_min_diff': round(float(rel_diff['min_diff']), 2),
+             'rel_max_diff': round(float(rel_diff['max_diff']), 2),
+             'rel_median_diff': round(float(rel_median_diff.mdiff), 2),
+             'rel_mean_diff': round(float(rel_diff['avg_diff']), 2),
+             'top_products': top_products,
+             'flop_products': flop_products,
+             'top_brands': top_brands,
+             'flop_brands': flop_brands,
+             }
+    return render(request, 'weights/overview.html', stats)
 
 
 @login_required
@@ -86,7 +169,22 @@ def user_account(request):
     Everything about user managing his account.
     """
     # TODO #1
-    return render(request, 'weights/user_account.html', {})
+    return render(request, 'weights/user_account.html',
+                  {"user": request.user})
+
+
+@login_required
+def delete_account(request):
+    """
+    Delete user account.
+    In fact just inactivate it.
+    """
+    user = request.user
+    user.is_active = False
+    user.save()
+    logout(request)
+    messages.info(request, _("Account deactivated."))
+    return redirect(reverse(home))
 
 
 def contribute(request):
