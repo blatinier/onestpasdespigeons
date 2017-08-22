@@ -27,12 +27,30 @@
           <td class="list_product">{{ measure.measured_weight }}</td>
           <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff|floatformat:"1" }} %</td>
           <td class="list_product">
-            <a href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-pencil"></i></a>
-            <a href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-times"></i></a>
+            <a class="btn btn-default" href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-pencil"></i></a>
+            <a class="btn btn-default confirm-del-measure" data-href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-times"></i></a>
           </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
+<script type="text/javascript">
+$('.confirm-del-measure').click(function(e) {
+  console.log("prout");
+  e.preventDefault();
+  var linkURL = $(this).attr("data-href");
+  swal({
+    title: "{% trans "Are you sure?" %}",
+    text: "{% trans "You won't be able to recover that measure later." %}",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "{% trans "Yes, delete it!" %}",
+    closeOnConfirm: false
+  }, function() {
+    window.location.href = linkURL;
+  });
+});
+</script>
 {% endblock %}
