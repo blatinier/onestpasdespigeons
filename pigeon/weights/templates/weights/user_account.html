@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row offset-from-menu">
   <h1 class="col-lg-12 text-center">{% trans "Manage my account" %}</h1>
-  <div class="row">
+  <div class="col-lg-12">
     <h2>{% trans "My informations" %}</h2>
     <div class="row">
       <div class="col-lg-offset-1 col-lg-3">
@@ -54,7 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="col-lg-12">
     <h2>{% trans "Danger zone!" %}</h2>
     <a href="{% url 'delete_account' %}" class="btn btn-danger"
        onClick="return confirm(\"{% trans "Are you sure you want to deactivate your account?" %}\");">

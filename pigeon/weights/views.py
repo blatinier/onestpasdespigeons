@@ -85,7 +85,7 @@ def list_measures(request):
         sort = '-{}'.format(sort)
 
     page = request.GET.get('page', 1)
-    items_per_page = request.GET.get('items_per_page', 2)
+    items_per_page = request.GET.get('items_per_page', 25)
     measures_list = MeasureFilter(request.GET, queryset=Measure.objects.all())
     paginator = Paginator(measures_list.qs.order_by(sort), items_per_page)
     try:

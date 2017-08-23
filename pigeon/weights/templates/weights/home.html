@@ -47,9 +47,10 @@
         </div>
         <span class="{% if measure.percent_diff < 0 %}red{% else %}green{% endif %}">
           {% if measure.percent_diff > 0 %}+{% endif %}
-          {{measure.percent_diff}} %
+          {{measure.percent_diff|floatformat:"1"}} %
         </span><br />
-        {% blocktrans %}Added by {{measure.user.user.username}}{% endblocktrans %}<br/>
+        {% blocktrans %}Added by {% endblocktrans %}
+        {{measure.user.user.username}}<br/>
         {{measure.created_at|localize}}
       </div>
     {% endfor %}

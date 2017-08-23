@@ -74,3 +74,6 @@ body {
 .table > tbody > tr > td.list_product {
   line-height: 50px;
 }
+#navbar.in {
+  overflow: visible;
+}

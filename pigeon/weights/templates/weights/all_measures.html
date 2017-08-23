@@ -24,74 +24,76 @@
       </div>
     </div>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>
-          <a href="{% url 'list_measures' %}?order_by=user&sort_order={% if order_by == 'user' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
-            {% trans "Contributed by" %}
-            {% if order_by == "user" %}
-              {% if sort_order == 'asc' %}
-                <i class="fa fa-caret-up"></i>
-              {% else %}
-                <i class="fa fa-caret-down"></i>
-              {% endif %}
-            {% endif %}
-          </a>
-        </th>
-        <th>{% trans "Image" %}</th>
-        <th>
-          <a href="{% url 'list_measures' %}?order_by=product&sort_order={% if order_by == 'product' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
-            {% trans "Product" %}
-            {% if order_by == "product" %}
-              {% if sort_order == 'asc' %}
-                <i class="fa fa-caret-up"></i>
-              {% else %}
-                <i class="fa fa-caret-down"></i>
-              {% endif %}
-            {% endif %}
-          </a>
-        </th>
-        <th>
-          <a href="{% url 'list_measures' %}?order_by=package_weight&sort_order={% if order_by == 'package_weight' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
-          {% trans "Package weight" %}
-            {% if order_by == "package_weight" %}
-              {% if sort_order == 'asc' %}
-                <i class="fa fa-caret-up"></i>
-              {% else %}
-                <i class="fa fa-caret-down"></i>
-              {% endif %}
-            {% endif %}
-          </a>
-        </th>
-        <th>
-          <a href="{% url 'list_measures' %}?order_by=measured_weight&sort_order={% if order_by == 'measured_weight' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
-          {% trans "Measured weight" %}
-            {% if order_by == "measured_weight" %}
-              {% if sort_order == 'asc' %}
-                <i class="fa fa-caret-up"></i>
-              {% else %}
-                <i class="fa fa-caret-down"></i>
-              {% endif %}
-            {% endif %}
-          </a>
-        </th>
-        <th>{% trans "Diff" %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for measure in measures %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td class="list_product">{{ measure.user.user.username }}</td>
-          <td><img class="product_img" src="{{measure.measure_image.url}}" alt="" /></td>
-          <td class="list_product">{{ measure.product }}</td>
-          <td class="list_product">{{ measure.package_weight }}</td>
-          <td class="list_product">{{ measure.measured_weight }}</td>
-          <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff|floatformat:"1" }} %</td>
+          <th>
+            <a href="{% url 'list_measures' %}?order_by=user&sort_order={% if order_by == 'user' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
+              {% trans "Contributed by" %}
+              {% if order_by == "user" %}
+                {% if sort_order == 'asc' %}
+                  <i class="fa fa-caret-up"></i>
+                {% else %}
+                  <i class="fa fa-caret-down"></i>
+                {% endif %}
+              {% endif %}
+            </a>
+          </th>
+          <th>{% trans "Image" %}</th>
+          <th>
+            <a href="{% url 'list_measures' %}?order_by=product&sort_order={% if order_by == 'product' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
+              {% trans "Product" %}
+              {% if order_by == "product" %}
+                {% if sort_order == 'asc' %}
+                  <i class="fa fa-caret-up"></i>
+                {% else %}
+                  <i class="fa fa-caret-down"></i>
+                {% endif %}
+              {% endif %}
+            </a>
+          </th>
+          <th>
+            <a href="{% url 'list_measures' %}?order_by=package_weight&sort_order={% if order_by == 'package_weight' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
+            {% trans "Package weight" %}
+              {% if order_by == "package_weight" %}
+                {% if sort_order == 'asc' %}
+                  <i class="fa fa-caret-up"></i>
+                {% else %}
+                  <i class="fa fa-caret-down"></i>
+                {% endif %}
+              {% endif %}
+            </a>
+          </th>
+          <th>
+            <a href="{% url 'list_measures' %}?order_by=measured_weight&sort_order={% if order_by == 'measured_weight' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
+            {% trans "Measured weight" %}
+              {% if order_by == "measured_weight" %}
+                {% if sort_order == 'asc' %}
+                  <i class="fa fa-caret-up"></i>
+                {% else %}
+                  <i class="fa fa-caret-down"></i>
+                {% endif %}
+              {% endif %}
+            </a>
+          </th>
+          <th>{% trans "Diff" %}</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for measure in measures %}
+          <tr>
+            <td class="list_product">{{ measure.user.user.username }}</td>
+            <td><img class="product_img" src="{{measure.measure_image.url}}" alt="" /></td>
+            <td class="list_product">{{ measure.product }}</td>
+            <td class="list_product">{{ measure.package_weight }}</td>
+            <td class="list_product">{{ measure.measured_weight }}</td>
+            <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff|floatformat:"1" }} %</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
   {% bootstrap_paginate measures %}
 </div>
 {% endblock %}
