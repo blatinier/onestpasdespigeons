@@ -48,7 +48,7 @@ def import_OFF_db():
         reader = csv.DictReader(csv_off, dialect="excel-tab")
         for line in reader:
             counts["total"] += 1
-            if "code" not in line or not line["code"]:
+            if "code" not in line or not line["code"] or not line["product_name"]:
                 continue
             product_dict = {k: line[pigeon_to_off.get(k, k)]
                             for k in Product.sourced_OFF_fields + ["code"]}
