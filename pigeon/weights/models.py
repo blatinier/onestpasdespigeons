@@ -14,15 +14,16 @@
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
 #  This file is part of project: OnEstPasDesPigeons
 #
-import django_filters
 import os
+from functools import wraps
+
+import django_filters
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
-from functools import wraps
 
 
 def disable_for_loaddata(signal_handler):
@@ -86,11 +87,14 @@ class Product(models.Model):
     purchase_places = models.CharField(max_length=256, blank=True, null=True)
     image_url = models.CharField(max_length=256, blank=True, null=True)
 
+    # Is it OFF, ours, other?
+    source = models.CharField(max_length=32, default="OpenFoodFacts")
+
     def __str__(self):
         if self.brands:
-            return "{product_name} ({brands})".format(product_name=self.product_name, brands=self.brands)
-        else:
-            return self.product_name
+            return "{product_name} ({brands})".format(product_name=self.product_name,
+                                                      brands=self.brands)
+        return self.product_name
 
     def copy(self):
         """

@@ -18,6 +18,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
 from django_select2.forms import ModelSelect2Widget
 from weights.models import PigeonUser, Product, Measure
 
@@ -59,6 +60,7 @@ class AddMeasureForm(forms.ModelForm):
                 queryset=Product.objects.all(),
             ),
             queryset=Product.objects.all(),
+            required=False,
         )
     package_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
@@ -67,3 +69,22 @@ class AddMeasureForm(forms.ModelForm):
         model = Measure
         fields = ('product', 'package_weight', 'measured_weight',
                   'measure_image')
+
+
+class AddProductForm(forms.ModelForm):
+    code = forms.CharField(required=False)
+    product_name = forms.CharField(required=False)
+    brands = forms.CharField(required=False)
+    class Meta:
+        model = Product
+        fields = ('code', 'product_name', 'brands')
+
+    def clean(self):
+        cleaned_data = super().clean()
+        code = cleaned_data.get("code")
+        product_name = cleaned_data.get("product_name")
+        brands = cleaned_data.get("brands")
+
+        if not (code and product_name and brands):
+            raise forms.ValidationError(_("All product fields must be set"),
+                                        code='invalid')

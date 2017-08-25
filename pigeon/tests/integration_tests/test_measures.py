@@ -95,3 +95,38 @@ class MeasureTestCase(TestCase):
                                 {'order_by': 'pweight', 'sort_order': 'desc'})
 
         self.assertTrue(resp1.content != resp2.content)
+
+    def test_add_create_product(self):
+        """
+        Try to add a measure with product creation
+        Try to add a measure without product creation or selection (should fail)
+        """
+        # Add measure with product
+        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+            resp = self.client.post("/add_measure",
+                                    {"code": "45678987654",
+                                     "product_name": "pipo product",
+                                     "brands": "pipo brands",
+                                     "package_weight": 1000,
+                                     "measured_weight": 900,
+                                     "measure_image": data},
+                                    format="multipart",
+                                    follow=True)
+
+        # Check added and redirected
+        self.assertIn(b"My measures", resp.content)
+        self.assertIn(b"Measure added!", resp.content)
+        self.assertIn(b"pipo product", resp.content)
+        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+
+        # Add measure without product
+        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+            resp = self.client.post("/add_measure",
+                                    {"package_weight": 1000,
+                                     "measured_weight": 900,
+                                     "measure_image": data},
+                                    format="multipart",
+                                    follow=True)
+
+        self.assertIn(b"Add a measure", resp.content)
+        self.assertIn(b"Please select or create a product", resp.content)

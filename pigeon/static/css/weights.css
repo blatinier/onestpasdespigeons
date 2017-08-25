@@ -44,13 +44,11 @@ body {
   width: auto;
 }
 
-.green {
-  color: #0f0;
-}
-
-.red {
-  color: #f00;
-}
+.bg-green { background-color: #035709; }
+.bg-green:hover { background-color: #038709; }
+.white { color: #fff; }
+.green { color: #0f0; }
+.red { color: #f00; }
 
 .product_img_big {
   margin: auto;

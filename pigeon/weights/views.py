@@ -23,7 +23,8 @@ from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
-from weights.forms import UserForm, ProfileForm, AddMeasureForm
+from weights.forms import (UserForm, ProfileForm, AddMeasureForm,
+                           AddProductForm)
 from weights.models import Measure, MeasureFilter, Product
 
 
@@ -210,23 +211,47 @@ def add_measure(request):
     """
     Page to add your own measurements.
     """
+    page_mode_create = False
     if request.method == 'POST':
         measure_inst = Measure(user=request.user.pigeonuser)
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
                                           instance=measure_inst)
         if add_measure_form.is_valid():
-            add_measure_form.save()
-            messages.success(request, _("Measure added!"))
-            return redirect(reverse(my_measures))
+            add_product_form = AddProductForm(request.POST)
+            if not add_measure_form.cleaned_data['product']:
+                if add_product_form.is_valid():
+                    prod = add_product_form.save(commit=False)
+                    prod.source = 'Internal'
+                    prod.save()
+                    measure = add_measure_form.save(commit=False)
+                    measure.product = prod
+                    measure.save()
+                    prod.quantity = "%d g" % measure.package_weight
+                    prod.save()
+                    messages.success(request, _("Measure added!"))
+                    return redirect(reverse(my_measures))
+                else:
+                    page_mode_create = (add_product_form.data.get('code') or
+                                        add_product_form.data.get('product_name') or
+                                        add_product_form.data.get('brands'))
+                    messages.error(request, _("Please select or create a product"
+                                              "(all fields in create are required)."))
+            else:
+                add_measure_form.save()
+                messages.success(request, _("Measure added!"))
+                return redirect(reverse(my_measures))
         else:
             messages.error(request, _("Error in the form."))
     else:
         add_measure_form = AddMeasureForm()
+        add_product_form = AddProductForm()
     title = _('Add a measure')
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
+                   'add_product_form': add_product_form,
                    'btn_text': _('Add!'),
-                   'title': title})
+                   'title': title,
+                   'page_mode_create': page_mode_create})
 
 
 @login_required
@@ -249,7 +274,8 @@ def edit_measure(request, measure_id):
     return render(request, 'weights/add_measure.html',
                   {'add_measure_form': add_measure_form,
                    'btn_text': _('Edit'),
-                   'title': title})
+                   'title': title,
+                   'edit_mode': True})
 
 
 @login_required
