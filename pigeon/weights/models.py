@@ -126,8 +126,33 @@ class Measure(models.Model):
     product = models.ForeignKey(Product)
     package_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measured_weight = models.DecimalField(decimal_places=3, max_digits=12)
+    UNIT_CHOICES = (
+        ('g', 'g'),
+        ('oz', 'oz'),
+    )
+    unit = models.CharField(max_length=6, choices=UNIT_CHOICES, default='g')
     measure_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def weight(self, unit, weight_type="measured"):
+        if weight_type == "measured":
+            w = self.measured_weight
+        else:
+            w = self.package_weight
+        if unit == self.unit:
+            return w
+        elif unit == 'g' and self.unit == 'oz':
+            # Convert oz to g
+            return w * 28.3
+        elif unit == 'oz' and self.unit == 'g':
+            # Convert g to oz
+            return w / 28.3
+        elif unit == 'kg':
+            # return kg by requiring g conversion
+            return self.weight('g', weight_type=weight_type) / 1000
+        elif unit == 'lb':
+            # return pounds by requiring oz conversion
+            return self.weight('oz', weight_type=weight_type) / 16
 
     @property
     def percent_diff(self):

@@ -99,13 +99,14 @@ class AddMeasureForm(forms.ModelForm):
             queryset=Product.objects.all(),
             required=False,
         )
+    unit = forms.ChoiceField(choices=Measure.UNIT_CHOICES, initial='g')
     package_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measure_image = forms.ImageField()
     class Meta:
         model = Measure
         fields = ('product', 'package_weight', 'measured_weight',
-                  'measure_image')
+                  'measure_image', 'unit')
 
 
 class AddProductForm(forms.ModelForm):

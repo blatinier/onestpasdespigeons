@@ -246,28 +246,26 @@ def add_measure(request):
                                           instance=measure_inst)
         if add_measure_form.is_valid():
             add_product_form = AddProductForm(request.POST)
-            if not add_measure_form.cleaned_data['product']:
-                if add_product_form.is_valid():
-                    prod = add_product_form.save(commit=False)
-                    prod.source = 'Internal'
-                    prod.save()
-                    measure = add_measure_form.save(commit=False)
-                    measure.product = prod
-                    measure.save()
-                    prod.quantity = "%d g" % measure.package_weight
-                    prod.save()
-                    messages.success(request, _("Measure added!"))
-                    return redirect(reverse(my_measures))
-                else:
-                    page_mode_create = (add_product_form.data.get('code') or
-                                        add_product_form.data.get('product_name') or
-                                        add_product_form.data.get('brands'))
-                    messages.error(request, _("Please select or create a product"
-                                              "(all fields in create are required)."))
-            else:
+            if add_measure_form.cleaned_data['product']:
                 add_measure_form.save()
                 messages.success(request, _("Measure added!"))
                 return redirect(reverse(my_measures))
+            if add_product_form.is_valid():
+                prod = add_product_form.save(commit=False)
+                prod.source = 'Internal'
+                prod.save()
+                measure = add_measure_form.save(commit=False)
+                measure.product = prod
+                measure.save()
+                prod.quantity = "%d g" % measure.weight('g', 'package')
+                prod.save()
+                messages.success(request, _("Measure added!"))
+                return redirect(reverse(my_measures))
+            page_mode_create = (add_product_form.data.get('code') or
+                                add_product_form.data.get('product_name') or
+                                add_product_form.data.get('brands'))
+            messages.error(request, _("Please select or create a product"
+                                      "(all fields in create are required)."))
         else:
             messages.error(request, _("Error in the form."))
     else:

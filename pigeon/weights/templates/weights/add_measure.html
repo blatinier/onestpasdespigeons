@@ -13,7 +13,9 @@
     {% if edit_mode %}
       {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
     {% else %}
+    <div class="row">
       {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False addon_after='<a class="btn btn-default bg-green" id="switch-create"><i class="fa fa-plus white"></i></a>' addon_after_class='input-group-btn' %}
+    </div>
     {% endif %}
 
     {% if not edit_mode %}
@@ -35,9 +37,18 @@
       </div>
     </div>
     {% endif %}
-    {% bootstrap_field add_measure_form.package_weight layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
-    {% bootstrap_field add_measure_form.measured_weight layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
-    {% bootstrap_field add_measure_form.measure_image layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
+    <div class="row">
+      {% bootstrap_field add_measure_form.unit layout="horizontal" field_class="col-md-1 input-form-space" show_help=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field add_measure_form.package_weight layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field add_measure_form.measured_weight layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field add_measure_form.measure_image layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
+    </div>
     <div class="col-md-12 text-center">
       {% bootstrap_button btn_text button_type="submit" button_class="btn-primary" size="large" %}
     </div>

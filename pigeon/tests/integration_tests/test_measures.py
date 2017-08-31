@@ -34,6 +34,7 @@ class MeasureTestCase(TestCase):
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
             resp = self.client.post("/add_measure",
                                     {"product": "0000000003087",
+                                     "unit": "g",
                                      "package_weight": 1000,
                                      "measured_weight": 900,
                                      "measure_image": data},
@@ -53,6 +54,7 @@ class MeasureTestCase(TestCase):
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
             resp = self.client.post("/edit_measure/%d" % measure_id,
                                     {"product": "0000000003087",
+                                     "unit": "oz",
                                      "package_weight": 1000,
                                      "measured_weight": 800,
                                      "measure_image": data},
@@ -60,6 +62,7 @@ class MeasureTestCase(TestCase):
                                     follow=True)
         self.assertIn(b"Measure edited!", resp.content)
         self.assertIn(b"800", resp.content)
+        self.assertIn(b"oz", resp.content)
 
         # Delete measure
         resp = self.client.get("/delete_measure/%d" % measure_id, follow=True)
@@ -74,6 +77,7 @@ class MeasureTestCase(TestCase):
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
             resp = self.client.post("/add_measure",
                                     {"product": "0000000003087",
+                                     "unit": "g",
                                      "package_weight": 1000,
                                      "measured_weight": 900,
                                      "measure_image": data},
@@ -107,6 +111,7 @@ class MeasureTestCase(TestCase):
                                     {"code": "45678987654",
                                      "product_name": "pipo product",
                                      "brands": "pipo brands",
+                                     "unit": "g",
                                      "package_weight": 1000,
                                      "measured_weight": 900,
                                      "measure_image": data},
@@ -122,7 +127,8 @@ class MeasureTestCase(TestCase):
         # Add measure without product
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
             resp = self.client.post("/add_measure",
-                                    {"package_weight": 1000,
+                                    {"unit": "g",
+                                     "package_weight": 1000,
                                      "measured_weight": 900,
                                      "measure_image": data},
                                     format="multipart",
