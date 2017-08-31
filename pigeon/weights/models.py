@@ -126,6 +126,9 @@ class Measure(models.Model):
     product = models.ForeignKey(Product)
     package_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measured_weight = models.DecimalField(decimal_places=3, max_digits=12)
+    CONVERSIONS = {"oz__g": 28.3,
+                   "kg__g": 1000,
+                   "lb__oz": 16}
     UNIT_CHOICES = (
         ('g', 'g'),
         ('oz', 'oz'),
@@ -143,16 +146,16 @@ class Measure(models.Model):
             return w
         elif unit == 'g' and self.unit == 'oz':
             # Convert oz to g
-            return w * 28.3
+            return w * self.CONVERSIONS["oz__g"]
         elif unit == 'oz' and self.unit == 'g':
             # Convert g to oz
-            return w / 28.3
+            return w / self.CONVERSIONS["oz__g"]
         elif unit == 'kg':
             # return kg by requiring g conversion
-            return self.weight('g', weight_type=weight_type) / 1000
+            return self.weight('g', weight_type=weight_type) / self.CONVERSIONS["kg__g"]
         elif unit == 'lb':
             # return pounds by requiring oz conversion
-            return self.weight('oz', weight_type=weight_type) / 16
+            return self.weight('oz', weight_type=weight_type) / self.CONVERSIONS["lb__oz"]
 
     @property
     def percent_diff(self):
