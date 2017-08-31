@@ -15,7 +15,8 @@
 #  This file is part of project: OnEstPasDesPigeons
 #
 import urllib.parse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import (authenticate, login, logout,
+                                 update_session_auth_hash)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -24,7 +25,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.forms import (UserForm, ProfileForm, AddMeasureForm,
-                           AddProductForm)
+                           UpdateUserForm, AddProductForm)
 from weights.models import Measure, MeasureFilter, Product
 
 
@@ -169,9 +170,36 @@ def user_account(request):
     """
     Everything about user managing his account.
     """
-    # TODO #1
-    return render(request, 'weights/user_account.html',
-                  {"user": request.user})
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, prefix='user',
+                                   instance=request.user)
+        profile_form = ProfileForm(request.POST, prefix='profile',
+                                   instance=request.user.pigeonuser)
+        context = {'user_form': user_form,
+                   'profile_form': profile_form,
+                   'update_text': _('Update'),
+                   'user': request.user}
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            user.pigeonuser.language = \
+                    profile_form.cleaned_data.get('language')
+            user.pigeonuser.country = profile_form.cleaned_data.get('country')
+            user.save()
+            # Update password
+            if user_form.cleaned_data.get('password1'):
+                update_session_auth_hash(request, user)
+            context['message'] = {'status': 'success',
+                                  'text': _("Update successful!")}
+        return render(request, 'weights/user_account.html', context)
+    else:
+        user_form = UpdateUserForm(prefix='user', instance=request.user)
+        profile_form = ProfileForm(prefix='profile',
+                                   instance=request.user.pigeonuser)
+    context = {'user_form': user_form,
+               'profile_form': profile_form,
+               'update_text': _('Update'),
+               'user': request.user}
+    return render(request, 'weights/user_account.html', context)
 
 
 @login_required
