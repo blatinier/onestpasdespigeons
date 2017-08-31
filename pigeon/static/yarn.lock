@@ -10,6 +10,10 @@ bootstrap@^3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
 
+ekko-lightbox@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/ekko-lightbox/-/ekko-lightbox-5.2.0.tgz#84841af40240455a894a639661afc082a27257dd"
+
 jquery-mousewheel@~3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"

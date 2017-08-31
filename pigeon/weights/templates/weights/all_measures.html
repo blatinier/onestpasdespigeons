@@ -84,7 +84,12 @@
         {% for measure in measures %}
           <tr>
             <td class="list_product">{{ measure.user.user.username }}</td>
-            <td><img class="product_img" src="{{measure.measure_image.url}}" alt="" /></td>
+            <td>
+              <a href="{{measure.measure_image.url}}" data-toggle="lightbox"
+                 data-footer="{{ measure.product }} - {{ measure.measured_weight }} VS {{ measure.package_weight }}">
+                <img class="product_img" src="{{measure.measure_image.url}}" alt="" />
+              </a>
+            </td>
             <td class="list_product">{{ measure.product }}</td>
             <td class="list_product">{{ measure.package_weight }}</td>
             <td class="list_product">{{ measure.measured_weight }}</td>
