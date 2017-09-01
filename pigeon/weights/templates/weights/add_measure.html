@@ -50,7 +50,10 @@
       {% bootstrap_field add_measure_form.measure_image layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
     </div>
     <div class="col-md-12 text-center">
-      {% bootstrap_button btn_text button_type="submit" button_class="btn-primary" size="large" %}
+      {% bootstrap_button btn_text name="add" button_type="submit" button_class="btn-primary" size="large" %}
+      {% if not edit_mode %}
+        {% bootstrap_button btn_continue_text name="add_and_continue" button_type="submit" button_class="btn-primary" size="large" %}
+      {% endif %}
     </div>
   </form>
 </div>

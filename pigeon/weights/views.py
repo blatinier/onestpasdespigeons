@@ -55,7 +55,8 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.refresh_from_db()  # load the profile
-            user.pigeonuser.language = profile_form.cleaned_data.get('language')
+            user.pigeonuser.language = \
+                    profile_form.cleaned_data.get('language')
             user.pigeonuser.country = profile_form.cleaned_data.get('country')
             user.save()
             raw_password = user_form.cleaned_data.get('password1')
@@ -117,18 +118,25 @@ def overview(request):
     Some global statistics with nice graphs.
     """
     measure_count = Measure.objects.count()
-    abs_diff_measures = Measure.objects.annotate(mdiff=F('measured_weight') - F('package_weight'))
+    abs_diff_measures = Measure.objects.annotate(
+            mdiff=F('measured_weight') - F('package_weight'))
     abs_diff = abs_diff_measures.aggregate(min_diff=Min('mdiff'),
                                            max_diff=Max('mdiff'),
                                            avg_diff=Avg('mdiff'))
-    abs_median_diff = abs_diff_measures.order_by('mdiff')[int(measure_count / 2)]
-    rel_diff_measures = Measure.objects.annotate(mdiff=(F('measured_weight') - F('package_weight')) / F('package_weight') * 100)
+    abs_median_diff = abs_diff_measures.order_by('mdiff')\
+            [int(measure_count / 2)]
+    rel_diff_measures = Measure.objects.annotate(
+            mdiff=((F('measured_weight') - F('package_weight')) /
+                   F('package_weight') * 100))
     rel_diff = rel_diff_measures.aggregate(min_diff=Min('mdiff'),
                                            max_diff=Max('mdiff'),
                                            avg_diff=Avg('mdiff'))
-    rel_median_diff = rel_diff_measures.order_by('mdiff')[int(measure_count / 2)]
+    rel_median_diff = rel_diff_measures.order_by('mdiff')\
+            [int(measure_count / 2)]
 
-    product_measures = Measure.objects.values('product').annotate(mdiff=Avg((F('measured_weight') - F('package_weight')) / F('package_weight') * 100))
+    product_measures = Measure.objects.values('product').annotate(
+            mdiff=(Avg((F('measured_weight') - F('package_weight')) /
+                   F('package_weight') * 100)))
     top_products = [{'product': Product.objects.get(code=d['product']),
                      'mdiff': d['mdiff']}
                     for d in product_measures.order_by('-mdiff')[:5]]
@@ -137,7 +145,9 @@ def overview(request):
                       'mdiff': d['mdiff']}
                      for d in product_measures.order_by('mdiff')[:5]]
 
-    brands_measures = Measure.objects.values('product__brands').annotate(mdiff=Avg((F('measured_weight') - F('package_weight')) / F('package_weight') * 100))
+    brands_measures = Measure.objects.values('product__brands').annotate(
+            mdiff=(Avg((F('measured_weight') - F('package_weight')) /
+                   F('package_weight') * 100)))
     top_brands = [{'brand': d['product__brands'],
                    'mdiff': d['mdiff']}
                   for d in brands_measures.order_by('-mdiff')[:5]
@@ -240,16 +250,19 @@ def add_measure(request):
     Page to add your own measurements.
     """
     page_mode_create = False
+    redirect_page = reverse(my_measures)
     if request.method == 'POST':
         measure_inst = Measure(user=request.user.pigeonuser)
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
                                           instance=measure_inst)
+        if "add_and_continue" in add_measure_form.data:
+            redirect_page = reverse(add_measure)
         if add_measure_form.is_valid():
             add_product_form = AddProductForm(request.POST)
             if add_measure_form.cleaned_data['product']:
                 add_measure_form.save()
                 messages.success(request, _("Measure added!"))
-                return redirect(reverse(my_measures))
+                return redirect(redirect_page)
             if add_product_form.is_valid():
                 prod = add_product_form.save(commit=False)
                 prod.source = 'Internal'
@@ -260,7 +273,7 @@ def add_measure(request):
                 prod.quantity = "%d g" % measure.weight('g', 'package')
                 prod.save()
                 messages.success(request, _("Measure added!"))
-                return redirect(reverse(my_measures))
+                return redirect(redirect_page)
             page_mode_create = (add_product_form.data.get('code') or
                                 add_product_form.data.get('product_name') or
                                 add_product_form.data.get('brands'))
@@ -276,6 +289,7 @@ def add_measure(request):
                   {'add_measure_form': add_measure_form,
                    'add_product_form': add_product_form,
                    'btn_text': _('Add!'),
+                   'btn_continue_text': _('Add and keep adding!'),
                    'title': title,
                    'page_mode_create': page_mode_create})
 

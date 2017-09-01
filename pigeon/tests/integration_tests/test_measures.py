@@ -69,6 +69,29 @@ class MeasureTestCase(TestCase):
         self.assertIn(b"Measure deleted!", resp.content)
         self.assertNotIn(b"Farine de bl\xc3\xa9 noir", resp.content)
 
+    def test_add_and_continue(self):
+        """
+        Test the following steps:
+        - Add a measure
+        - Check on add measure again
+        """
+        # Add measure
+        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+            resp = self.client.post("/add_measure",
+                                    {"product": "0000000003087",
+                                     "unit": "g",
+                                     "package_weight": 1000,
+                                     "measured_weight": 900,
+                                     "measure_image": data,
+                                     "add_and_continue": True},
+                                    format="multipart",
+                                    follow=True)
+
+        # Check added and redirected
+        self.assertIn(b'Add a measure', resp.content)
+        self.assertIn(b"Measure added!", resp.content)
+        self.assertEqual(resp.redirect_chain, [("/add_measure", 302)])
+
     def test_delete_measure_not_owned(self):
         """
         Try to delete measure not owned
