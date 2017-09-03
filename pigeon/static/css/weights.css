@@ -73,6 +73,19 @@ body {
 .table > tbody > tr > td.list_product {
   line-height: 50px;
 }
+
+#pigeon_403 {
+  height: 200px;
+}
+
+#pigeon_404 {
+  height: 200px;
+}
+
+#pigeon_500 {
+  height: 100px;
+}
+
 #navbar.in {
   overflow: visible;
 }
