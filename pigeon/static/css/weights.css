@@ -160,6 +160,16 @@ ul.side-about > li > a:hover {
   line-height: 35px;
   text-align: center;
 }
+.pigeon-title {
+  color: #FF5A5F;
+  font-family: 'Lobster', serif;
+  text-align: center;
+  width: 100%;
+}
+.pigeon-title-about {
+  color: #FF5A5F;
+  font-family: 'Lobster', serif;
+}
 .padding-left-0 { padding-left: 0; }
 .padding-right-0 { padding-right: 0; }
 #navbar.in { overflow: visible; }
