@@ -41,7 +41,7 @@ if [ $# -lt 2 ]; then
 fi
 
 author="Benoît Latinier, Fabien Bourrel"
-project="OnEstPasDesPigeons"
+project="RendezMoiMesPlumes"
 
 slashComments=("c" "h" "cpp" "hpp" "m" "java" "js")
 hashComments=("py" "sh")

@@ -1,14 +1,14 @@
-Code style master: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/master/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/master)
+Code style master: [![Code Health](https://landscape.io/github/blatinier/RendezMoiMesPlumes/master/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/RendezMoiMesPlumes/master)
 
-Code style devel: [![Code Health](https://landscape.io/github/blatinier/onestpasdespigeons/devel/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/onestpasdespigeons/devel)
+Code style devel: [![Code Health](https://landscape.io/github/blatinier/RendezMoiMesPlumes/devel/landscape.svg?style=plastic)](https://landscape.io/github/blatinier/RendezMoiMesPlumes/devel)
 
-Travis master: [![Travis](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=master)
+Travis master: [![Travis](https://travis-ci.org/blatinier/RendezMoiMesPlumes.svg?branch=master)](https://travis-ci.org/blatinier/RendezMoiMesPlumes.svg?branch=master)
 
-Travis devel: [![Travis](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=devel)](https://travis-ci.org/blatinier/onestpasdespigeons.svg?branch=devel)
+Travis devel: [![Travis](https://travis-ci.org/blatinier/RendezMoiMesPlumes.svg?branch=devel)](https://travis-ci.org/blatinier/RendezMoiMesPlumes.svg?branch=devel)
 
-Coverage master: [![Coverage Status](https://coveralls.io/repos/github/blatinier/onestpasdespigeons/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/onestpasdespigeons?branch=master)
+Coverage master: [![Coverage Status](https://coveralls.io/repos/github/blatinier/RendezMoiMesPlumes/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/RendezMoiMesPlumes?branch=master)
 
-Coverage devel: [![Coverage Status](https://coveralls.io/repos/github/blatinier/onestpasdespigeons/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/onestpasdespigeons?branch=devel)
+Coverage devel: [![Coverage Status](https://coveralls.io/repos/github/blatinier/RendezMoiMesPlumes/badge.svg?branch=mastre)](https://coveralls.io/github/blatinier/RendezMoiMesPlumes?branch=devel)
 
 
 # Backend

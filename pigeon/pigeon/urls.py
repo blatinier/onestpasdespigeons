@@ -13,7 +13,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
-#  This file is part of project: OnEstPasDesPigeons
+#  This file is part of project: RendezMoiMesPlumes
 #
 """pigeon URL Configuration
 

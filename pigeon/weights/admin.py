@@ -13,7 +13,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
-#  This file is part of project: OnEstPasDesPigeons
+#  This file is part of project: RendezMoiMesPlumes
 #
 from django.contrib import admin
 from .models import Product, Measure

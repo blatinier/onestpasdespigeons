@@ -245,7 +245,7 @@ msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
 "we could improve some existing feature? Contact us now using the <a href=\"/"
 "contact\">contact page</a> or hop on our <a href=\"//github.com/blatinier/"
-"onestpasdespigeons/issues\">Github repository</a> and fill a ticket with "
+"RendezMoiMesPlumes/issues\">Github repository</a> and fill a ticket with "
 "your ideas! (And even code it if you feel like it!!)"
 msgstr ""
 

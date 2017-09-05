@@ -1,5 +1,5 @@
 # Copyright (C) 2017
-# This file is distributed under the same license as the OnEstPasDesPigeons package.
+# This file is distributed under the same license as the RendezMoiMesPlumes package.
 # Fabien Bourrel <fabien@bourrel.me>, 2017.
 # Benoit Latinier <benoit@latinier.fr>, 2017.
 #
@@ -261,14 +261,14 @@ msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
 "we could improve some existing feature? Contact us now using the <a href=\"/"
 "contact\">contact page</a> or hop on our <a href=\"//github.com/blatinier/"
-"onestpasdespigeons/issues\">Github repository</a> and fill a ticket with "
+"RendezMoiMesPlumes/issues\">Github repository</a> and fill a ticket with "
 "your ideas! (And even code it if you feel like it!!)"
 msgstr ""
 "Vous aimez ce site et vous y avez trouvé un bug ? Une fonctionnalité vous "
 "manque ? Vous pensez qu'il est possible d'améliorer les fonctionnalités "
 "existante ? Alors n'hésitez pas une seconde et contactez nous via <a href=\"/"
 "contact\"> la page de contact</a> ou passez sur le <a href=\"//github.com/"
-"blatinier/onestpasdespigeons/issues\">dépôt Github du projet</a> pour nous "
+"blatinier/RendezMoiMesPlumes/issues\">dépôt Github du projet</a> pour nous "
 "proposer votre idée ! (Et même la programmer si vous le souhaitez !) "
 
 #: weights/templates/weights/contribute.html:55
