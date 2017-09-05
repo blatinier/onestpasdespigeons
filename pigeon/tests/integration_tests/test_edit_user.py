@@ -14,7 +14,7 @@ class EditUserTestCase(TestCase):
         # Go to edit user page
         resp = self.client.get("/account")
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'Manage my account', resp.content)
+        self.assertIn(b'Edit my account', resp.content)
 
         new_user_data = {'user-username': 'aaa',
                          'user-first_name': 'bbb',
@@ -43,7 +43,7 @@ class EditUserTestCase(TestCase):
         # Go to edit user page
         resp = self.client.get("/account")
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b'Manage my account', resp.content)
+        self.assertIn(b'Edit my account', resp.content)
 
         new_user_data = {'user-username': '',  # Will normally fail!
                          'user-first_name': 'bbb',

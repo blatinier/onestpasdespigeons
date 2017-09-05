@@ -62,28 +62,28 @@ class AuthTestCase(TestCase):
         login_data = {"username": "azec",
                       "password": "pipo"}
         resp = self.client.post("/login/", login_data)
-        self.assertIn(b"Votre combinaison login/password n'a pas", resp.content)
+        self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # user non existant
         login_data = {"username": "az",
                       "password": "pipo"}
         resp = self.client.post("/login/", login_data)
-        self.assertIn(b"Votre combinaison login/password n'a pas", resp.content)
+        self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # no user
         login_data = {"username": "",
                       "password": "pipo"}
         resp = self.client.post("/login/", login_data)
-        self.assertIn(b"Votre combinaison login/password n'a pas", resp.content)
+        self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # no pwd
         login_data = {"username": "az",
                       "password": ""}
         resp = self.client.post("/login/", login_data)
-        self.assertIn(b"Votre combinaison login/password n'a pas", resp.content)
+        self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
     def test_fail_register(self):
