@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-01 20:52+0200\n"
+"POT-Creation-Date: 2017-09-04 22:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,77 +17,208 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: weights/templates/weights/about.html:12
-#: weights/templates/weights/about.html:32
-msgid "Who are we?"
-msgstr "Who are we?"
+#: weights/forms.py:40
+msgid "The two password fields didn't match."
+msgstr ""
 
-#: weights/templates/weights/about.html:18
-msgid "Privacy"
-msgstr "Privacy"
+#: weights/forms.py:42
+msgid "Password"
+msgstr ""
 
-#: weights/templates/weights/about.html:24
+#: weights/forms.py:44
+msgid "Password confirmation"
+msgstr ""
+
+#: weights/forms.py:47
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: weights/forms.py:127
+msgid "All product fields must be set"
+msgstr ""
+
+#: weights/templates/registration/login.html:8
+msgid "The login/password combination failed. Try again."
+msgstr ""
+
+#: weights/templates/registration/login.html:13
+msgid ""
+"You don't have access to the required page. To access it you need to connect "
+"with an allowed account."
+msgstr ""
+
+#: weights/templates/registration/login.html:15
+msgid "Please connect to access the required page."
+msgstr ""
+
+#: weights/templates/registration/login.html:28
+msgid "Not registered yet?"
+msgstr ""
+
+#: weights/templates/registration/login.html:29
+msgid "It's here!"
+msgstr ""
+
+#: weights/templates/registration/login.html:36
+msgid "Sign in with Google"
+msgstr ""
+
+#: weights/templates/registration/login.html:40
+msgid "Sign in with Facebook"
+msgstr ""
+
+#: weights/templates/registration/login.html:44
+msgid "Sign in with Twitter"
+msgstr ""
+
+#: weights/templates/registration/login.html:48
+msgid "Sign in with Github"
+msgstr ""
+
+#: weights/templates/registration/register.html:6
+msgid "Register"
+msgstr ""
+
+#: weights/templates/weights/about.html:9
+#: weights/templates/weights/layout.html:50
+msgid "About"
+msgstr ""
+
+#: weights/templates/weights/about.html:15
 msgid "Press"
 msgstr "Press"
 
-#: weights/templates/weights/about.html:62
-msgid "User Privacy"
-msgstr "User Privacy"
+#: weights/templates/weights/about.html:29
+#: weights/templates/weights/about.html:44
+msgid "About RendezMoiMesPlumes"
+msgstr ""
+
+#: weights/templates/weights/about.html:35
+#: weights/templates/weights/about.html:54
+msgid "Who are we?"
+msgstr "Who are we?"
+
+#: weights/templates/weights/about.html:47
+#: weights/templates/weights/home.html:9
+msgid "How much are we taken for a ride?"
+msgstr ""
+
+#: weights/templates/weights/about.html:48
+msgid ""
+"Answering this question is the aim of this site. Everything starts when a "
+"friend tells us \"Hey! I weighted my 1kg rice, there was only 960g of it!\". "
+"The experiment proved her right several times. The idea made its way in our "
+"mind... Why not creating a database gathering those measurements and "
+"discover how much we are taken for a ride?"
+msgstr ""
+
+#: weights/templates/weights/about.html:49
+msgid ""
+"Founded in September 2017, based in Paris, France, RendezMoiMesPlumes is a "
+"community driven platform allowing to share data gathered by consumers all "
+"around the world."
+msgstr ""
+
+#: weights/templates/weights/about.html:50
+msgid ""
+"It can be a pasta packet from the supermarket, or the bio rye flour bag, or "
+"a basket of strawberries, RendezMoiMesPlumes allows everyone to point out "
+"irregularities and act for a change!"
+msgstr ""
 
 #: weights/templates/weights/about.html:63
-msgid ""
-"All personnal information you put on this website is your full and only "
-"property. "
+msgid "Fabien is a computer engineer, working in Paris."
 msgstr ""
-"All personnal information you put on this website is your full and only "
-"property."
 
-#: weights/templates/weights/about.html:64
+#: weights/templates/weights/about.html:77
 msgid ""
-"You can require editing/deleting these information at any time by contacting "
-"us on"
+"Benoît is a computer engineer, travelling around the world with his family."
 msgstr ""
-"You can require editing/deleting these information at any time by contacting "
-"us on"
 
-#: weights/templates/weights/about.html:69
+#: weights/templates/weights/about.html:95
+#: weights/templates/weights/about.html:110
 msgid "Talking about us"
 msgstr "Talking about us"
 
-#: weights/templates/weights/about.html:70
-msgid "Not yet :(. You are a journalist and want to talk about us?"
-msgstr "Not yet :(. You are a journalist and want to talk about us?"
-
-#: weights/templates/weights/about.html:71
-msgid "Please"
-msgstr "Please"
-
-#: weights/templates/weights/about.html:71
-msgid "contact us"
-msgstr "contact us"
-
-#: weights/templates/weights/about.html:74
+#: weights/templates/weights/about.html:101
+#: weights/templates/weights/about.html:120
 msgid "Talking about the problem"
 msgstr "Talking about the problem"
 
-#: weights/templates/weights/about.html:81
+#: weights/templates/weights/about.html:114
+#, fuzzy
+#| msgid "Not yet :(. You are a journalist and want to talk about us?"
+msgid "You are a journalist and want to talk about us?"
+msgstr "Not yet :(. You are a journalist and want to talk about us?"
+
+#: weights/templates/weights/about.html:115
+#: weights/templates/weights/contact.html:6
+#, fuzzy
+#| msgid "contact us"
+msgid "Contact us"
+msgstr "contact us"
+
+#: weights/templates/weights/about.html:115
+msgid "now!"
+msgstr ""
+
+#: weights/templates/weights/about.html:129
 msgid "60 Millions de consomateurs (French)"
 msgstr "60 Millions de consomateurs (French)"
 
-#: weights/templates/weights/about.html:83
+#: weights/templates/weights/about.html:131
 msgid "Chez Casino, le bio pèse lourd"
 msgstr "Chez Casino, le bio pèse lourd"
 
-#: weights/templates/weights/about.html:84
+#: weights/templates/weights/about.html:132
 msgid "Le poids des aliments, parfois le paquet ment"
 msgstr "Le poids des aliments, parfois le paquet ment"
+
+#: weights/templates/weights/all_measures.html:8
+#: weights/templates/weights/layout.html:47
+msgid "All measures"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:33
+msgid "Contributed by"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:43
+#: weights/templates/weights/my_measures.html:13
+msgid "Image"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:46
+#: weights/templates/weights/my_measures.html:14
+msgid "Product"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:58
+#: weights/templates/weights/my_measures.html:15
+msgid "Package weight"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:70
+#: weights/templates/weights/my_measures.html:16
+msgid "Measured weight"
+msgstr ""
+
+#: weights/templates/weights/all_measures.html:80
+#: weights/templates/weights/my_measures.html:17
+msgid "Diff"
+msgstr ""
+
+#: weights/templates/weights/contact.html:8
+msgid "Thank you for your message, we will reply as fast as possible!"
+msgstr ""
 
 #: weights/templates/weights/contribute.html:6
 msgid "How to contribute"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:10
-#: weights/templates/weights/layout_home.html:28
+#: weights/templates/weights/contribute.html:9
+#: weights/templates/weights/home.html:24
+#: weights/templates/weights/layout.html:38
 msgid "Alfred le pigeon"
 msgstr ""
 
@@ -95,58 +226,41 @@ msgstr ""
 msgid "Weight!"
 msgstr ""
 
-#. Translators:
-#. La première et la plus importantes des contributions qui vous
-#. puissiez faire c'est de peser vos courses et de mettre les
-#. résultats ici même ! C'est l'ensemble de toutes les mesures
-#. ainsi récupérées qui font ce site et permettent l'élaboration
-#. de joli statistiques vous aidant dans vos choix au magasin.
-#.
-#: weights/templates/weights/contribute.html:23
+#: weights/templates/weights/contribute.html:16
 msgid ""
 "The first and most important contribution you could make is to weight your "
 "groceries and upload the result right here! It the whole lot of measurements "
 "made by you which make this website what it is and allow us to create pretty "
-"graphs helping the future you to make your choices wisely in the supermarket."
+"graphs helping the future you to make your choices wisely in the "
+"supermarket... and point out those disrespectful actions against the "
+"consumers."
 msgstr ""
 
-#: weights/templates/weights/contribute.html:36
+#: weights/templates/weights/contribute.html:31
 msgid "On Github"
 msgstr ""
 
-#. Translators:
-#. Vous aimez ce site et vous y avez trouvé un bug ?
-#. Une fonctionnalité vous manque ?
-#. Vous pensez qu'il est possible d'améliorer les fonctionnalités
-#. existante ? Alors n'hésitez pas une seconde et passez sur le
-#. <a href="//github.com/blatinier/onestpasdespigeons/issues">dépôt Github du projet</a>
-#. pour nous proposer votre idée ! (Et même la programmer si vous
-#. le souhaitez !)
-#.
-#: weights/templates/weights/contribute.html:47
+#: weights/templates/weights/contribute.html:33
 msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
-"we could improve some existing feature? Hop on our <a href=\"//github.com/"
-"blatinier/onestpasdespigeons/issues\">Github repository</a> and fill a "
-"ticket with your ideas! (And even code it if you feel like it!!)"
+"we could improve some existing feature? Contact us now using the <a href=\"/"
+"contact\">contact page</a> or hop on our <a href=\"//github.com/blatinier/"
+"onestpasdespigeons/issues\">Github repository</a> and fill a ticket with "
+"your ideas! (And even code it if you feel like it!!)"
 msgstr ""
 
-#. Translators:
-#. De combien se fait-on pigeonner ?
-#.
-#: weights/templates/weights/home.html:9
-msgid "How much are we taken for a ride?"
+#: weights/templates/weights/contribute.html:55
+msgid "Translate"
 msgstr ""
 
-#. Translators:
-#. Répondre à cette question est l'objectif de ce petit site.
-#. Tout commence lorsqu'une connaissance nous lance
-#. « J'ai pesé mon pâquet de 1kg de riz, bah il faisait 960g ! ».
-#. Et l'expérience s'est réitérée plusieurs fois.
-#. Pourquoi alors ne pas créer une base de donnée de toutes ces mesures ?
-#. Et découvrir à quel point on se fait pigeonner ?
-#.
-#: weights/templates/weights/home.html:22
+#: weights/templates/weights/contribute.html:57
+msgid ""
+"You found a translation error? You would like to see this website translated "
+"in another language? Go on our <a href=\"https://poeditor.com/join/project/"
+"bKxuAMSSBx\">POEditor project</a> and contribute translations!"
+msgstr ""
+
+#: weights/templates/weights/home.html:14
 msgid ""
 "Answering this question is the objective of this small website. Everything "
 "starts when a friend tells us: \"I weight my 1kg packet of rice, it weighted "
@@ -154,117 +268,284 @@ msgid ""
 "database of all these weights and find out how much we are taken for a ride?"
 msgstr ""
 
-#: weights/templates/weights/layout.html:16
-msgid "Error:"
+#: weights/templates/weights/home.html:30
+msgid "Last measures"
 msgstr ""
 
-#: weights/templates/weights/layout.html:17
-msgid "Warning:"
-msgstr ""
-
-#: weights/templates/weights/layout.html:18
-msgid "Success:"
-msgstr ""
-
-#: weights/templates/weights/layout.html:19
-msgid "Information:"
-msgstr ""
-
-#: weights/templates/weights/layout_home.html:23
+#: weights/templates/weights/layout.html:31
 msgid "Toggle navigation"
 msgstr ""
 
-#: weights/templates/weights/layout_home.html:31
-msgid "Statistics"
-msgstr ""
-
-#: weights/templates/weights/layout_home.html:33
-#: weights/templates/weights/layout_home.html:50
-#: weights/templates/weights/my_measures.html:5
+#: weights/templates/weights/layout.html:46
+#: weights/templates/weights/my_measures.html:6
 msgid "My measures"
 msgstr ""
 
-#: weights/templates/weights/layout_home.html:34
-msgid "All measures"
+#: weights/templates/weights/layout.html:48
+msgid "Statistics"
 msgstr ""
 
-#: weights/templates/weights/layout_home.html:36
-msgid "About"
+#: weights/templates/weights/layout.html:52
+msgid "Sign up"
 msgstr ""
 
-#: weights/templates/weights/layout_home.html:51
-msgid "My account"
-msgstr ""
-
-#: weights/templates/weights/layout_home.html:52
-msgid "Contribute"
-msgstr ""
-
-#: weights/templates/weights/layout_home.html:54
-msgid "Logout"
-msgstr ""
-
-#: weights/templates/weights/layout_home.html:58
+#: weights/templates/weights/layout.html:53
 msgid "Sign in"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:7
+#: weights/templates/weights/layout.html:66
+msgid "My account"
+msgstr ""
+
+#: weights/templates/weights/layout.html:67
+#: weights/templates/weights/layout.html:117
+msgid "Contribute"
+msgstr ""
+
+#: weights/templates/weights/layout.html:69
+msgid "Logout"
+msgstr ""
+
+#: weights/templates/weights/layout.html:99
+msgid "Error:"
+msgstr ""
+
+#: weights/templates/weights/layout.html:100
+msgid "Warning:"
+msgstr ""
+
+#: weights/templates/weights/layout.html:101
+msgid "Success:"
+msgstr ""
+
+#: weights/templates/weights/layout.html:102
+msgid "Information:"
+msgstr ""
+
+#: weights/templates/weights/layout.html:116
+#, fuzzy
+#| msgid "User Privacy"
+msgid "User privacy"
+msgstr "User Privacy"
+
+#: weights/templates/weights/layout.html:118
+#, fuzzy
+#| msgid "contact us"
+msgid "Contact"
+msgstr "contact us"
+
+#: weights/templates/weights/my_measures.html:8
 msgid "Add a new measure"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:12
-msgid "Image"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:13
-msgid "Product"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:14
-msgid "Package weight"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:15
-msgid "Measured weight"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:16
-msgid "Diff"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:17
+#: weights/templates/weights/my_measures.html:18
 msgid "Actions"
 msgstr ""
 
-#: weights/views.py:121
+#: weights/templates/weights/my_measures.html:49
+msgid "Are you sure?"
+msgstr ""
+
+#: weights/templates/weights/my_measures.html:50
+msgid "You won't be able to recover that measure later."
+msgstr ""
+
+#: weights/templates/weights/my_measures.html:54
+msgid "Yes, delete it!"
+msgstr ""
+
+#: weights/templates/weights/overview.html:7
+msgid "Overview"
+msgstr ""
+
+#: weights/templates/weights/overview.html:13
+#, python-format
+msgid "# Products: %(nb_products)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:20
+#, python-format
+msgid "# Measures: %(nb_measures)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:29
+msgid "Absolute statistics"
+msgstr ""
+
+#: weights/templates/weights/overview.html:33
+#, python-format
+msgid "Min difference: %(abs_min_diff)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:34
+#, python-format
+msgid "Max difference: %(abs_max_diff)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:35
+#, python-format
+msgid "Median difference: %(abs_median_diff)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:36
+#, python-format
+msgid "Mean difference: %(abs_mean_diff)s"
+msgstr ""
+
+#: weights/templates/weights/overview.html:44
+msgid "Relative statistics"
+msgstr ""
+
+#: weights/templates/weights/overview.html:48
+#, python-format
+msgid "Min difference: %(rel_min_diff)s%%"
+msgstr ""
+
+#: weights/templates/weights/overview.html:49
+#, python-format
+msgid "Max difference: %(rel_max_diff)s%%"
+msgstr ""
+
+#: weights/templates/weights/overview.html:50
+#, python-format
+msgid "Median difference: %(rel_median_diff)s%%"
+msgstr ""
+
+#: weights/templates/weights/overview.html:51
+#, python-format
+msgid "Mean difference: %(rel_mean_diff)s%%"
+msgstr ""
+
+#: weights/templates/weights/overview.html:59
+msgid "By products"
+msgstr ""
+
+#: weights/templates/weights/overview.html:63
+msgid "Top 5 products"
+msgstr ""
+
+#: weights/templates/weights/overview.html:71
+msgid "Flop 5 products"
+msgstr ""
+
+#: weights/templates/weights/overview.html:82
+msgid "By brands"
+msgstr ""
+
+#: weights/templates/weights/overview.html:86
+msgid "Top 5 brands"
+msgstr ""
+
+#: weights/templates/weights/overview.html:94
+msgid "Flop 5 brands"
+msgstr ""
+
+#: weights/templates/weights/privacy.html:6
+msgid "User Privacy"
+msgstr "User Privacy"
+
+#: weights/templates/weights/privacy.html:7
+msgid ""
+"All personnal information you put on this website is your full and only "
+"property. "
+msgstr ""
+"All personnal information you put on this website is your full and only "
+"property."
+
+#: weights/templates/weights/privacy.html:8
+#, fuzzy
+#| msgid ""
+#| "You can require editing/deleting these information at any time by "
+#| "contacting us on"
+msgid ""
+"You can require editing/deleting these information at any time by contacting "
+"us on the <a href='/contact'>contact page<a>"
+msgstr ""
+"You can require editing/deleting these information at any time by contacting "
+"us on"
+
+#: weights/templates/weights/user_account.html:7
+msgid "Edit my account"
+msgstr ""
+
+#: weights/templates/weights/user_account.html:29
+msgid "Suspend my account"
+msgstr ""
+
+#: weights/templates/weights/user_account.html:33
+msgid "Are you sure you want to deactivate your account?"
+msgstr ""
+
+#: weights/templates/weights/user_account.html:34
+msgid "Deactivate my account"
+msgstr ""
+
+#: weights/views.py:199 weights/views.py:219
+msgid "Update"
+msgstr ""
+
+#: weights/views.py:211
+msgid "Update successful!"
+msgstr ""
+
+#: weights/views.py:234
+msgid "Account deactivated."
+msgstr ""
+
+#: weights/views.py:265
+msgid "Email sent!"
+msgstr ""
+
+#: weights/views.py:267
+msgid "All fields are required!"
+msgstr ""
+
+#: weights/views.py:302 weights/views.py:313
 msgid "Measure added!"
 msgstr ""
 
-#: weights/views.py:124
+#: weights/views.py:318
+msgid "Please select or create a product(all fields in create are required)."
+msgstr ""
+
+#: weights/views.py:321
 msgid "Error in the form."
 msgstr ""
 
-#: weights/views.py:127
+#: weights/views.py:325
 msgid "Add a measure"
 msgstr ""
 
-#: weights/views.py:130
+#: weights/views.py:329
 msgid "Add!"
 msgstr ""
 
-#: weights/views.py:147
+#: weights/views.py:330
+msgid "Add and keep adding!"
+msgstr ""
+
+#: weights/views.py:348
 msgid "Measure edited!"
 msgstr ""
 
-#: weights/views.py:150
+#: weights/views.py:351
 #, python-brace-format
 msgid "Edit measure {measure_id}"
 msgstr ""
 
-#: weights/views.py:153
+#: weights/views.py:354
 msgid "Edit"
 msgstr ""
 
-#: weights/views.py:165
+#: weights/views.py:367
 msgid "Measure deleted!"
 msgstr ""
+
+#~ msgid "Please"
+#~ msgstr "Please"
+
+#~ msgid "contact us"
+#~ msgstr "contact us"
+
+#~ msgid "Privacy"
+#~ msgstr "Privacy"

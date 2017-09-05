@@ -1,27 +1,16 @@
-{% extends 'weights/layout_home.html' %}
+{% extends 'weights/layout.html' %}
 {% load staticfiles %}
 {% load i18n %}
 {% load l10n %}
-{% block container %}
-  <div class="jumbotron">
-    <div class="container">
-      <h1>
-        {% comment %}Translators:
-        De combien se fait-on pigeonner ?
-        {% endcomment %}
+{% block content %}
+  <div class="row padding-top-50">
+    <div class="col-lg-8">
+      <h1 class="title pigeon-font pigeon-color">
         {% blocktrans trimmed %}
         How much are we taken for a ride?
         {% endblocktrans %}
       </h1>
-      <p>
-        {% comment %}Translators:
-        Répondre à cette question est l'objectif de ce petit site.
-        Tout commence lorsqu'une connaissance nous lance
-        « J'ai pesé mon pâquet de 1kg de riz, bah il faisait 960g ! ».
-        Et l'expérience s'est réitérée plusieurs fois.
-        Pourquoi alors ne pas créer une base de donnée de toutes ces mesures ?
-        Et découvrir à quel point on se fait pigeonner ?
-        {% endcomment %}
+      <p class="big padding-top-50 justify">
         {% blocktrans trimmed %}
         Answering this question is the objective of this small website.
         Everything starts when a friend tells us:
@@ -32,9 +21,12 @@
         {% endblocktrans %}
       </p>
     </div>
+    <img alt="logo" title="{% trans "Alfred le pigeon" %}"
+         src="{% static 'images/pigeon.svg' %}"
+         class="col-lg-4"/>
   </div>
   <div class="row text-center">
-    <h1>
+    <h1 class="pigeon-font pigeon-color">
       {% blocktrans trimmed %}
       Last measures
       {% endblocktrans %}
@@ -43,20 +35,25 @@
     <div class="col-lg-1"></div>
     {% for measure in last_measures %}
       <div class="col-lg-2 col-xs-6 text-center">
-        <div class="product_img_big">
-          {% if measure.measure_image %}
-              <div><img alt="" src="{{measure.measure_image.url}}" /></div>
-          {% else %}
-              <div><img alt="" src="{% static 'images/red_scales.png' %}" /></div>
-          {% endif %}
+        <div class="product_img_big full-width">
+          <div>
+            {% if measure.measure_image %}
+              <a href="{{measure.measure_image.url}}" data-toggle="lightbox">
+                <img alt="" src="{{measure.measure_image.url}}" />
+              </a>
+            {% else %}
+              <a href="{% static 'images/red_scales.png' %}" data-toggle="lightbox">
+                <img alt="" src="{% static 'images/red_scales.png' %}" />
+              </a>
+            {% endif %}
+          </div>
         </div>
-        <span class="{% if measure.percent_diff < 0 %}red{% else %}green{% endif %}">
-          {% if measure.percent_diff > 0 %}+{% endif %}
-          {{measure.percent_diff|floatformat:"1"}} %
-        </span><br />
-        {% blocktrans %}Added by {% endblocktrans %}
-        {{measure.user.user.username}}<br/>
-        {{measure.created_at|localize}}
+        <div class="{% if measure.percent_diff < 0 %}pigeon-color{% else %}green{% endif %} full-width bg-pigeon-grey">
+          <strong class="big home-diff">
+            {% if measure.percent_diff > 0 %}+{% endif %}
+            {{measure.percent_diff|floatformat:"1"}} %
+          </strong>
+        </div>
       </div>
     {% endfor %}
   </div>

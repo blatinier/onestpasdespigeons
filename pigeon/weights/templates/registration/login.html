@@ -1,52 +1,53 @@
 {% extends 'weights/layout.html' %}
 {% load bootstrap3 %}
+{% load i18n %}
 {% load staticfiles %}
 {% block content %}
 <div class="row offset-from-menu">
   <div class="col-lg-6 col-lg-offset-3">
-  {% if form.errors %}
-  <p>Votre combinaison login/password n'a pas fonctionné. Veuillez réessayer.</p>
-  {% endif %}
+    {% if form.errors %}
+      <p>{% trans "The login/password combination failed. Try again." %}</p>
+    {% endif %}
 
-  {% if next %}
+    {% if next %}
       {% if user.is_authenticated %}
-      <p>Vous n'avez pas accès à la page demandée. Pour y accéder veuillez vous connecter avec un compte ayant les droits suffisants.</p>
+      <p>{% trans "You don't have access to the required page. To access it you need to connect with an allowed account." %}</p>
       {% else %}
-      <p>Veuillez vous connecter pour accéder à la page demandée.</p>
+      <p>{% trans "Please connect to access the required page." %}</p>
       {% endif %}
-  {% endif %}
+    {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {% bootstrap_field form.username %}
-    {% bootstrap_field form.password %}
-    <div class="col-lg-12 text-center">
-      <input type="submit" class="btn btn-success" value="Login !" />
-    </div>
-    <div class="col-lg-12 text-center">
-      <br />
-      Pas encore inscrit ? C'est <a href="{% url 'register' %}">par ici</a> !
-    </div>
-    <!-- <div class="col-lg-12 text-center">
-      <a href="{% url 'password_reset' %}">Mot de passe perdu ?</a>
-    </div>-->
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-  <a class="btn btn-default" href="{% url "social:begin" "google-oauth2" %}">
-    <img src="{% static 'images/google-sign.png' %}" width="25" />Sign in with Google
-  </a>
-  <a class="btn btn-default" href="{% url "social:begin" "facebook" %}">
-    <img src="{% static 'images/facebook-sign.svg' %}" width="25" />
-    Sign in with Facebook
-  </a>
-  <a class="btn btn-default" href="{% url "social:begin" "twitter" %}">
-    <img src="{% static 'images/twitter-sign.svg' %}" width="25" />
-    Sign in with Twitter
-  </a>
-  <a class="btn btn-default" href="{% url "social:begin" "github" %}">
-    <img src="{% static 'images/github-sign.svg' %}" width="25" />
-    Sign in with Github
-  </a>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {% bootstrap_field form.username show_label=False %}
+      {% bootstrap_field form.password show_label=False %}
+      <div class="col-lg-12 text-center">
+        <input type="submit" class="btn btn-success connect-btn" value="Login !" />
+      </div>
+      <div class="col-lg-12 text-center">
+        <br />
+        {% trans "Not registered yet?" %}
+        <a href="{% url 'register' %}">{% trans "It's here!" %}</a>
+      </div>
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+  </div>
+  <div class="col-lg-10 col-lg-offset-1 text-center margin-top-20">
+    <a class="btn btn-default" href="{% url "social:begin" "google-oauth2" %}">
+      <img src="{% static 'images/google-sign.png' %}" width="25" />{% trans "Sign in with Google" %}
+    </a>
+    <a class="btn btn-default" href="{% url "social:begin" "facebook" %}">
+      <img src="{% static 'images/facebook-sign.svg' %}" width="25" />
+      {% trans "Sign in with Facebook" %}
+    </a>
+    <a class="btn btn-default" href="{% url "social:begin" "twitter" %}">
+      <img src="{% static 'images/twitter-sign.svg' %}" height="25" />
+      {% trans "Sign in with Twitter" %}
+    </a>
+    <a class="btn btn-default" href="{% url "social:begin" "github" %}">
+      <img src="{% static 'images/github-sign.svg' %}" width="25" />
+      {% trans "Sign in with Github" %}
+    </a>
   </div>
 </div>
 {% endblock %}

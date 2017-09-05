@@ -15,17 +15,19 @@
 #  This file is part of project: OnEstPasDesPigeons
 #
 import urllib.parse
+from django.conf import settings
 from django.contrib.auth import (authenticate, login, logout,
                                  update_session_auth_hash)
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.forms import (UserForm, ProfileForm, AddMeasureForm,
-                           UpdateUserForm, AddProductForm)
+                           UpdateUserForm, AddProductForm, ContactForm)
 from weights.models import Measure, MeasureFilter, Product
 
 
@@ -33,9 +35,16 @@ def home(request):
     """
     Pretty home page.
     """
-    last_measures = Measure.objects.all().order_by('-created_at')[:5]
+    last_measures = Measure.objects.all().order_by('-created_at')[:6]
     return render(request, 'weights/home.html',
                   {'last_measures': last_measures})
+
+
+def privacy(request):
+    """
+    User privacy
+    """
+    return render(request, 'weights/privacy.html', {})
 
 
 def about(request):
@@ -232,6 +241,35 @@ def contribute(request):
     (e.g issu github, add measures, add products, ideas, ...)
     """
     return render(request, 'weights/contribute.html', {})
+
+
+def contact(request):
+    """
+    Contact form
+    """
+    success = False
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            send_mail(
+                "[pigeon] %s" % contact_form.cleaned_data['subject'],
+                """From: %s %s
+
+%s""" % (contact_form.cleaned_data['name'],
+         contact_form.cleaned_data['email'],
+         contact_form.cleaned_data['content']),
+                contact_form.cleaned_data['email'],
+                settings.ADMINS,
+            )
+            success = True
+            messages.success(request, _("Email sent!"))
+        else:
+            messages.error(request, _("All fields are required!"))
+    else:
+        contact_form = ContactForm()
+    return render(request, 'weights/contact.html',
+                  {'form': contact_form,
+                   'success': success})
 
 
 @login_required

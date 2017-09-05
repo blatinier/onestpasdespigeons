@@ -2,8 +2,8 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block content %}
-<div class="row offset-from-menu">
-  <h1 class="col-lg-12 text-center">{% trans "My measures" %}</h1>
+<div class="row">
+  <h1 class="col-lg-12 text-center pigeon-font pigeon-color">{% trans "My measures" %}</h1>
   <a href="{% url 'add_measure' %}" class="btn btn-success">
     {% trans "Add a new measure" %}
   </a>
@@ -24,20 +24,17 @@
           <td>
             {% if measure.measure_image %}
               <a href="{{measure.measure_image.url}}" data-toggle="lightbox"
-                 data-footer="{{ measure.product }} - {{ measure.measured_weight }} VS {{ measure.package_weight }}">
+                 data-footer="{{ measure.product }} - {{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }} VS {{ measure.package_weigh|floatformat:"0" }} {{ measure.unit }}">
                 <img class="product_img" src="{{measure.measure_image.url}}" alt="" />
               </a>
             {% else %}
-              <a href="{% static 'images/red_scales.png' %}" data-toggle="lightbox"
-                 data-footer="{{ measure.product }} - {{ measure.measured_weight }} VS {{ measure.package_weight }}">
-                <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />
-              </a>
+              <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />
             {% endif %}
           </td>
-          <td class="list_product">{{ measure.product }}</td>
-          <td class="list_product">{{ measure.package_weight|floatformat:"1" }} {{ measure.unit }}</td>
-          <td class="list_product">{{ measure.measured_weight|floatformat:"1" }} {{ measure.unit }}</td>
-          <td class="list_product {% if measure.diff > 0 %}green{% else %}red{% endif %}">{{ measure.percent_diff|floatformat:"1" }} %</td>
+          <td class="list_product">{{ measure.product.product_name }} <span class="brand">{{ measure.product.brands }}</span></td>
+          <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
+          <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
+          <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
           <td class="list_product">
             <a class="btn btn-default" href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-pencil"></i></a>
             <a class="btn btn-default confirm-del-measure" data-href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-times"></i></a>

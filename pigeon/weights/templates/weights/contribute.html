@@ -2,12 +2,12 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block content %}
-<div class="row offset-from-menu">
-  <h1 class="col-lg-12 text-center">{% trans "How to contribute" %}</h1>
-
-  <div class="col-lg-12">
+<div class="row">
+  <h1 class="col-lg-12 text-center pigeon-font pigeon-color">{% trans "How to contribute" %}</h1>
+  <div class="row">
     <div class="col-lg-2 col-xs-4">
-      <img alt="logo" title="{% trans 'Alfred le pigeon' %}"
+      <img alt="" title="{% trans 'Alfred le pigeon' %}"
+           class="full-width"
            src="{% static 'images/pigeon.svg' %}" />
     </div>
     <div class="col-lg-10 col-xs-8">
@@ -19,13 +19,14 @@
         right here! It the whole lot of measurements made by you
         which make this website what it is and allow us to create
         pretty graphs helping the future you to make your choices
-        wisely in the supermarket.
+        wisely in the supermarket... and point out those disrespectful
+        actions against the consumers.
         {% endblocktrans %}
       </div>
     </div>
   </div>
 
-  <div class="col-lg-12">
+  <div class="row margin-top-50">
     <div class="col-lg-10 col-xs-8">
       <h2>{% trans "On Github" %}</h2>
       <div class="contribute-text">
@@ -33,17 +34,19 @@
         You like this website and found a bug?
         You're missing a feature?
         You think we could improve some existing feature?
-        Hop on our <a href="//github.com/blatinier/onestpasdespigeons/issues">Github repository</a> and fill a ticket with your ideas! (And even code it if you feel like it!!)
+        Contact us now using the <a href="/contact">contact page</a>
+        or hop on our <a href="//github.com/blatinier/onestpasdespigeons/issues">Github repository</a> and fill a ticket with your ideas! (And even code it if you feel like it!!)
         {% endblocktrans %}
       </div>
     </div>
     <div class="col-lg-2 col-xs-4">
-      <img class="col-lg-12 col-xs-12" alt="Github" title="Octocat"
+      <img alt="Github" title="Octocat"
+           class="full-width"
            src="{% static 'images/Octocat.png' %}" />
     </div>
   </div>
 
-  <div class="col-lg-12 col-xs-12 margin-top-50">
+  <div class="row margin-top-50">
     <div class="col-lg-2 col-xs-4">
       <img class="col-lg-10 padding-top-20 col-xs-12" alt="POEditor" title="POEditor"
            src="{% static 'images/poeditor.png' %}" />

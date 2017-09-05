@@ -24,3 +24,6 @@ And launch the gunicorn server:
     # gunicorn pigeon.wsgi:application
 
 Note: This is not fit for production use. The gunicorn should receive requests via a proxy http server (apache2, nginx, ...) and some deamon management system should handle the gunicorn (systemd, supervisord, ...)
+
+# Versions
+Version names are taken from here: https://fr.wikipedia.org/wiki/Liste_des_races_de_pigeons

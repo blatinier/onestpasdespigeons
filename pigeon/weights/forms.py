@@ -127,3 +127,10 @@ class AddProductForm(forms.ModelForm):
         if not (code and product_name and brands):
             raise forms.ValidationError(_("All product fields must be set"),
                                         code='invalid')
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(required=True)
+    email = forms.CharField(required=True)
+    subject = forms.CharField(required=True)
+    content = forms.CharField(required=True, widget=forms.Textarea)

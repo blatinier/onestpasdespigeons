@@ -1,0 +1,32 @@
+{% extends 'weights/layout.html' %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="row">
+  <h1 class="margin-bottom-20 col-lg-12 text-center pigeon-font pigeon-color">{% trans "Contact us" %}</h1>
+  {% if success %}
+    <div class="col-lg-12 text-center">{% trans "Thank you for your message, we will reply as fast as possible!" %}</div>
+  {% else %}
+  <form method="post"
+        autocomplete="off" class="form-contact col-lg-offset-2">
+    {% csrf_token %}
+    <div class="row">
+      {% bootstrap_field form.name layout="horizontal" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field form.email layout="horizontal" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field form.subject layout="horizontal" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
+    </div>
+    <div class="row">
+      {% bootstrap_field form.content layout="horizontal" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
+    </div>
+    <div class="col-md-9 text-center">
+      {% bootstrap_button "Send" name="Send" button_type="submit" button_class="btn-primary connect-btn" size="large" %}
+    </div>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}
+

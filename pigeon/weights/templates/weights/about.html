@@ -1,91 +1,189 @@
 {% extends 'weights/layout.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% block submenu %}
+<ul class="about nav nav-tabs margin-top-40" role="tablist">
+  <li role="presentation" class="active margin-left-100">
+    <a href="#about" aria-controls="about"
+       role="tab" data-toggle="tab">
+        {% trans "About" %}
+    </a>
+  </li>
+  <li role="presentation">
+    <a href="#press" aria-controls="press"
+       role="tab" data-toggle="tab">
+        {% trans "Press" %}
+    </a>
+  </li>
+</ul>
+{% endblock %}
 {% block content %}
 <br />
-<div>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active">
-      <a href="#who" aria-controls="who"
-         role="tab" data-toggle="tab">
-          {% trans "Who are we?" %}
-      </a>
-    </li>
-    <li role="presentation">
-      <a href="#privacy" aria-controls="privacy"
-         role="tab" data-toggle="tab">
-          {% trans "Privacy" %}
-      </a>
-    </li>
-    <li role="presentation">
-      <a href="#press" aria-controls="press"
-         role="tab" data-toggle="tab">
-          {% trans "Press" %}
-      </a>
-    </li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="who">
-        <h1>{% trans "Who are we?" %}</h1>
-      <div class="row">
-        <div class="col-lg-2 col-xs-4 logo-container">
-          <img alt="logo" title="Fabien"
-               src="{% static 'images/fabien.png' %}" />
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="about">
+    <div class="col-lg-3">
+      <ul class="side-about nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#about-site" aria-controls="about-site"
+             role="tab" data-toggle="tab">
+              {% trans "About RendezMoiMesPlumes" %}
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#who" aria-controls="who"
+             role="tab" data-toggle="tab">
+              {% trans "Who are we?" %}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-9">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="about-site">
+          <h1 class="pigeon-font pigeon-color margin-top-m8">
+            {% trans "How much are we taken for a ride?" %}
+          </h1>
+          <br/>
+          <p class="justify">{% blocktrans %}Answering this question is the aim of this site. Everything starts when a friend tells us "Hey! I weighted my 1kg rice, there was only 960g of it!". The experiment proved her right several times. The idea made its way in our mind... Why not creating a database gathering those measurements and discover how much we are taken for a ride?{% endblocktrans %}</p>
+          <p class="justify">{% trans "Founded in September 2017, based in Paris, France, RendezMoiMesPlumes is a community driven platform allowing to share data gathered by consumers all around the world." %}</p>
+          <p class="justify">{% trans "It can be a pasta packet from the supermarket, or the bio rye flour bag, or a basket of strawberries, RendezMoiMesPlumes allows everyone to point out irregularities and act for a change!" %}</p>
+          <br />
+          <img class="padding-left-0 col-lg-6" alt="" src="{% static 'images/about01.jpg'%}" />
+          <img class="padding-right-0 col-lg-6" alt="" src="{% static 'images/about02.jpg'%}" />
         </div>
-        <div class="col-lg-10 col-xs-8">
-          <h2>Fabien Bourrel</h2>
-          <ul>
-            <li><a href="https://github.com/Far3t">Github</a></li>
-            <li><a href="https://www.linkedin.com/in/fabien-bourrel-9a234010a/">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-2 col-xs-4 logo-container">
-          <img alt="logo" title="Benoît"
-               src="{% static 'images/benoit.png' %}" />
-        </div>
-        <div class="col-lg-10 col-xs-8">
-          <h2>Benoît Latinier</h2>
-          <ul>
-            <li><a href="https://github.com/blatinier">Github</a></li>
-            <li><a href="https://stackoverflow.com/users/1450754/beno%c3%aet-latinier">StackOverflow</li>
-            <li><a href="https://www.linkedin.com/in/beno%C3%AEt-latinier-53132717/">LinkedIn</a></li>
-          </ul>
+        <div role="tabpanel" class="tab-pane" id="who">
+          <h1 class="pigeon-font pigeon-color margin-top-m8">
+            {% trans "Who are we?" %}
+          </h1>
+          <div class="row who-block">
+            <div class="col-lg-2 col-xs-4">
+              <img alt="" title="Fabien"
+                   src="{% static 'images/fabien.png' %}" />
+            </div>
+            <div class="col-lg-10 col-xs-8">
+              <h2>Fabien Bourrel</h2>
+              <p>{% trans "Fabien is a computer engineer, working in Paris." %}</p>
+              <ul>
+                <li><a href="https://github.com/Far3t">Github</a></li>
+                <li><a href="https://www.linkedin.com/in/fabien-bourrel-9a234010a/">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row who-block">
+            <div class="col-lg-2 col-xs-4">
+              <img alt="" title="Benoît"
+                   src="{% static 'images/benoit.png' %}" />
+            </div>
+            <div class="col-lg-10 col-xs-8">
+              <h2>Benoît Latinier</h2>
+              <p>{% trans "Benoît is a computer engineer, travelling around the world with his family." %}</p>
+              <ul>
+                <li><a href="https://github.com/blatinier">Github</a></li>
+                <li><a href="https://stackoverflow.com/users/1450754/beno%c3%aet-latinier">StackOverflow</li>
+                <li><a href="https://www.linkedin.com/in/beno%C3%AEt-latinier-53132717/">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div role="tabpanel" class="tab-pane" id="privacy">
-      <h1>{% trans "User Privacy" %}</h1>
-      <p>{% trans "All personnal information you put on this website is your full and only property. " %}
-      {% trans "You can require editing/deleting these information at any time by contacting us on" %}
-      <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">Github</a>.</p>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="press">
+    <div class="col-lg-3">
+      <ul class="side-about nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#press-us" aria-controls="press-us"
+             role="tab" data-toggle="tab">
+            {% trans "Talking about us" %}
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#press-pb" aria-controls="press-pb"
+             role="tab" data-toggle="tab">
+            {% trans "Talking about the problem" %}
+          </a>
+        </li>
+      </ul>
     </div>
-    <div role="tabpanel" class="tab-pane" id="press">
-      <div class="col-lg-6">
-        <h1>{% trans "Talking about us" %}</h1>
-        <p>{% trans "Not yet :(. You are a journalist and want to talk about us?" %}
-        {% trans "Please" %} <a href="https://github.com/blatinier/onestpasdespigeons/issues/new">{% trans "contact us" %}</a>!</p>
-      </div>
-      <div class="col-lg-6">
-          <h1>{% trans "Talking about the problem" %}</h1>
-        <div class="col-lg-3 col-xs-3">
-          <img alt="logo" title="60 Millions de consomateurs"
-               class="padding-top-20 full-width"
-               src="{% static 'images/logo-60M-conso.png' %}" />
+    <div class="col-lg-9">
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="press-us">
+          <h1 class="pigeon-font pigeon-color margin-top-m8">
+            {% trans "Talking about us" %}
+          </h1>
+          <br />
+          <p>
+            {% trans "You are a journalist and want to talk about us?" %}
+            <a href="/contact">{% trans "Contact us" %}</a> {% trans "now!" %}
+          </p>
+          <br />
+          <img class="padding-left-0 col-lg-6" alt="" src="{% static 'images/press01.jpg'%}" />
+          <img class="padding-right-0 col-lg-6" alt="" src="{% static 'images/press02.jpg'%}" />
         </div>
-        <div class="col-lg-9 col-xs-9">
-          <h3>{% trans "60 Millions de consomateurs (French)" %}</h3>
-          <ul>
-              <li><a href="http://www.60millions-mag.com/2014/06/19/chez-casino-le-bio-pese-lourd-7936">{% trans "Chez Casino, le bio pèse lourd" %}</li>
-              <li><a href="http://www.60millions-mag.com/2017/01/24/poids-des-aliments-parfois-paquet-ment-10922">{% trans "Le poids des aliments, parfois le paquet ment" %}</a></li>
-          </ul>
+        <div role="tabpanel" class="tab-pane" id="press-pb">
+          <h1 class="pigeon-font pigeon-color margin-top-m8">
+            {% trans "Talking about the problem" %}
+          </h1>
+          <div class="row who-block">
+            <div class="col-lg-3 col-xs-3">
+              <img alt="logo" title="60 Millions de consomateurs"
+                   class="full-width"
+                   src="{% static 'images/logo-60M-conso.png' %}" />
+            </div>
+            <div class="col-lg-9 col-xs-9">
+              <h2>{% trans "60 Millions de consomateurs (French)" %}</h2>
+              <ul>
+                <li><a href="http://www.60millions-mag.com/2014/06/19/chez-casino-le-bio-pese-lourd-7936">{% trans "Chez Casino, le bio pèse lourd" %}</li>
+                <li><a href="http://www.60millions-mag.com/2017/01/24/poids-des-aliments-parfois-paquet-ment-10922">{% trans "Le poids des aliments, parfois le paquet ment" %}</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+$('ul.about a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+  self.scrollTo(0, 0);
+});
+$('ul.side-about a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+  self.scrollTo(0, 0);
+});
+
+// store the currently selected tab in the hash value
+$("ul.about > li > a").on("shown.bs.tab", function(e) {
+  var id = $(e.target).attr("href").substr(1);
+  window.location.hash = id;
+});
+$("ul.side-about > li > a").on("shown.bs.tab", function(e) {
+  var id = $(e.target).attr("href").substr(1);
+  var hash = window.location.hash;
+  if (hash.indexOf(':') !== -1) {
+    hashes = hash.split(':');
+    window.location.hash = hashes[0] + ":" + id;
+  } else {
+    window.location.hash = window.location.hash + ":" + id;
+  }
+});
+
+// on load of the page: switch to the currently selected tab
+var hash = window.location.hash.substr(1);
+if (hash.indexOf(':') !== -1) {
+  hashes = hash.split(':');
+  if ( hashes.length === 1) {
+    $('ul.side-about a[href="#' + hashes[1] + '"]').tab('show');
+  } else {
+    $('ul.about a[href="#' + hashes[0] + '"]').tab('show');
+    $('ul.side-about a[href="#' + hashes[1] + '"]').tab('show');
+  }
+} else {
+  $('ul.about a[href="#' + hash + '"]').tab('show');
+}
+self.scrollTo(0, 0);
+</script>
 {% endblock %}
