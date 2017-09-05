@@ -159,3 +159,22 @@ class MeasureTestCase(TestCase):
 
         self.assertIn(b"Add a measure", resp.content)
         self.assertIn(b"Please select or create a product", resp.content)
+
+    def test_add_product_without_image(self):
+        # Add measure
+        resp = self.client.post("/add_measure",
+                                {"product": "0000000003087",
+                                 "unit": "g",
+                                 "package_weight": 1000,
+                                 "measured_weight": 900},
+                                format="multipart",
+                                follow=True)
+
+        # Check added and redirected
+        self.assertIn(b"My measures", resp.content)
+        self.assertIn(b"Measure added!", resp.content)
+        self.assertIn(b"Farine de bl\xc3\xa9 noir", resp.content)
+        self.assertIn(b"red_scales", resp.content)
+        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+
+
