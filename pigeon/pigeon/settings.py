@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'social_django',
     'weights',
     'autotranslate',
+    'jchart',
 ]
 
 MIDDLEWARE = [

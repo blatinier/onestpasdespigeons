@@ -12,7 +12,8 @@
     </div>
   {% endif %}
   <div class="row">
-    <form method="post" autocomplete="off" class="form-contact">
+    <form method="post" autocomplete="off" class="form-contact"
+          enctype="multipart/form-data">
       {% csrf_token %}
       {% for field in user_form %}
         {% bootstrap_field field layout="horizontal" field_class="col-xs-11 col-md-9 input-form-space" show_help=False %}

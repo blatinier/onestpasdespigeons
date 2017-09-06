@@ -72,12 +72,14 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class ProfileForm(forms.ModelForm):
+    nickname = forms.CharField(required=False)
+    avatar = forms.ImageField(required=False)
     language = forms.ChoiceField(choices=LANGUAGE_CHOICES)
     country = forms.ChoiceField(choices=COUNTRY_CHOICES)
 
     class Meta:
         model = PigeonUser
-        fields = ('language', 'country')
+        fields = ('language', 'country', 'nickname', 'avatar')
 
 
 

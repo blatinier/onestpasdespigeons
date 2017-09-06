@@ -83,7 +83,11 @@
       <tbody>
         {% for measure in measures %}
           <tr>
-            <td class="list_product">{{ measure.user.user.username }}</td>
+            <td class="list_product">
+              <a href="{% url 'user_page' measure.user.id measure.user.slug%}">
+                {{ measure.user.pseudo }}
+              </a>
+            </td>
             <td>
               {% if measure.measure_image %}
                 <a href="{{measure.measure_image.url}}" data-toggle="lightbox"

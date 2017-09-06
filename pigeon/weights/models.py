@@ -20,10 +20,12 @@ from functools import wraps
 import django_filters
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db.models.signals import post_save
 from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 def disable_for_loaddata(signal_handler):
@@ -35,13 +37,42 @@ def disable_for_loaddata(signal_handler):
     return wrapper
 
 
+def get_avatar_path(user, filename):
+    return os.path.join('upload', 'avatar',
+                        str(user.user.username), filename)
+
+
 class PigeonUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nickname = models.CharField(max_length=100, blank=True, null=True)
+    avatar = models.ImageField(upload_to=get_avatar_path, blank=True,
+                               null=True)
     score = models.IntegerField(default=1)
     achievements = ArrayField(models.CharField(max_length=200), blank=True,
                               null=True)
     language = models.CharField(max_length=3, default="en")
     country = models.CharField(max_length=3, default="us")
+
+    @property
+    def avatar_or_anon(self):
+        if self.avatar:
+            return "/" + self.avatar.url
+        else:
+            return static('images/pigeon-anon.svg')
+
+    @property
+    def slug(self):
+        return slugify(self.user.username)
+
+    @property
+    def pseudo(self):
+        if self.nickname:
+            return self.nickname
+        elif self.user.first_name and self.user.last_name:
+            return "%s %s." % (self.user.first_name,
+                               self.user.last_name[0])
+        else:
+            return self.user.username
 
 
 
