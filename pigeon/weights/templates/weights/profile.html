@@ -9,24 +9,11 @@
   <h1 class="pigeon-title">{{ viewed_user.pseudo }}</h1>
 </div>
 <div class="row">
-  <div class="col-lg-6">
-    <div class="col-lg-4">
-      <img src="{{ viewed_user.avatar_or_anon }}" alt=""
-           class="full-width" />
-    </div>
-    <div class="col-lg-6">
-      <ul>
-        {% if viewed_user.user.first_name %}
-          <li>{% trans "First name:" %} {{ viewed_user.user.first_name }}</li>
-        {% endif %}
-        {% if viewed_user.user.last_name %}
-          <li>{% trans "Last name:" %} {{ viewed_user.user.last_name }}</li>
-        {% endif %}
-        <li>{% trans "Score:" %} {{ viewed_user.score }}</li>
-      </ul>
-    </div>
+  <div class="col-lg-3">
+    <img src="{{ viewed_user.avatar_or_anon }}" alt=""
+         class="full-width" />
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-9 margin-top-50">
     <h4>{% trans "Activity though the year (by week)" %}</h4>
     <div class="activity-graph-container">
       <div class="activity-graph">
