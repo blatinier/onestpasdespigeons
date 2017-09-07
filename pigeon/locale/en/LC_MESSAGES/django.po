@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-07 19:32+0000\n"
+"POT-Creation-Date: 2017-09-07 22:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,23 +25,28 @@ msgstr ""
 msgid "# Measures"
 msgstr ""
 
-#: weights/forms.py:40
+#: weights/forms.py:35
+#, python-format
+msgid "File too large. Size should not exceed %d MiB."
+msgstr ""
+
+#: weights/forms.py:48
 msgid "The two password fields didn't match."
 msgstr ""
 
-#: weights/forms.py:42
+#: weights/forms.py:50
 msgid "Password"
 msgstr ""
 
-#: weights/forms.py:44
+#: weights/forms.py:52
 msgid "Password confirmation"
 msgstr ""
 
-#: weights/forms.py:47
+#: weights/forms.py:55
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: weights/forms.py:130
+#: weights/forms.py:138
 msgid "All product fields must be set"
 msgstr ""
 

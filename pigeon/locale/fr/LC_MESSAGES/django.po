@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-07 19:32+0000\n"
+"POT-Creation-Date: 2017-09-07 22:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Benoît Latinier <benoit@latinier.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,42 +23,43 @@ msgid "week"
 msgstr "semaine"
 
 #: weights/charts.py:42
-#| msgid "My measures"
 msgid "# Measures"
 msgstr "# Mesures"
 
-#: weights/forms.py:40
+#: weights/forms.py:35
+#, python-format
+msgid "File too large. Size should not exceed %d MiB."
+msgstr "Fichier trop volumineux. Il ne doit pas dépasser %d Mo."
+
+#: weights/forms.py:48
 msgid "The two password fields didn't match."
 msgstr "Les champs de mot de passe ne correspondent pas."
 
-#: weights/forms.py:42
+#: weights/forms.py:50
 msgid "Password"
 msgstr "Mot de passe"
 
-#: weights/forms.py:44
+#: weights/forms.py:52
 msgid "Password confirmation"
 msgstr "Confirmation du mot de passe"
 
-#: weights/forms.py:47
+#: weights/forms.py:55
 msgid "Enter the same password as above, for verification."
 msgstr "Entrez le même mot de passe que ci-dessus pour vérification."
 
-#: weights/forms.py:130
+#: weights/forms.py:138
 msgid "All product fields must be set"
 msgstr "Tous les champs du produit doivent être renseignés"
 
 #: weights/templates/403.html:7
-#| msgid "Alfred le pigeon"
 msgid "Alfred the forbidden pigeon"
 msgstr "Alfred le pigeon interdit"
 
 #: weights/templates/404.html:7
-#| msgid "Alfred le pigeon"
 msgid "Alfred the lost pigeon"
 msgstr "Alfred le pigeon perdu"
 
 #: weights/templates/500.html:7
-#| msgid "Alfred le pigeon"
 msgid "Alfred the dead pigeon"
 msgstr "Alfred le pigeon mort"
 
@@ -285,11 +286,18 @@ msgid "On Github"
 msgstr "Sur Github"
 
 #: weights/templates/weights/contribute.html:33
+#, fuzzy
+#| msgid ""
+#| "You like this website and found a bug? You're missing a feature? You "
+#| "think we could improve some existing feature? Contact us now using the <a "
+#| "href=\"/contact\">contact page</a> or hop on our <a href=\"//github.com/"
+#| "blatinier/RendezMoiMesPlumes/issues\">Github repository</a> and fill a "
+#| "ticket with your ideas! (And even code it if you feel like it!!)"
 msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
 "we could improve some existing feature? Contact us now using the <a href=\"/"
 "contact\">contact page</a> or hop on our <a href=\"//github.com/blatinier/"
-"RendezMoiMesPlumes/issues\">Github repository</a> and fill a ticket with "
+"onestpasdespigeons/issues\">Github repository</a> and fill a ticket with "
 "your ideas! (And even code it if you feel like it!!)"
 msgstr ""
 "Vous aimez ce site et vous y avez trouvé un bug ? Une fonctionnalité vous "
@@ -520,7 +528,6 @@ msgid "Activity though the year (by week)"
 msgstr ""
 
 #: weights/templates/weights/profile.html:26
-#| msgid "Last measures"
 msgid "Last measures added"
 msgstr "Dernières mesures ajoutées"
 
