@@ -68,9 +68,6 @@ class PigeonUser(models.Model):
     def pseudo(self):
         if self.nickname:
             return self.nickname
-        elif self.user.first_name and self.user.last_name:
-            return "%s %s." % (self.user.first_name,
-                               self.user.last_name[0])
         else:
             return self.user.username
 
