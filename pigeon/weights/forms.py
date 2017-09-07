@@ -16,6 +16,7 @@
 #  This file is part of project: RendezMoiMesPlumes
 #
 from django import forms
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
@@ -25,6 +26,13 @@ from weights.models import PigeonUser, Product, Measure
 
 LANGUAGE_CHOICES = (('en', 'en'), ('fr', 'fr'))
 COUNTRY_CHOICES = (('us', 'us'), ('fr', 'fr'))
+
+
+def file_size(value): # add this to some file where you can import it from
+    limit_mib = 5
+    limit = limit_mib * 1024 * 1024
+    if value.size > limit:
+        raise ValidationError(_('File too large. Size should not exceed %d MiB.') % limit_mib)
 
 
 class UserForm(UserCreationForm):
@@ -73,7 +81,7 @@ class UpdateUserForm(forms.ModelForm):
 
 class ProfileForm(forms.ModelForm):
     nickname = forms.CharField(required=False)
-    avatar = forms.ImageField(required=False)
+    avatar = forms.ImageField(required=False, validators=[file_size])
     language = forms.ChoiceField(choices=LANGUAGE_CHOICES)
     country = forms.ChoiceField(choices=COUNTRY_CHOICES)
 
@@ -104,7 +112,7 @@ class AddMeasureForm(forms.ModelForm):
     unit = forms.ChoiceField(choices=Measure.UNIT_CHOICES, initial='g')
     package_weight = forms.DecimalField(min_value=0, decimal_places=3)
     measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
-    measure_image = forms.ImageField(required=False)
+    measure_image = forms.ImageField(required=False, validators=[file_size])
 
     class Meta:
         model = Measure
