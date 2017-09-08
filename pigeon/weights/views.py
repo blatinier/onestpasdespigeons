@@ -303,7 +303,8 @@ def my_measures(request):
     """
     measures = Measure.objects.filter(user=request.user.pigeonuser)
     return render(request, 'weights/my_measures.html',
-                  {'measures': measures})
+                  {'measures': measures,
+                   'measures_by_week': ContribBarChart()})
 
 
 @login_required
