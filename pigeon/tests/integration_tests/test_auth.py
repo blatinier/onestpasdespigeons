@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth.models import User
 from django.test import Client, TestCase
 
 
@@ -145,3 +146,9 @@ class AuthTestCase(TestCase):
         self.assertFalse(auth.get_user(self.client).is_active)
         self.assertEqual(resp.redirect_chain, [("/", 302)])
         self.assertIn(b"Account deactivated", resp.content)
+
+    def test_register_page_locked_for_logged_users(self):
+        self.client.force_login(User.objects.get(username="test_user_1"))
+        resp = self.client.get("/register/", follow=True)
+        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+        self.assertIn(b'You already have an account.', resp.content)

@@ -60,6 +60,9 @@ def register(request):
     """
     Register page.
     """
+    if request.user.is_authenticated:
+        messages.error(request, _("You already have an account."))
+        return redirect(reverse(my_measures))
     if request.method == 'POST':
         user_form = UserForm(request.POST, prefix='user')
         profile_form = ProfileForm(request.POST, prefix='profile')
