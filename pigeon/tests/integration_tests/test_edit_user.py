@@ -44,7 +44,8 @@ class EditUserTestCase(TestCase):
         self.assertEquals(user.pigeonuser.language, 'fr')
         self.assertEquals(user.pigeonuser.country, 'us')
         self.assertEquals(user.pigeonuser.nickname, 'pouet')
-        self.assertTrue(user.pigeonuser.avatar.url.startswith('upload/avatar/aaa/benoit_'))
+        self.assertTrue(user.pigeonuser.avatar.url.startswith('upload/avatar/'))
+        self.assertIn('benoit_', user.pigeonuser.avatar.url)
 
     def test_failure_update(self):
         # Go to edit user page
