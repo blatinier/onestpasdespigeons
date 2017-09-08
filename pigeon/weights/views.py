@@ -129,6 +129,23 @@ def overview(request):
     Some global statistics with nice graphs.
     """
     measure_count = Measure.objects.count()
+    if not measure_count:
+        stats = {'nb_products': Product.objects.count(),
+                 'nb_measures': measure_count,
+                 'abs_min_diff': "N/A",
+                 'abs_max_diff': "N/A",
+                 'abs_median_diff': "N/A",
+                 'abs_mean_diff': "N/A",
+                 'rel_min_diff': "N/A",
+                 'rel_max_diff': "N/A",
+                 'rel_median_diff': "N/A",
+                 'rel_mean_diff': "N/A",
+                 'top_products': [],
+                 'flop_products': [],
+                 'top_brands': [],
+                 'flop_brands': [],
+                 }
+        return render(request, 'weights/overview.html', stats)
     abs_diff_measures = Measure.objects.annotate(
             mdiff=F('measured_weight') - F('package_weight'))
     abs_diff = abs_diff_measures.aggregate(min_diff=Min('mdiff'),
