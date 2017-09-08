@@ -5,59 +5,61 @@
 {% load bootstrap_pagination %}
 {% load bootstrap3 %}
 {% block content %}
-<div class="row">
-  <h1 class="pigeon-title">{{ viewed_user.pseudo }}</h1>
-</div>
-<div class="row">
-  <div class="col-lg-3">
-    <img src="{{ viewed_user.avatar_or_anon }}" alt=""
-         class="full-width" />
+<div class="container">
+  <div class="row">
+    <h1 class="pigeon-title">{{ viewed_user.pseudo }}</h1>
   </div>
-  <div class="col-lg-9 margin-top-50">
-    <h4>{% trans "Activity though the year (by week)" %}</h4>
-    <div class="activity-graph-container">
-      <div class="activity-graph">
-        {% render_chart measures_by_week viewed_user %}
+  <div class="row">
+    <div class="col-lg-3">
+      <img src="{{ viewed_user.avatar_or_anon }}" alt=""
+           class="full-width" />
+    </div>
+    <div class="col-xs-12 col-lg-9 margin-top-50">
+      <h4>{% trans "Activity though the year (by week)" %}</h4>
+      <div class="activity-graph-container">
+        <div class="activity-graph">
+          {% render_chart measures_by_week viewed_user %}
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row margin-top-50">
-  <h4>{% trans "Last measures added" %}</h4>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>{% trans "Image" %}</th>
-          <th>{% trans "Product" %}</th>
-          <th>{% trans "Package weight" %}</th>
-          <th>{% trans "Measured weight" %}</th>
-          <th>{% trans "Diff" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for measure in measures %}
+  <div class="row margin-top-50">
+    <h4>{% trans "Last measures added" %}</h4>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td>
-              {% if measure.measure_image %}
-                <a href="/{{measure.measure_image.url}}" data-toggle="lightbox"
-                   data-footer="{{ measure.product }} - {{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }} VS {{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}">
-                  <img class="product_img" src="/{{measure.measure_image.url}}" alt="" />
-                </a>
-              {% else %}
-                <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />
-              {% endif %}
-            </td>
-            <td class="list_product">{{ measure.product.product_name }} <span class="brand">{{ measure.product.brands }}</span></td>
-            <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
-            <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
-            <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
+            <th>{% trans "Image" %}</th>
+            <th>{% trans "Product" %}</th>
+            <th>{% trans "Package weight" %}</th>
+            <th>{% trans "Measured weight" %}</th>
+            <th>{% trans "Diff" %}</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% for measure in measures %}
+            <tr>
+              <td>
+                {% if measure.measure_image %}
+                  <a href="/{{measure.measure_image.url}}" data-toggle="lightbox"
+                     data-footer="{{ measure.product }} - {{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }} VS {{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}">
+                    <img class="product_img" src="/{{measure.measure_image.url}}" alt="" />
+                  </a>
+                {% else %}
+                  <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />
+                {% endif %}
+              </td>
+              <td class="list_product">{{ measure.product.product_name }} <span class="brand">{{ measure.product.brands }}</span></td>
+              <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
+              <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
+              <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% bootstrap_paginate measures %}
   </div>
-  {% bootstrap_paginate measures %}
 </div>
 {% endblock %}
 

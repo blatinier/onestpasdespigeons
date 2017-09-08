@@ -2,8 +2,8 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block submenu %}
-<ul class="about nav nav-tabs margin-top-40" role="tablist">
-  <li role="presentation" class="active margin-left-100">
+<ul class="about nav nav-tabs margin-top-40 margin-bottom-xs-neg40" role="tablist">
+  <li role="presentation" class="active margin-left-lg-100">
     <a href="#about" aria-controls="about"
        role="tab" data-toggle="tab">
         {% trans "About" %}
@@ -18,7 +18,7 @@
 </ul>
 {% endblock %}
 {% block content %}
-<br />
+<br class="hidden-xs"/>
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="about">
     <div class="col-lg-3">
@@ -48,8 +48,8 @@
           <p class="justify">{% trans "Founded in September 2017, based in Paris, France, RendezMoiMesPlumes is a community driven platform allowing to share data gathered by consumers all around the world." %}</p>
           <p class="justify">{% trans "It can be a pasta packet from the supermarket, or the bio rye flour bag, or a basket of strawberries, RendezMoiMesPlumes allows everyone to point out irregularities and act for a change!" %}</p>
           <br />
-          <img class="padding-left-0 col-lg-6" alt="" src="{% static 'images/about01.jpg'%}" />
-          <img class="padding-right-0 col-lg-6" alt="" src="{% static 'images/about02.jpg'%}" />
+          <img class="col-xs-12 padding-left-lg-0 col-lg-6" alt="" src="{% static 'images/about01.jpg'%}" />
+          <img class="col-xs-12 margin-top-xs-20 padding-right-lg-0 col-lg-6" alt="" src="{% static 'images/about02.jpg'%}" />
         </div>
         <div role="tabpanel" class="tab-pane" id="who">
           <h1 class="pigeon-title-about margin-top-m8">
@@ -117,8 +117,8 @@
             <a href="/contact">{% trans "Contact us" %}</a> {% trans "now!" %}
           </p>
           <br />
-          <img class="padding-left-0 col-lg-6" alt="" src="{% static 'images/press01.jpg'%}" />
-          <img class="padding-right-0 col-lg-6" alt="" src="{% static 'images/press02.jpg'%}" />
+          <img class="col-xs-12 padding-lg-left-0 col-lg-6" alt="" src="{% static 'images/press01.jpg'%}" />
+          <img class="col-xs-12 margin-top-xs-20 padding-lg-right-0 col-lg-6" alt="" src="{% static 'images/press02.jpg'%}" />
         </div>
         <div role="tabpanel" class="tab-pane" id="press-pb">
           <h1 class="pigeon-title-about margin-top-m8">

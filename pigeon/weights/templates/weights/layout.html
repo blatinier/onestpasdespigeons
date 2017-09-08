@@ -53,8 +53,11 @@
                 <li class="hand-underline"><a href="{% url 'login' %}">{% trans "Sign in" %}</a></li>
               {% endif %}
               {% if user.is_authenticated %}
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                <li class="margin-top-20">
+                <li class="visible-xs-block"><a href="{% url 'user_account' %}">{% trans "My account" %}</a></li>
+                <li class="visible-xs-block"><a href="{% url 'contribute' %}">{% trans "Contribute" %}</a></li>
+                <li class="visible-xs-block"><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
+                <li class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="hidden-xs margin-top-lg-20">
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle"
                             type="button" id="dropdownMenu1"

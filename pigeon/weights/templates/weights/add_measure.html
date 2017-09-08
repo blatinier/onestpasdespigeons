@@ -1,7 +1,7 @@
 {% extends 'weights/layout.html' %}
 {% load bootstrap3 %}
 {% block content %}
-<div class="row">
+<div class="container">
   <div class="row">
     <h1 class="pigeon-title">{{ title }}</h1>
   </div>
@@ -50,9 +50,9 @@
       {% bootstrap_field add_measure_form.measure_image layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
     </div>
     <div class="col-md-12 text-center">
-      {% bootstrap_button btn_text name="add" button_type="submit" button_class="btn-primary" size="large" %}
+      {% bootstrap_button btn_text name="add" button_type="submit" button_class="btn-primary col-lg-offset-2 col-lg-3 col-xs-12" size="large" %}
       {% if not edit_mode %}
-        {% bootstrap_button btn_continue_text name="add_and_continue" button_type="submit" button_class="btn-primary" size="large" %}
+        {% bootstrap_button btn_continue_text name="add_and_continue" button_type="submit" button_class="btn-primary col-lg-offset-1 col-lg-3 col-xs-12 margin-top-xs-20" size="large" %}
       {% endif %}
     </div>
   </form>

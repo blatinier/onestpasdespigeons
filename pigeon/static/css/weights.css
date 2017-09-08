@@ -40,11 +40,6 @@ nav.navbar {
 #navbar a {
   color: #333;
   font-weight: bold;
-  line-height: 45px;
-}
-.hand-underline {
-  background: url('/static/images/underline.jpg') 50% 70% no-repeat;
-  background-size: 70%;
 }
 #wrapper {
   min-height: 100%;
@@ -207,3 +202,29 @@ ul.side-about > li > a:hover {
 .bg-pigeon-grey { background-color: #eee; }
 .pigeon-font { font-family: 'Lobster', serif; }
 .pigeon-color { color: #FF5A5F; }
+.icon-bar { background-color: #000; }
+.navbar-toggle { border: 1px solid; }
+@media (max-width: 767px) {
+  .margin-top-xs-20 { margin-top:20px; }
+  .margin-bottom-xs-neg40 { margin-bottom: -40px; }
+  .activity-graph {
+    width: 90%;
+  }
+  .hand-underline {
+    background: url('/static/images/underline.jpg') 7% 88% no-repeat;
+    background-size: 22%;
+  }
+}
+@media (min-width: 767px) {
+  .big-lg { font-size: 1.5em; }
+  .margin-left-lg-100 { margin-left: 100px; }
+  .margin-top-lg-20 { margin-top:20px; }
+  .padding-left-lg-0 { padding-left: 0; }
+  .padding-right-lg-0 { padding-right: 0; }
+  .padding-top-lg-50 { padding-top: 50px; }
+  #navbar a { line-height: 45px; }
+  .hand-underline {
+    background: url('/static/images/underline.jpg') 50% 70% no-repeat;
+    background-size: 70%;
+  }
+}

@@ -3,14 +3,14 @@
 {% load i18n %}
 {% load l10n %}
 {% block content %}
-  <div class="row padding-top-50">
+  <div class="row padding-top-lg-50">
     <div class="col-lg-8">
       <h1 class="title pigeon-font pigeon-color">
         {% blocktrans trimmed %}
         How much are we taken for a ride?
         {% endblocktrans %}
       </h1>
-      <p class="big padding-top-50 justify">
+      <p class="big-lg padding-top-lg-50 justify">
         {% blocktrans trimmed %}
         Answering this question is the objective of this small website.
         Everything starts when a friend tells us:
@@ -23,7 +23,7 @@
     </div>
     <img alt="logo" title="{% trans "Alfred le pigeon" %}"
          src="{% static 'images/pigeon.svg' %}"
-         class="col-lg-4"/>
+         class="hidden-xs col-lg-4"/>
   </div>
   <div class="row text-center">
     <h1 class="pigeon-font pigeon-color">
@@ -34,7 +34,7 @@
     <br />
     <div class="col-lg-1"></div>
     {% for measure in last_measures %}
-      <div class="col-lg-2 col-xs-6 text-center">
+      <div class="col-lg-2 col-xs-6 text-center margin-bottom-20">
         <div class="product_img_big full-width">
           <div>
             {% if measure.measure_image %}

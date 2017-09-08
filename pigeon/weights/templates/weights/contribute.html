@@ -2,63 +2,65 @@
 {% load i18n %}
 {% load staticfiles %}
 {% block content %}
-<div class="row">
-  <h1 class="pigeon-title">{% trans "How to contribute" %}</h1>
+<div class="container">
   <div class="row">
-    <div class="col-lg-2 col-xs-4">
-      <img alt="" title="{% trans 'Alfred le pigeon' %}"
-           class="full-width"
-           src="{% static 'images/pigeon.svg' %}" />
-    </div>
-    <div class="col-lg-10 col-xs-8">
-      <h2>{% trans "Weight!" %}</h2>
-      <div class="contribute-text">
-        {% blocktrans trimmed %}
-        The first and most important contribution you could
-        make is to weight your groceries and upload the result
-        right here! It the whole lot of measurements made by you
-        which make this website what it is and allow us to create
-        pretty graphs helping the future you to make your choices
-        wisely in the supermarket... and point out those disrespectful
-        actions against the consumers.
-        {% endblocktrans %}
+    <h1 class="pigeon-title">{% trans "How to contribute" %}</h1>
+    <div class="row">
+      <div class="col-lg-2 hidden-xs">
+        <img alt="" title="{% trans 'Alfred le pigeon' %}"
+             class="full-width"
+             src="{% static 'images/pigeon.svg' %}" />
+      </div>
+      <div class="col-lg-10 col-xs-12">
+        <h2>{% trans "Weight!" %}</h2>
+        <div class="contribute-text">
+          {% blocktrans trimmed %}
+          The first and most important contribution you could
+          make is to weight your groceries and upload the result
+          right here! It the whole lot of measurements made by you
+          which make this website what it is and allow us to create
+          pretty graphs helping the future you to make your choices
+          wisely in the supermarket... and point out those disrespectful
+          actions against the consumers.
+          {% endblocktrans %}
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row margin-top-50">
-    <div class="col-lg-10 col-xs-8">
-      <h2>{% trans "On Github" %}</h2>
-      <div class="contribute-text">
-        {% blocktrans trimmed %}
-        You like this website and found a bug?
-        You're missing a feature?
-        You think we could improve some existing feature?
-        Contact us now using the <a href="/contact">contact page</a>
-        or hop on our <a href="//github.com/blatinier/onestpasdespigeons/issues">Github repository</a> and fill a ticket with your ideas! (And even code it if you feel like it!!)
-        {% endblocktrans %}
+    <div class="row margin-top-50">
+      <div class="col-lg-10 col-xs-12">
+        <h2>{% trans "On Github" %}</h2>
+        <div class="contribute-text">
+          {% blocktrans trimmed %}
+          You like this website and found a bug?
+          You're missing a feature?
+          You think we could improve some existing feature?
+          Contact us now using the <a href="/contact">contact page</a>
+          or hop on our <a href="//github.com/blatinier/onestpasdespigeons/issues">Github repository</a> and fill a ticket with your ideas! (And even code it if you feel like it!!)
+          {% endblocktrans %}
+        </div>
+      </div>
+      <div class="col-lg-2 hidden-xs">
+        <img alt="Github" title="Octocat"
+             class="full-width"
+             src="{% static 'images/Octocat.png' %}" />
       </div>
     </div>
-    <div class="col-lg-2 col-xs-4">
-      <img alt="Github" title="Octocat"
-           class="full-width"
-           src="{% static 'images/Octocat.png' %}" />
-    </div>
-  </div>
 
-  <div class="row margin-top-50">
-    <div class="col-lg-2 col-xs-4">
-      <img class="col-lg-10 padding-top-20 col-xs-12" alt="POEditor" title="POEditor"
-           src="{% static 'images/poeditor.png' %}" />
-    </div>
-    <div class="col-lg-10 col-xs-8">
-      <h2>{% trans "Translate" %}</h2>
-      <div class="contribute-text">
-        {% blocktrans trimmed %}
-        You found a translation error?
-        You would like to see this website translated in another language?
-        Go on our <a href="https://poeditor.com/join/project/bKxuAMSSBx">POEditor project</a> and contribute translations!
-        {% endblocktrans %}
+    <div class="row margin-top-50">
+      <div class="col-lg-2 hidden-xs">
+        <img class="col-lg-10 padding-top-20" alt="POEditor" title="POEditor"
+             src="{% static 'images/poeditor.png' %}" />
+      </div>
+      <div class="col-lg-10 col-xs-12">
+        <h2>{% trans "Translate" %}</h2>
+        <div class="contribute-text">
+          {% blocktrans trimmed %}
+          You found a translation error?
+          You would like to see this website translated in another language?
+          Go on our <a href="https://poeditor.com/join/project/bKxuAMSSBx">POEditor project</a> and contribute translations!
+          {% endblocktrans %}
+        </div>
       </div>
     </div>
   </div>
