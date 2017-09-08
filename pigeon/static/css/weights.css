@@ -170,6 +170,17 @@ ul.side-about > li > a:hover {
   color: #FF5A5F;
   font-family: 'Lobster', serif;
 }
+.activity-graph-container {
+  height: 80px;
+}
+.activity-graph {
+  height: 80px;
+  position: absolute;
+  width: 100%;
+}
+.login-menu-avatar {
+  height: 20px;
+}
 .padding-left-0 { padding-left: 0; }
 .padding-right-0 { padding-right: 0; }
 #navbar.in { overflow: visible; }

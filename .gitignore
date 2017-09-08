@@ -7,4 +7,5 @@ venv/
 pigeon/static/node_modules
 OnEstPasDesPigeons.add_lcs.log
 pigeon/upload/measures/
+pigeon/upload/avatar/
 .coverage

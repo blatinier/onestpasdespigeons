@@ -23,6 +23,8 @@
       "user": 42,
       "score": 1,
       "achievements": null,
+      "avatar": "",
+      "nickname": "",
       "language": "en",
       "country": "us"}
   },
@@ -50,6 +52,8 @@
       "user": 41,
       "score": 1,
       "achievements": null,
+      "avatar": "upload/avatar/test_user_2/pipo.jpg",
+      "nickname": "PipoUser",
       "language": "en",
       "country": "us"}
   }

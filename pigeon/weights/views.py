@@ -26,9 +26,11 @@ from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
+from weights.charts import ContribBarChart
 from weights.forms import (UserForm, ProfileForm, AddMeasureForm,
                            UpdateUserForm, AddProductForm, ContactForm)
-from weights.models import Measure, MeasureFilter, Product
+from weights.models import (Measure, MeasureFilter, Product,
+                            PigeonUser)
 
 
 def home(request):
@@ -192,7 +194,9 @@ def user_account(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, prefix='user',
                                    instance=request.user)
-        profile_form = ProfileForm(request.POST, prefix='profile',
+        profile_form = ProfileForm(request.POST,
+                                   request.FILES,
+                                   prefix='profile',
                                    instance=request.user.pigeonuser)
         context = {'user_form': user_form,
                    'profile_form': profile_form,
@@ -368,3 +372,28 @@ def delete_measure(request, measure_id):
     else:
         return HttpResponseForbidden()
     return redirect(reverse(my_measures))
+
+
+@login_required
+def user_page(request, user, user_slug):
+    """
+    Public profile page of users
+    """
+    items_per_page = request.GET.get('items_per_page', 25)
+    page = request.GET.get('page', 1)
+    user = get_object_or_404(PigeonUser, pk=user)
+    measures = Measure.objects.filter(user=user).order_by("-created_at")
+    paginator = Paginator(measures, items_per_page)
+    try:
+        measures = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        measures = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        measures = paginator.page(paginator.num_pages)
+    return render(request, 'weights/profile.html',
+                  {'viewed_user': user,
+                   'measures': measures,
+                   'nb_measures': measures.count('user'),
+                   'measures_by_week': ContribBarChart()})
