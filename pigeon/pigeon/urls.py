@@ -37,6 +37,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 urlpatterns += i18n_patterns(url(r'',  include('weights.urls')))
 

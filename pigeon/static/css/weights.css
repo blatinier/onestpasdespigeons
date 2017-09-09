@@ -272,3 +272,21 @@ ul.side-about > li > a:hover {
 }
 
 .sweetalert-confirm-button { color: "#DD6B55"; }
+
+#dropdown-lang {
+    text-align: center;
+}
+
+.lang-selector {
+    font-weight: bold;
+    background-color: transparent;
+    border: 0px none;
+    vertical-align: middle;
+    padding: 10px 0px 10px 0px;
+    width: 100%
+}
+
+.lang-selector:hover {
+  background-color: #eeeeee;
+}
+
