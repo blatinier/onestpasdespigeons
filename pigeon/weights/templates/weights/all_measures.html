@@ -30,6 +30,18 @@
         <thead>
           <tr>
             <th>
+              <a href="{% url 'list_measures' %}?order_by=created_at&sort_order={% if order_by == 'created_at' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
+                {% trans "Date" %}
+                {% if order_by == "created_at" %}
+                  {% if sort_order == 'asc' %}
+                    <i class="fa fa-caret-up"></i>
+                  {% else %}
+                    <i class="fa fa-caret-down"></i>
+                  {% endif %}
+                {% endif %}
+              </a>
+            </th>
+            <th>
               <a href="{% url 'list_measures' %}?order_by=user&sort_order={% if order_by == 'user' and sort_order == 'asc' %}desc{% else %}asc{% endif %}&{{get_args}}">
                 {% trans "Contributed by" %}
                 {% if order_by == "user" %}
@@ -84,6 +96,7 @@
         <tbody>
           {% for measure in measures %}
             <tr>
+              <td class="list_product">{{ measure.created_at|date:"d/m/Y" }}</td>
               <td class="list_product">
                 <a href="{% url 'user_page' measure.user.id measure.user.slug%}">
                   {{ measure.user.pseudo }}

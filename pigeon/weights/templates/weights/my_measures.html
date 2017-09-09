@@ -20,6 +20,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>{% trans "Date" %}</th>
           <th>{% trans "Image" %}</th>
           <th>{% trans "Product" %}</th>
           <th>{% trans "Package weight" %}</th>
@@ -31,6 +32,7 @@
       <tbody>
         {% for measure in measures %}
           <tr>
+            <td class="list_product">{{ measure.created_at|date:"d/m/Y" }}</td>
             <td>
               {% if measure.measure_image %}
                 <a href="{{measure.measure_image.url}}" data-toggle="lightbox"

@@ -90,12 +90,13 @@ def list_measures(request):
     List of all measures with all possible manipulation
     we can imagine.
     """
-    valid_sorts = {'user': 'user__user__username',
+    valid_sorts = {'created_at': 'created_at',
+                   'user': 'user__user__username',
                    'product': 'product__product_name',
                    'pweight': 'package_weight',
                    'mweight': 'measured_weight'}
-    default_sort_key = 'product'
-    default_sort = 'product__product_name'
+    default_sort_key = 'created_at'
+    default_sort = valid_sorts[default_sort_key]
     sort_q = request.GET.get('order_by', default_sort_key)
     sort = valid_sorts.get(sort_q, default_sort)
     if request.GET.get('sort_order') == 'desc':
