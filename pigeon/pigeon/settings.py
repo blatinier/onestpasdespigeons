@@ -37,8 +37,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+DEBUG = True
 ALLOWED_HOSTS = []
 
 
@@ -95,20 +94,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pigeon.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'PIGEON_DBNAME',
-        'USER': 'PIGEON_USERNAME',
-        'PASSWORD': 'STRONG_PIGEON_PWD',
-        'HOST': 'localhost',
-        'POST': '',
-    }
-}
 
 AUTHENTICATION_BACKENDS = (
     # http://python-social-auth.readthedocs.io/en/latest/backends/google.html#google-oauth2
@@ -198,14 +183,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': '/var/tmp/django_cache',
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -214,11 +191,15 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
 
 # Locales
 

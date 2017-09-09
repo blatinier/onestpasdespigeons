@@ -1,0 +1,32 @@
+# Debug
+
+DEBUG = False
+ALLOWED_HOSTS = []
+SECRET_KEY = 'verysecret'
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'PIGEON_DBNAME',
+        'USER': 'PIGEON_USERNAME',
+        'PASSWORD': 'STRONG_PIGEON_PWD',
+        'HOST': 'localhost',
+        'POST': '',
+    }
+}
+
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
+
+
+# Where static files should be put when doing collectstatic
+STATIC_ROOT = '/var/www/pigeon_static'
+
