@@ -33,11 +33,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include('weights.urls')),
 ]
+urlpatterns += i18n_patterns(url(r'',  include('weights.urls')))
 
 if settings.DEBUG:
     # Serve static files via Django for dev
