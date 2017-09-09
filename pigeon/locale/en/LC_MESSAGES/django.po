@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-07 22:02+0000\n"
+"POT-Creation-Date: 2017-09-09 13:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,42 +198,42 @@ msgstr "Chez Casino, le bio pèse lourd"
 msgid "Le poids des aliments, parfois le paquet ment"
 msgstr "Le poids des aliments, parfois le paquet ment"
 
-#: weights/templates/weights/all_measures.html:8
+#: weights/templates/weights/all_measures.html:9
 #: weights/templates/weights/layout.html:47
 msgid "All measures"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:33
+#: weights/templates/weights/all_measures.html:34
 msgid "Contributed by"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:43
-#: weights/templates/weights/my_measures.html:13
-#: weights/templates/weights/profile.html:31
+#: weights/templates/weights/all_measures.html:44
+#: weights/templates/weights/my_measures.html:23
+#: weights/templates/weights/profile.html:32
 msgid "Image"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:46
-#: weights/templates/weights/my_measures.html:14
-#: weights/templates/weights/profile.html:32
+#: weights/templates/weights/all_measures.html:47
+#: weights/templates/weights/my_measures.html:24
+#: weights/templates/weights/profile.html:33
 msgid "Product"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:58
-#: weights/templates/weights/my_measures.html:15
-#: weights/templates/weights/profile.html:33
+#: weights/templates/weights/all_measures.html:59
+#: weights/templates/weights/my_measures.html:25
+#: weights/templates/weights/profile.html:34
 msgid "Package weight"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:70
-#: weights/templates/weights/my_measures.html:16
-#: weights/templates/weights/profile.html:34
+#: weights/templates/weights/all_measures.html:71
+#: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/profile.html:35
 msgid "Measured weight"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:80
-#: weights/templates/weights/my_measures.html:17
-#: weights/templates/weights/profile.html:35
+#: weights/templates/weights/all_measures.html:81
+#: weights/templates/weights/my_measures.html:27
+#: weights/templates/weights/profile.html:36
 msgid "Diff"
 msgstr ""
 
@@ -241,21 +241,21 @@ msgstr ""
 msgid "Thank you for your message, we will reply as fast as possible!"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:6
+#: weights/templates/weights/contribute.html:7
 msgid "How to contribute"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:9
+#: weights/templates/weights/contribute.html:10
 #: weights/templates/weights/home.html:24
 #: weights/templates/weights/layout.html:38
 msgid "Alfred le pigeon"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:14
+#: weights/templates/weights/contribute.html:15
 msgid "Weight!"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:16
+#: weights/templates/weights/contribute.html:17
 msgid ""
 "The first and most important contribution you could make is to weight your "
 "groceries and upload the result right here! It the whole lot of measurements "
@@ -265,11 +265,11 @@ msgid ""
 "consumers."
 msgstr ""
 
-#: weights/templates/weights/contribute.html:31
+#: weights/templates/weights/contribute.html:32
 msgid "On Github"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:33
+#: weights/templates/weights/contribute.html:34
 msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
 "we could improve some existing feature? Contact us now using the <a href=\"/"
@@ -278,11 +278,11 @@ msgid ""
 "your ideas! (And even code it if you feel like it!!)"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:55
+#: weights/templates/weights/contribute.html:56
 msgid "Translate"
 msgstr ""
 
-#: weights/templates/weights/contribute.html:57
+#: weights/templates/weights/contribute.html:58
 msgid ""
 "You found a translation error? You would like to see this website translated "
 "in another language? Go on our <a href=\"https://poeditor.com/join/project/"
@@ -306,7 +306,7 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: weights/templates/weights/layout.html:46
-#: weights/templates/weights/my_measures.html:6
+#: weights/templates/weights/my_measures.html:8
 msgid "My measures"
 msgstr ""
 
@@ -322,64 +322,72 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: weights/templates/weights/layout.html:68
+#: weights/templates/weights/layout.html:56
+#: weights/templates/weights/layout.html:71
 msgid "My account"
 msgstr ""
 
-#: weights/templates/weights/layout.html:69
-#: weights/templates/weights/layout.html:120
+#: weights/templates/weights/layout.html:57
+#: weights/templates/weights/layout.html:72
+#: weights/templates/weights/layout.html:123
 msgid "Contribute"
 msgstr ""
 
-#: weights/templates/weights/layout.html:71
+#: weights/templates/weights/layout.html:58
+#: weights/templates/weights/layout.html:74
 msgid "Logout"
 msgstr ""
 
-#: weights/templates/weights/layout.html:102
+#: weights/templates/weights/layout.html:105
 msgid "Error:"
 msgstr ""
 
-#: weights/templates/weights/layout.html:103
+#: weights/templates/weights/layout.html:106
 msgid "Warning:"
 msgstr ""
 
-#: weights/templates/weights/layout.html:104
+#: weights/templates/weights/layout.html:107
 msgid "Success:"
 msgstr ""
 
-#: weights/templates/weights/layout.html:105
+#: weights/templates/weights/layout.html:108
 msgid "Information:"
 msgstr ""
 
-#: weights/templates/weights/layout.html:119
+#: weights/templates/weights/layout.html:122
 #, fuzzy
 #| msgid "User Privacy"
 msgid "User privacy"
 msgstr "User Privacy"
 
-#: weights/templates/weights/layout.html:121
+#: weights/templates/weights/layout.html:124
 #, fuzzy
 #| msgid "contact us"
 msgid "Contact"
 msgstr "contact us"
 
-#: weights/templates/weights/my_measures.html:8
-msgid "Add a new measure"
+#: weights/templates/weights/my_measures.html:10
+#: weights/templates/weights/profile.html:18
+msgid "Activity though the year (by week)"
 msgstr ""
 
 #: weights/templates/weights/my_measures.html:18
+msgid "Add a new measure"
+msgstr ""
+
+#: weights/templates/weights/my_measures.html:28
 msgid "Actions"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:53
+#: weights/templates/weights/my_measures.html:64
 msgid "Are you sure?"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:54
+#: weights/templates/weights/my_measures.html:65
 msgid "You won't be able to recover that measure later."
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:58
+#: weights/templates/weights/my_measures.html:69
 msgid "Yes, delete it!"
 msgstr ""
 
@@ -493,11 +501,7 @@ msgstr ""
 "You can require editing/deleting these information at any time by contacting "
 "us on"
 
-#: weights/templates/weights/profile.html:17
-msgid "Activity though the year (by week)"
-msgstr ""
-
-#: weights/templates/weights/profile.html:26
+#: weights/templates/weights/profile.html:27
 msgid "Last measures added"
 msgstr ""
 
@@ -517,64 +521,68 @@ msgstr ""
 msgid "Deactivate my account"
 msgstr ""
 
-#: weights/views.py:203 weights/views.py:223
+#: weights/views.py:64
+msgid "You already have an account."
+msgstr ""
+
+#: weights/views.py:223 weights/views.py:243
 msgid "Update"
 msgstr ""
 
-#: weights/views.py:215
+#: weights/views.py:235
 msgid "Update successful!"
 msgstr ""
 
-#: weights/views.py:238
+#: weights/views.py:258
 msgid "Account deactivated."
 msgstr ""
 
-#: weights/views.py:269
+#: weights/views.py:289
 msgid "Email sent!"
 msgstr ""
 
-#: weights/views.py:271
+#: weights/views.py:291
 msgid "All fields are required!"
 msgstr ""
 
-#: weights/views.py:306 weights/views.py:317
+#: weights/views.py:327 weights/views.py:338
 msgid "Measure added!"
 msgstr ""
 
-#: weights/views.py:322
+#: weights/views.py:343
 msgid "Please select or create a product(all fields in create are required)."
 msgstr ""
 
-#: weights/views.py:325
+#: weights/views.py:346
 msgid "Error in the form."
 msgstr ""
 
-#: weights/views.py:329
+#: weights/views.py:350
 msgid "Add a measure"
 msgstr ""
 
-#: weights/views.py:333
+#: weights/views.py:354
 msgid "Add!"
 msgstr ""
 
-#: weights/views.py:334
+#: weights/views.py:355
 msgid "Add and keep adding!"
 msgstr ""
 
-#: weights/views.py:352
+#: weights/views.py:373
 msgid "Measure edited!"
 msgstr ""
 
-#: weights/views.py:355
+#: weights/views.py:376
 #, python-brace-format
 msgid "Edit measure {measure_id}"
 msgstr ""
 
-#: weights/views.py:358
+#: weights/views.py:379
 msgid "Edit"
 msgstr ""
 
-#: weights/views.py:371
+#: weights/views.py:392
 msgid "Measure deleted!"
 msgstr ""
 
