@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^profile/(?P<user>[0-9]+)/(?P<user_slug>[a-z0-9_-]+)$', views.user_page,
         name='user_page'),
+    url(r'^product/(?P<code>[0-9]+)$', views.product_page,
+        name='product_page'),
     url('^', include('django.contrib.auth.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^social/', include('social_django.urls', namespace='social')),
