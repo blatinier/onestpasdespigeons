@@ -13,7 +13,7 @@ class ProductPageTestCase(TestCase):
         """
         Test informations showed
         """
-        resp = self.client.get("/product/0000000016124")
+        resp = self.client.get("/en/product/0000000016124")
         self.assertEqual(resp.status_code, 200)
         # product name shown
         self.assertIn(b'Organic Muesli', resp.content)

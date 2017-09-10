@@ -13,7 +13,7 @@ class OverviewTestCase(TestCase):
         """
         Check overview statistics
         """
-        resp = self.client.get("/overview")
+        resp = self.client.get("/en/overview")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Overview', resp.content)
         self.assertIn(b'# Products: 101', resp.content)

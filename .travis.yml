@@ -7,6 +7,7 @@ services: postgresql
 before_install:
     - cp sample-configurations/test_settings.py pigeon/pigeon/local_settings.py
     - psql -c 'create database pigeon;' -U postgres
+    - pip install psycopg2
 #    - curl -o- -L https://yarnpkg.com/install.sh | bash
 #    - export PATH=$HOME/.yarn/bin:$PATH
 
