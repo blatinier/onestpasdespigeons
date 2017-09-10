@@ -158,8 +158,8 @@ def overview(request):
     abs_median_diff = abs_diff_measures.order_by('mdiff')\
             [int(measure_count / 2)]
     rel_diff_measures = Measure.objects.annotate(
-            mdiff=((F('measured_weight') - F('package_weight')) /
-                   F('package_weight') * 100))
+            mdiff=(100 * (F('measured_weight') - F('package_weight')) /
+                   F('package_weight')))
     rel_diff = rel_diff_measures.aggregate(min_diff=Min('mdiff'),
                                            max_diff=Max('mdiff'),
                                            avg_diff=Avg('mdiff'))
@@ -167,8 +167,8 @@ def overview(request):
             [int(measure_count / 2)]
 
     product_measures = Measure.objects.values('product').annotate(
-            mdiff=(Avg((F('measured_weight') - F('package_weight')) /
-                   F('package_weight') * 100)))
+            mdiff=(Avg(100 * (F('measured_weight') - F('package_weight')) /
+                   F('package_weight'))))
     top_products = [{'product': Product.objects.get(code=d['product']),
                      'mdiff': d['mdiff']}
                     for d in product_measures.order_by('-mdiff')[:5]]
@@ -178,8 +178,8 @@ def overview(request):
                      for d in product_measures.order_by('mdiff')[:5]]
 
     brands_measures = Measure.objects.values('product__brands').annotate(
-            mdiff=(Avg((F('measured_weight') - F('package_weight')) /
-                   F('package_weight') * 100)))
+            mdiff=(Avg(100 * (F('measured_weight') - F('package_weight')) /
+                   F('package_weight'))))
     top_brands = [{'brand': d['product__brands'],
                    'mdiff': d['mdiff']}
                   for d in brands_measures.order_by('-mdiff')[:5]
