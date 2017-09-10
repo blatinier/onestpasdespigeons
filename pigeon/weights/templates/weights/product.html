@@ -1,0 +1,129 @@
+{% extends 'weights/layout.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load bootstrap_pagination %}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1 class="pigeon-title">
+      {{ product.product_name }}
+      <span class="brand">{{ product.brands }}</span>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <img src="{{ product.image_url }}" alt=""
+           class="full-width" />
+    </div>
+    <div class="col-lg-9 margin-top-50">
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h4>
+              {% trans "Average weight difference:" %}
+              <span class="big {% if rel_min_diff > 0 %}green{% else %}red{% endif %}">
+                {{ rel_mean_diff }} %
+              </span>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <h4>
+              {% trans "# measures:" %}
+              <span class="big">{{ nb_measures }}</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <h4>{% trans "Product information" %}</h4>
+      <table class="table">
+        <tr>
+          <th scope="row">{% trans "Quantity" %}</th>
+          <td>
+            {% if product.quantity %}
+              {{ product.quantity }}
+            {% else %}
+              {% trans "N/A" %}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Labels" %}</th>
+          <td>
+            {% if product.labels_fr %}
+              {{ product.labels_fr }}
+            {% else %}
+              {% trans "N/A" %}
+            {% endif %}
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Packaging" %}</th>
+          <td>
+            {% if product.packaging %}
+              {{ product.packaging }}
+            {% else %}
+              {% trans "N/A" %}
+            {% endif %}
+          </td>
+        </tr>
+        {% if product.url_OFF %}
+        <tr>
+          <th scope="row">{% trans "See more" %}</th>
+          <td>
+            <a href="{{ product.url_OFF }}">
+              OpenFoodFacts
+            </a>
+          </td>
+        </tr>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+  <div class="row margin-top-50">
+    <h4>{% trans "Last measures on this product" %}</h4>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{% trans "Date" %}</th>
+            <th>{% trans "Image" %}</th>
+            <th>{% trans "Package weight" %}</th>
+            <th>{% trans "Measured weight" %}</th>
+            <th>{% trans "Diff" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for measure in measures %}
+            <tr>
+              <td class="list_product">{{ measure.created_at|date:"d/m/Y" }}</td>
+              <td>
+                {% if measure.measure_image %}
+                  <a href="/{{measure.measure_image.url}}" data-toggle="lightbox"
+                     data-footer="{{ measure.product }} - {{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }} VS {{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}">
+                    <img class="product_img" src="/{{measure.measure_image.url}}" alt="" />
+                  </a>
+                {% else %}
+                  <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />
+                {% endif %}
+              </td>
+              <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
+              <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
+              <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% bootstrap_paginate measures %}
+  </div>
+</div>
+{% endblock %}
+
+

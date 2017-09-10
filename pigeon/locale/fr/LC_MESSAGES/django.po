@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-09 19:48+0000\n"
+"POT-Creation-Date: 2017-09-10 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Benoît Latinier <benoit@latinier.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,6 +216,7 @@ msgstr "Toutes les mesures"
 
 #: weights/templates/weights/all_measures.html:34
 #: weights/templates/weights/my_measures.html:23
+#: weights/templates/weights/product.html:95
 #: weights/templates/weights/profile.html:32
 msgid "Date"
 msgstr "Date"
@@ -226,6 +227,7 @@ msgstr "Ajouté par"
 
 #: weights/templates/weights/all_measures.html:56
 #: weights/templates/weights/my_measures.html:24
+#: weights/templates/weights/product.html:96
 #: weights/templates/weights/profile.html:33
 msgid "Image"
 msgstr "Image"
@@ -238,18 +240,21 @@ msgstr "Produit"
 
 #: weights/templates/weights/all_measures.html:71
 #: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/product.html:97
 #: weights/templates/weights/profile.html:35
 msgid "Package weight"
 msgstr "Poids sur le packet"
 
 #: weights/templates/weights/all_measures.html:83
 #: weights/templates/weights/my_measures.html:27
+#: weights/templates/weights/product.html:98
 #: weights/templates/weights/profile.html:36
 msgid "Measured weight"
 msgstr "Poids mesuré"
 
 #: weights/templates/weights/all_measures.html:93
 #: weights/templates/weights/my_measures.html:28
+#: weights/templates/weights/product.html:99
 #: weights/templates/weights/profile.html:37
 msgid "Diff"
 msgstr "Différence"
@@ -536,6 +541,47 @@ msgid ""
 msgstr ""
 "Vous pouvez exiger la modification / suppression de ces informations à tout "
 "moment en nous contactant sur <a href='/contact'>la page de contact<a>"
+
+#: weights/templates/weights/product.html:24
+msgid "Average weight difference:"
+msgstr "Différence de poids moyenne :"
+
+#: weights/templates/weights/product.html:36
+#| msgid "# Measures"
+msgid "# measures:"
+msgstr "# Mesures :"
+
+#: weights/templates/weights/product.html:44
+#| msgid "Password confirmation"
+msgid "Product information"
+msgstr "Informations sur le produit"
+
+#: weights/templates/weights/product.html:47
+msgid "Quantity"
+msgstr "Quantité"
+
+#: weights/templates/weights/product.html:52
+#: weights/templates/weights/product.html:62
+#: weights/templates/weights/product.html:72
+msgid "N/A"
+msgstr "N/A"
+
+#: weights/templates/weights/product.html:57
+msgid "Labels"
+msgstr "Labels"
+
+#: weights/templates/weights/product.html:67
+#| msgid "Package weight"
+msgid "Packaging"
+msgstr "Packaging"
+
+#: weights/templates/weights/product.html:78
+msgid "See more"
+msgstr "En savoir plus"
+
+#: weights/templates/weights/product.html:90
+msgid "Last measures on this product"
+msgstr "Dernières mesures de ce produit"
 
 #: weights/templates/weights/profile.html:27
 msgid "Last measures added"

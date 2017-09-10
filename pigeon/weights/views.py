@@ -419,3 +419,34 @@ def user_page(request, user, user_slug):
                    'measures': measures,
                    'nb_measures': measures.count('user'),
                    'measures_by_week': ContribBarChart()})
+
+
+@login_required
+def product_page(request, code):
+    """
+    Product page with measures
+    """
+    items_per_page = request.GET.get('items_per_page', 25)
+    page = request.GET.get('page', 1)
+    product = get_object_or_404(Product, pk=code)
+    measures = Measure.objects.filter(product=product).order_by("-created_at")
+    nb_measures = measures.count()
+    paginator = Paginator(measures, items_per_page)
+    rel_diff_measures = Measure.objects.filter(product=product).annotate(
+            mdiff=((F('measured_weight') - F('package_weight')) /
+                   F('package_weight') * 100))
+    rel_diff = rel_diff_measures.aggregate(avg_diff=Avg('mdiff'))
+
+    try:
+        measures = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        measures = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        measures = paginator.page(paginator.num_pages)
+    return render(request, 'weights/product.html',
+                  {'product': product,
+                   'measures': measures,
+                   'nb_measures': nb_measures,
+                   'rel_mean_diff': round(float(rel_diff['avg_diff']), 2)})
