@@ -90,20 +90,12 @@ class ProfileForm(forms.ModelForm):
         fields = ('language', 'country', 'nickname', 'avatar')
 
 
-
-class ProductSelect2Widget(ModelSelect2Widget):
-    search_fields = [
-            'product_name__icontains',
-            'generic_name__icontains',
-        ]
-
-
 class AddMeasureForm(forms.ModelForm):
     product = forms.ModelChoiceField(
             widget=ModelSelect2Widget(
                 model=Product,
                 search_fields=['product_name__icontains',
-                               'generic_name__icontains'],
+                               'brands__icontains'],
                 queryset=Product.objects.all(),
             ),
             queryset=Product.objects.all(),
