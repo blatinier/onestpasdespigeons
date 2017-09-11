@@ -59,18 +59,18 @@
 </div>
 <script type="text/javascript">
 $('.confirm-del-measure').click(function(e) {
-  console.log("prout");
   e.preventDefault();
   var linkURL = $(this).attr("data-href");
   swal({
     title: "{% trans "Are you sure?" %}",
     text: "{% trans "You won't be able to recover that measure later." %}",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#DD6B55",
-    confirmButtonText: "{% trans "Yes, delete it!" %}",
-    closeOnConfirm: false
-  }, function() {
+    icon: "warning",
+    button: {
+      text: "{% trans "Yes, delete it!" %}",
+      className: "sweet-confirm-button",
+      closeModal: false,
+    },
+  }).then((value) => {
     window.location.href = linkURL;
   });
 });

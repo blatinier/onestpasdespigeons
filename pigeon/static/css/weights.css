@@ -228,3 +228,5 @@ ul.side-about > li > a:hover {
     background-size: 70%;
   }
 }
+
+.sweetalert-confirm-button { color: "#DD6B55"; }
