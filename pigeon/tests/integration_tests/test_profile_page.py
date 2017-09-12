@@ -22,7 +22,7 @@ class ProfilePageTestCase(TestCase):
         # no avatar -> fallback avatar shown
         self.assertIn(b'pigeon-anon.svg', resp.content)
         # measures shown
-        self.assertIn(b'upload/measures/test_user_1/img11.jpg', resp.content)
+        self.assertIn(b'static/images/logo.png', resp.content)
 
         # set an avatar and a pseudo
         with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:

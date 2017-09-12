@@ -22,8 +22,6 @@ class StaticPagesTestCase(TestCase):
     def test_home_page(self):
         resp = self.client.get("/")
         self.assertEqual(resp.status_code, 200)
-        self.assertIn(b"upload/measures/test_user_1/img1.jpg", resp.content)
-        self.assertIn(b"upload/measures/test_user_1/img2.jpg", resp.content)
-        self.assertIn(b"upload/measures/test_user_1/img4.jpg", resp.content)
-        self.assertIn(b"upload/measures/test_user_1/img10.jpg", resp.content)
-        self.assertIn(b"upload/measures/test_user_1/img11.jpg", resp.content)
+        self.assertIn(b"static/images/benoit.png", resp.content)
+        self.assertIn(b"static/images/fabien.png", resp.content)
+        self.assertIn(b"static/images/logo.png", resp.content)

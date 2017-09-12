@@ -32,10 +32,9 @@
       {% endblocktrans %}
     </h1>
     <br />
-    <div class="col-lg-1"></div>
     {% for measure in last_measures %}
       <div class="col-lg-2 col-xs-6 text-center margin-bottom-20">
-        <div class="product_img_big full-width">
+        <div class="product_img_big full-width {% if measure.measure_image %}{{ measure.image_orientation }}{% endif %}">
           <div>
             {% if measure.measure_image %}
               <a href="{{measure.measure_image.url}}" data-toggle="lightbox">

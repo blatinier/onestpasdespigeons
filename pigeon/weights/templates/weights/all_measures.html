@@ -122,7 +122,7 @@
               </td>
               <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
               <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
-              <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
+              <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }}&nbsp;%</strong></td>
             </tr>
           {% endfor %}
         </tbody>

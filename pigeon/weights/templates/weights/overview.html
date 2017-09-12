@@ -22,38 +22,6 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{% trans "Absolute statistics" %}</h3>
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>{% blocktrans %}Min difference: {{abs_min_diff}}{% endblocktrans %}</li>
-            <li>{% blocktrans %}Max difference: {{abs_max_diff}}{% endblocktrans %}</li>
-            <li>{% blocktrans %}Median difference: {{abs_median_diff}}{% endblocktrans %}</li>
-            <li>{% blocktrans %}Mean difference: {{abs_mean_diff}}{% endblocktrans %}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">{% trans "Relative statistics" %}</h3>
-        </div>
-        <div class="panel-body">
-          <ul>
-            <li>{% blocktrans %}Min difference: {{rel_min_diff}}%{% endblocktrans %}</li>
-            <li>{% blocktrans %}Max difference: {{rel_max_diff}}%{% endblocktrans %}</li>
-            <li>{% blocktrans %}Median difference: {{rel_median_diff}}%{% endblocktrans %}</li>
-            <li>{% blocktrans %}Mean difference: {{rel_mean_diff}}%{% endblocktrans %}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">{% trans "By products" %}</h3>
@@ -97,6 +65,38 @@
           <li>{{ measure.brand }}: {{ measure.mdiff|floatformat:2}} %</li>
         {% endfor %}
         </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{% trans "Absolute statistics" %}</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>{% blocktrans %}Min difference: {{abs_min_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Max difference: {{abs_max_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Median difference: {{abs_median_diff}}{% endblocktrans %}</li>
+            <li>{% blocktrans %}Mean difference: {{abs_mean_diff}}{% endblocktrans %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{% trans "Relative statistics" %}</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li>{% blocktrans %}Min difference: {{rel_min_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Max difference: {{rel_max_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Median difference: {{rel_median_diff}}%{% endblocktrans %}</li>
+            <li>{% blocktrans %}Mean difference: {{rel_mean_diff}}%{% endblocktrans %}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -13,8 +13,23 @@ a {
   height: 0;
   padding-bottom: 100%;
 }
+.product_img_big.landscape > div {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+}
 .product_img_big img {
   width: 100%;
+}
+.product_img_big.landscape img {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 50%; /* trick to center img */
+  transform: translate3d(-50%,0,0); /* trick to center img */
 }
 .product_img {
   width: 50px;

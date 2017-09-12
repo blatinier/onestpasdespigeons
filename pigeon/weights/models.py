@@ -18,6 +18,7 @@ import os
 from functools import wraps
 
 import django_filters
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -27,6 +28,8 @@ from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext as _
+import PIL.ExifTags
+import PIL.Image
 
 
 def disable_for_loaddata(signal_handler):
@@ -196,6 +199,14 @@ class Measure(models.Model):
     @property
     def diff(self):
         return self.measured_weight - self.package_weight
+
+    @property
+    def image_orientation(self):
+        img = PIL.Image.open(os.path.join(settings.BASE_DIR,
+                                          self.measure_image.url))
+        if img.height > img.width:
+            return "portrait"
+        return "landscape"
 
 
 class MeasureFilter(django_filters.FilterSet):

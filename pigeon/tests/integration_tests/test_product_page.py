@@ -24,5 +24,5 @@ class ProductPageTestCase(TestCase):
         # average diff shown
         self.assertIn(b"-17.5 %", resp.content)
         # measures shown
-        self.assertIn(b'upload/measures/test_user_1/img11.jpg', resp.content)
-        self.assertIn(b'upload/measures/test_user_1/img1.jpg', resp.content)
+        self.assertIn(b'static/images/benoit.png', resp.content)
+        self.assertIn(b'static/images/logo.png', resp.content)
