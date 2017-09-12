@@ -14,7 +14,7 @@
       {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
     {% else %}
     <div class="row">
-      {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False addon_after='<a class="btn btn-default bg-green" id="switch-create"><i class="fa fa-plus white"></i></a>' addon_after_class='input-group-btn' %}
+      {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False addon_after='<a class="btn btn-default connect-btn" id="switch-create"><i class="fa fa-plus white"></i></a>' addon_after_class='input-group-btn' %}
     </div>
     {% endif %}
 
@@ -26,7 +26,7 @@
             <h4>Add a product</h4>
           </div>
           <div class="col-lg-6">
-            <a class="btn btn-default bg-green pull-right" id="switch-select">
+            <a class="btn btn-default connect-btn pull-right" id="switch-select">
               <i class="fa fa-exchange white"></i>
             </a>
           </div>
@@ -49,10 +49,10 @@
     <div class="row">
       {% bootstrap_field add_measure_form.measure_image layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
     </div>
-    <div class="col-md-12 text-center">
-      {% bootstrap_button btn_text name="add" button_type="submit" button_class="btn-primary col-lg-offset-2 col-lg-3 col-xs-12" size="large" %}
+    <div class="col-md-12 text-center margin-top-20">
+      {% bootstrap_button btn_text name="add" button_type="submit" button_class="connect-btn btn-primary col-lg-offset-2 col-lg-3 col-xs-12" size="large" %}
       {% if not edit_mode %}
-        {% bootstrap_button btn_continue_text name="add_and_continue" button_type="submit" button_class="btn-primary col-lg-offset-1 col-lg-3 col-xs-12 margin-top-xs-20" size="large" %}
+        {% bootstrap_button btn_continue_text name="add_and_continue" button_type="submit" button_class="connect-btn btn-primary col-lg-offset-1 col-lg-3 col-xs-12 margin-top-xs-20" size="large" %}
       {% endif %}
     </div>
   </form>

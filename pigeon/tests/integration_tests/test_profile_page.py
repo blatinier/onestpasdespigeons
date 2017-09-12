@@ -2,7 +2,6 @@ import os
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from pigeon.settings import STATIC_ROOT
-from weights.models import Measure
 
 
 class ProfilePageTestCase(TestCase):

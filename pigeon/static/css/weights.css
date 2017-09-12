@@ -151,6 +151,11 @@ ul.side-about > li > a:hover {
   background-color: #FF5A5F;
   border-color: #FF5A5F;
 }
+.connect-btn:focus,
+.connect-btn:hover {
+  background-color: #FF3A3F;
+  border-color: #FF3A3F;
+}
 .register-label {
   line-height: 35px;
   text-align: center;
@@ -175,6 +180,28 @@ ul.side-about > li > a:hover {
 }
 .login-menu-avatar {
   height: 20px;
+}
+.row .select2-container .select2-selection--single {
+  border-radius: 4px 0 0 4px;
+  height: 34px;
+}
+.row .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 34px;
+}
+.filter-form-products .has-success .control-label {
+  color: #333;
+}
+.filter-form-products .has-success .form-control {
+  border-color: #333;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+  border-color: #FFAAAF;
+  background-color: #FFAAAF;
 }
 .padding-left-0 { padding-left: 0; }
 .padding-right-0 { padding-right: 0; }

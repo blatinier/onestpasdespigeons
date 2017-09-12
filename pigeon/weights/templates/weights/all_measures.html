@@ -9,17 +9,17 @@
     <h1 class="pigeon-title">{% trans "All measures" %}</h1>
   </div>
   <div class="row">
+    <a data-toggle="collapse" data-target="#collapse_filter"
+       class="btn btn-default">
+      {% trans "Filters" %} <i class="fa fa-caret-down"></i>
+    </a>
     <div class="panel-group" id="accordion">
       <div class="panel panel-default" id="panel_filter">
-        <a data-toggle="collapse" data-target="#collapse_filter"
-           href="#collapse_filter" class="btn btn-default">
-          Filters <i class="fa fa-caret-down"></i>
-        </a>
         <div id="collapse_filter" class="panel-collapse collapse collapsed">
-          <div class="panel-body">
+          <div class="panel-body filter-form-products">
             <form action="" method="get">
               {% bootstrap_form filter.form layout="horizontal" %}
-              <input class="btn btn-info" type="submit" />
+              <input class="connect-btn btn btn-info" type="submit" />
             </form>
           </div>
         </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-10 21:35+0000\n"
+"POT-Creation-Date: 2017-09-12 07:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Benoît Latinier <benoit@latinier.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,9 +47,23 @@ msgstr "Confirmation du mot de passe"
 msgid "Enter the same password as above, for verification."
 msgstr "Entrez le même mot de passe que ci-dessus pour vérification."
 
-#: weights/forms.py:138
+#: weights/forms.py:130
 msgid "All product fields must be set"
 msgstr "Tous les champs du produit doivent être renseignés"
+
+#: weights/models.py:213
+msgid "Username"
+msgstr "Utilisateur"
+
+#: weights/models.py:214 weights/templates/weights/all_measures.html:59
+#: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/profile.html:34
+msgid "Product"
+msgstr "Produit"
+
+#: weights/models.py:215
+msgid "Brand"
+msgstr "Marque"
 
 #: weights/templates/403.html:7
 msgid "Alfred the forbidden pigeon"
@@ -214,8 +228,12 @@ msgstr "Le poids des aliments, parfois le paquet ment"
 msgid "All measures"
 msgstr "Toutes les mesures"
 
+#: weights/templates/weights/all_measures.html:14
+msgid "Filters"
+msgstr "Filtres"
+
 #: weights/templates/weights/all_measures.html:34
-#: weights/templates/weights/my_measures.html:23
+#: weights/templates/weights/my_measures.html:24
 #: weights/templates/weights/product.html:95
 #: weights/templates/weights/profile.html:32
 msgid "Date"
@@ -226,34 +244,28 @@ msgid "Contributed by"
 msgstr "Ajouté par"
 
 #: weights/templates/weights/all_measures.html:56
-#: weights/templates/weights/my_measures.html:24
+#: weights/templates/weights/my_measures.html:25
 #: weights/templates/weights/product.html:96
 #: weights/templates/weights/profile.html:33
 msgid "Image"
 msgstr "Image"
 
-#: weights/templates/weights/all_measures.html:59
-#: weights/templates/weights/my_measures.html:25
-#: weights/templates/weights/profile.html:34
-msgid "Product"
-msgstr "Produit"
-
 #: weights/templates/weights/all_measures.html:71
-#: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/my_measures.html:27
 #: weights/templates/weights/product.html:97
 #: weights/templates/weights/profile.html:35
 msgid "Package weight"
 msgstr "Poids sur le packet"
 
 #: weights/templates/weights/all_measures.html:83
-#: weights/templates/weights/my_measures.html:27
+#: weights/templates/weights/my_measures.html:28
 #: weights/templates/weights/product.html:98
 #: weights/templates/weights/profile.html:36
 msgid "Measured weight"
 msgstr "Poids mesuré"
 
 #: weights/templates/weights/all_measures.html:93
-#: weights/templates/weights/my_measures.html:28
+#: weights/templates/weights/my_measures.html:29
 #: weights/templates/weights/product.html:99
 #: weights/templates/weights/profile.html:37
 msgid "Diff"
@@ -297,13 +309,6 @@ msgid "On Github"
 msgstr "Sur Github"
 
 #: weights/templates/weights/contribute.html:34
-#, fuzzy
-#| msgid ""
-#| "You like this website and found a bug? You're missing a feature? You "
-#| "think we could improve some existing feature? Contact us now using the <a "
-#| "href=\"/contact\">contact page</a> or hop on our <a href=\"//github.com/"
-#| "blatinier/RendezMoiMesPlumes/issues\">Github repository</a> and fill a "
-#| "ticket with your ideas! (And even code it if you feel like it!!)"
 msgid ""
 "You like this website and found a bug? You're missing a feature? You think "
 "we could improve some existing feature? Contact us now using the <a href=\"/"
@@ -412,27 +417,27 @@ msgid "Contact"
 msgstr "Contact"
 
 #: weights/templates/weights/my_measures.html:10
+msgid "Add a new measure"
+msgstr "Ajouter une nouvelle mesure"
+
+#: weights/templates/weights/my_measures.html:13
 #: weights/templates/weights/profile.html:18
 msgid "Activity though the year (by week)"
 msgstr "Activité au cours de l'année (par semaine)"
 
-#: weights/templates/weights/my_measures.html:18
-msgid "Add a new measure"
-msgstr "Ajouter une nouvelle mesure"
-
-#: weights/templates/weights/my_measures.html:29
+#: weights/templates/weights/my_measures.html:30
 msgid "Actions"
 msgstr "Actions"
 
-#: weights/templates/weights/my_measures.html:66
+#: weights/templates/weights/my_measures.html:68
 msgid "Are you sure?"
 msgstr "Êtes-vous sûr ?"
 
-#: weights/templates/weights/my_measures.html:67
+#: weights/templates/weights/my_measures.html:69
 msgid "You won't be able to recover that measure later."
 msgstr "Vous ne pourrez pas récupérer cette mesure plus tard."
 
-#: weights/templates/weights/my_measures.html:71
+#: weights/templates/weights/my_measures.html:73
 msgid "Yes, delete it!"
 msgstr "Oui, supprimer !"
 
@@ -547,12 +552,10 @@ msgid "Average weight difference:"
 msgstr "Différence de poids moyenne :"
 
 #: weights/templates/weights/product.html:36
-#| msgid "# Measures"
 msgid "# measures:"
 msgstr "# Mesures :"
 
 #: weights/templates/weights/product.html:44
-#| msgid "Password confirmation"
 msgid "Product information"
 msgstr "Informations sur le produit"
 
@@ -571,7 +574,6 @@ msgid "Labels"
 msgstr "Labels"
 
 #: weights/templates/weights/product.html:67
-#| msgid "Package weight"
 msgid "Packaging"
 msgstr "Packaging"
 

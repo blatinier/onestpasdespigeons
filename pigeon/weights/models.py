@@ -11,11 +11,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#  Copyright (c) 2017 Benoît Latinier, Fabien Bourrel
+#  Copyright (c) 2017 Benoit Latinier, Fabien Bourrel
 #  This file is part of project: RendezMoiMesPlumes
 #
 import os
-from datetime import date
 from functools import wraps
 
 import django_filters
@@ -27,6 +26,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
 
 
 def disable_for_loaddata(signal_handler):
@@ -210,6 +210,6 @@ class MeasureFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(MeasureFilter, self).__init__(*args, **kwargs)
-        self.filters['user__user__username__icontains'].label = 'Username'
-        self.filters['product__product_name__icontains'].label = 'Product'
-        self.filters['product__brands__icontains'].label = 'Brand'
+        self.filters['user__user__username__icontains'].label = _('Username')
+        self.filters['product__product_name__icontains'].label = _('Product')
+        self.filters['product__brands__icontains'].label = _('Brand')

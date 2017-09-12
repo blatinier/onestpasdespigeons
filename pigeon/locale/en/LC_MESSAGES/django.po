@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-10 21:35+0000\n"
+"POT-Creation-Date: 2017-09-12 07:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,8 +46,22 @@ msgstr ""
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: weights/forms.py:138
+#: weights/forms.py:130
 msgid "All product fields must be set"
+msgstr ""
+
+#: weights/models.py:213
+msgid "Username"
+msgstr ""
+
+#: weights/models.py:214 weights/templates/weights/all_measures.html:59
+#: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/profile.html:34
+msgid "Product"
+msgstr ""
+
+#: weights/models.py:215
+msgid "Brand"
 msgstr ""
 
 #: weights/templates/403.html:7
@@ -203,8 +217,12 @@ msgstr "Le poids des aliments, parfois le paquet ment"
 msgid "All measures"
 msgstr ""
 
+#: weights/templates/weights/all_measures.html:14
+msgid "Filters"
+msgstr ""
+
 #: weights/templates/weights/all_measures.html:34
-#: weights/templates/weights/my_measures.html:23
+#: weights/templates/weights/my_measures.html:24
 #: weights/templates/weights/product.html:95
 #: weights/templates/weights/profile.html:32
 msgid "Date"
@@ -215,34 +233,28 @@ msgid "Contributed by"
 msgstr ""
 
 #: weights/templates/weights/all_measures.html:56
-#: weights/templates/weights/my_measures.html:24
+#: weights/templates/weights/my_measures.html:25
 #: weights/templates/weights/product.html:96
 #: weights/templates/weights/profile.html:33
 msgid "Image"
 msgstr ""
 
-#: weights/templates/weights/all_measures.html:59
-#: weights/templates/weights/my_measures.html:25
-#: weights/templates/weights/profile.html:34
-msgid "Product"
-msgstr ""
-
 #: weights/templates/weights/all_measures.html:71
-#: weights/templates/weights/my_measures.html:26
+#: weights/templates/weights/my_measures.html:27
 #: weights/templates/weights/product.html:97
 #: weights/templates/weights/profile.html:35
 msgid "Package weight"
 msgstr ""
 
 #: weights/templates/weights/all_measures.html:83
-#: weights/templates/weights/my_measures.html:27
+#: weights/templates/weights/my_measures.html:28
 #: weights/templates/weights/product.html:98
 #: weights/templates/weights/profile.html:36
 msgid "Measured weight"
 msgstr ""
 
 #: weights/templates/weights/all_measures.html:93
-#: weights/templates/weights/my_measures.html:28
+#: weights/templates/weights/my_measures.html:29
 #: weights/templates/weights/product.html:99
 #: weights/templates/weights/profile.html:37
 msgid "Diff"
@@ -378,27 +390,27 @@ msgid "Contact"
 msgstr "contact us"
 
 #: weights/templates/weights/my_measures.html:10
+msgid "Add a new measure"
+msgstr ""
+
+#: weights/templates/weights/my_measures.html:13
 #: weights/templates/weights/profile.html:18
 msgid "Activity though the year (by week)"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:18
-msgid "Add a new measure"
-msgstr ""
-
-#: weights/templates/weights/my_measures.html:29
+#: weights/templates/weights/my_measures.html:30
 msgid "Actions"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:66
+#: weights/templates/weights/my_measures.html:68
 msgid "Are you sure?"
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:67
+#: weights/templates/weights/my_measures.html:69
 msgid "You won't be able to recover that measure later."
 msgstr ""
 
-#: weights/templates/weights/my_measures.html:71
+#: weights/templates/weights/my_measures.html:73
 msgid "Yes, delete it!"
 msgstr ""
 
