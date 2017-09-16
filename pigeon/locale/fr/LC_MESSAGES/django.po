@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 07:40+0000\n"
+"POT-Creation-Date: 2017-09-16 23:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Benoît Latinier <benoit@latinier.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,21 +47,22 @@ msgstr "Confirmation du mot de passe"
 msgid "Enter the same password as above, for verification."
 msgstr "Entrez le même mot de passe que ci-dessus pour vérification."
 
-#: weights/forms.py:130
+#: weights/forms.py:131
 msgid "All product fields must be set"
 msgstr "Tous les champs du produit doivent être renseignés"
 
-#: weights/models.py:213
+#: weights/models.py:224
 msgid "Username"
 msgstr "Utilisateur"
 
-#: weights/models.py:214 weights/templates/weights/all_measures.html:59
+#: weights/models.py:225 weights/templates/weights/all_measures.html:59
+#: weights/templates/weights/measure.html:41
 #: weights/templates/weights/my_measures.html:26
-#: weights/templates/weights/profile.html:34
+#: weights/templates/weights/profile.html:53
 msgid "Product"
 msgstr "Produit"
 
-#: weights/models.py:215
+#: weights/models.py:226
 msgid "Brand"
 msgstr "Marque"
 
@@ -122,7 +123,7 @@ msgid "Register"
 msgstr "S'inscrire"
 
 #: weights/templates/weights/about.html:9
-#: weights/templates/weights/layout.html:50
+#: weights/templates/weights/layout.html:51
 msgid "About"
 msgstr "À propos"
 
@@ -224,7 +225,7 @@ msgid "Le poids des aliments, parfois le paquet ment"
 msgstr "Le poids des aliments, parfois le paquet ment"
 
 #: weights/templates/weights/all_measures.html:9
-#: weights/templates/weights/layout.html:47
+#: weights/templates/weights/layout.html:48
 msgid "All measures"
 msgstr "Toutes les mesures"
 
@@ -234,8 +235,8 @@ msgstr "Filtres"
 
 #: weights/templates/weights/all_measures.html:34
 #: weights/templates/weights/my_measures.html:24
-#: weights/templates/weights/product.html:95
-#: weights/templates/weights/profile.html:32
+#: weights/templates/weights/product.html:114
+#: weights/templates/weights/profile.html:51
 msgid "Date"
 msgstr "Date"
 
@@ -245,31 +246,35 @@ msgstr "Ajouté par"
 
 #: weights/templates/weights/all_measures.html:56
 #: weights/templates/weights/my_measures.html:25
-#: weights/templates/weights/product.html:96
-#: weights/templates/weights/profile.html:33
+#: weights/templates/weights/product.html:115
+#: weights/templates/weights/profile.html:52
 msgid "Image"
 msgstr "Image"
 
 #: weights/templates/weights/all_measures.html:71
 #: weights/templates/weights/my_measures.html:27
-#: weights/templates/weights/product.html:97
-#: weights/templates/weights/profile.html:35
+#: weights/templates/weights/product.html:116
+#: weights/templates/weights/profile.html:54
 msgid "Package weight"
 msgstr "Poids sur le packet"
 
 #: weights/templates/weights/all_measures.html:83
 #: weights/templates/weights/my_measures.html:28
-#: weights/templates/weights/product.html:98
-#: weights/templates/weights/profile.html:36
+#: weights/templates/weights/product.html:117
+#: weights/templates/weights/profile.html:55
 msgid "Measured weight"
 msgstr "Poids mesuré"
 
 #: weights/templates/weights/all_measures.html:93
 #: weights/templates/weights/my_measures.html:29
-#: weights/templates/weights/product.html:99
-#: weights/templates/weights/profile.html:37
+#: weights/templates/weights/product.html:118
+#: weights/templates/weights/profile.html:56
 msgid "Diff"
 msgstr "Différence"
+
+#: weights/templates/weights/all_measures.html:94
+msgid "Detail"
+msgstr "Détail"
 
 #: weights/templates/weights/contact.html:8
 msgid "Thank you for your message, we will reply as fast as possible!"
@@ -281,7 +286,7 @@ msgstr "Comment contribuer"
 
 #: weights/templates/weights/contribute.html:10
 #: weights/templates/weights/home.html:24
-#: weights/templates/weights/layout.html:38
+#: weights/templates/weights/layout.html:39
 msgid "Alfred le pigeon"
 msgstr "Alfred the swallow"
 
@@ -355,73 +360,98 @@ msgstr ""
 msgid "Last measures"
 msgstr "Dernières mesures"
 
-#: weights/templates/weights/layout.html:31
+#: weights/templates/weights/layout.html:32
 msgid "Toggle navigation"
 msgstr ""
 
-#: weights/templates/weights/layout.html:46
+#: weights/templates/weights/layout.html:47
 #: weights/templates/weights/my_measures.html:8
 msgid "My measures"
 msgstr "Mes mesures"
 
-#: weights/templates/weights/layout.html:48
+#: weights/templates/weights/layout.html:49
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: weights/templates/weights/layout.html:52
+#: weights/templates/weights/layout.html:53
 msgid "Sign up"
 msgstr "Inscription"
 
-#: weights/templates/weights/layout.html:53
+#: weights/templates/weights/layout.html:54
 msgid "Sign in"
 msgstr "Connexion"
 
-#: weights/templates/weights/layout.html:56
-#: weights/templates/weights/layout.html:71
+#: weights/templates/weights/layout.html:57
+#: weights/templates/weights/layout.html:72
 msgid "My account"
 msgstr "Mon compte"
 
-#: weights/templates/weights/layout.html:57
-#: weights/templates/weights/layout.html:72
-#: weights/templates/weights/layout.html:123
+#: weights/templates/weights/layout.html:58
+#: weights/templates/weights/layout.html:73
+#: weights/templates/weights/layout.html:124
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: weights/templates/weights/layout.html:58
-#: weights/templates/weights/layout.html:74
+#: weights/templates/weights/layout.html:59
+#: weights/templates/weights/layout.html:75
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: weights/templates/weights/layout.html:105
+#: weights/templates/weights/layout.html:106
 msgid "Error:"
 msgstr "Erreur :"
 
-#: weights/templates/weights/layout.html:106
+#: weights/templates/weights/layout.html:107
 msgid "Warning:"
 msgstr "Attention :"
 
-#: weights/templates/weights/layout.html:107
+#: weights/templates/weights/layout.html:108
 msgid "Success:"
 msgstr "Succès :"
 
-#: weights/templates/weights/layout.html:108
+#: weights/templates/weights/layout.html:109
 msgid "Information:"
 msgstr "Information :"
 
-#: weights/templates/weights/layout.html:122
+#: weights/templates/weights/layout.html:123
 msgid "User privacy"
 msgstr "Vie Privée"
 
-#: weights/templates/weights/layout.html:124
+#: weights/templates/weights/layout.html:125
 msgid "Contact"
 msgstr "Contact"
+
+#: weights/templates/weights/measure.html:11
+#, python-format
+msgid "Measure #%(measure.id)s"
+msgstr "Mesure n°%(measure.id)s"
+
+#: weights/templates/weights/measure.html:38
+msgid "Measure information"
+msgstr "Informations sur la mesure"
+
+#: weights/templates/weights/measure.html:49
+msgid "Brands"
+msgstr "Marques"
+
+#: weights/templates/weights/measure.html:57
+msgid "Added by"
+msgstr "Aouté par"
+
+#: weights/templates/weights/measure.html:63
+msgid "Package Weight"
+msgstr "Poids sur le packet"
+
+#: weights/templates/weights/measure.html:67
+msgid "Measured Weight"
+msgstr "Poids mesuré"
 
 #: weights/templates/weights/my_measures.html:10
 msgid "Add a new measure"
 msgstr "Ajouter une nouvelle mesure"
 
 #: weights/templates/weights/my_measures.html:13
-#: weights/templates/weights/profile.html:18
+#: weights/templates/weights/profile.html:21
 msgid "Activity though the year (by week)"
 msgstr "Activité au cours de l'année (par semaine)"
 
@@ -437,7 +467,7 @@ msgstr "Êtes-vous sûr ?"
 msgid "You won't be able to recover that measure later."
 msgstr "Vous ne pourrez pas récupérer cette mesure plus tard."
 
-#: weights/templates/weights/my_measures.html:73
+#: weights/templates/weights/my_measures.html:72
 msgid "Yes, delete it!"
 msgstr "Oui, supprimer !"
 
@@ -455,77 +485,77 @@ msgstr "# Produits: %(nb_products)s"
 msgid "# Measures: %(nb_measures)s"
 msgstr "# Mesures: %(nb_measures)s"
 
-#: weights/templates/weights/overview.html:29
+#: weights/templates/weights/overview.html:27
+msgid "By products"
+msgstr "Par produits"
+
+#: weights/templates/weights/overview.html:31
+msgid "Top 5 products"
+msgstr "Top 5 produits"
+
+#: weights/templates/weights/overview.html:39
+msgid "Flop 5 products"
+msgstr "Flop 5 produits"
+
+#: weights/templates/weights/overview.html:50
+msgid "By brands"
+msgstr "Par marques"
+
+#: weights/templates/weights/overview.html:54
+msgid "Top 5 brands"
+msgstr "Top 5 marques"
+
+#: weights/templates/weights/overview.html:62
+msgid "Flop 5 brands"
+msgstr "Flop 5 marques"
+
+#: weights/templates/weights/overview.html:75
 msgid "Absolute statistics"
 msgstr "Statistiques absolues"
 
-#: weights/templates/weights/overview.html:33
+#: weights/templates/weights/overview.html:79
 #, python-format
 msgid "Min difference: %(abs_min_diff)s"
 msgstr "Différence min: %(abs_min_diff)s"
 
-#: weights/templates/weights/overview.html:34
+#: weights/templates/weights/overview.html:80
 #, python-format
 msgid "Max difference: %(abs_max_diff)s"
 msgstr "Différence max: %(abs_max_diff)s"
 
-#: weights/templates/weights/overview.html:35
+#: weights/templates/weights/overview.html:81
 #, python-format
 msgid "Median difference: %(abs_median_diff)s"
 msgstr "Différence médiane: %(abs_median_diff)s"
 
-#: weights/templates/weights/overview.html:36
+#: weights/templates/weights/overview.html:82
 #, python-format
 msgid "Mean difference: %(abs_mean_diff)s"
 msgstr "Différence moyenne: %(abs_mean_diff)s"
 
-#: weights/templates/weights/overview.html:44
+#: weights/templates/weights/overview.html:90
 msgid "Relative statistics"
 msgstr "Statistiques relatives"
 
-#: weights/templates/weights/overview.html:48
+#: weights/templates/weights/overview.html:94
 #, python-format
 msgid "Min difference: %(rel_min_diff)s%%"
 msgstr "Différence min: %(rel_min_diff)s%%"
 
-#: weights/templates/weights/overview.html:49
+#: weights/templates/weights/overview.html:95
 #, python-format
 msgid "Max difference: %(rel_max_diff)s%%"
 msgstr "Différence max: %(rel_max_diff)s%%"
 
-#: weights/templates/weights/overview.html:50
+#: weights/templates/weights/overview.html:96
 #, python-format
 msgid "Median difference: %(rel_median_diff)s%%"
 msgstr "Différence médiane: %(rel_median_diff)s%%"
 
-#: weights/templates/weights/overview.html:51
+#: weights/templates/weights/overview.html:97
 #, python-format
 msgid "Mean difference: %(rel_mean_diff)s%%"
 msgstr "Différence moyenne: %(rel_mean_diff)s%%"
-
-#: weights/templates/weights/overview.html:59
-msgid "By products"
-msgstr "Par produits"
-
-#: weights/templates/weights/overview.html:63
-msgid "Top 5 products"
-msgstr "Top 5 produits"
-
-#: weights/templates/weights/overview.html:71
-msgid "Flop 5 products"
-msgstr "Flop 5 produits"
-
-#: weights/templates/weights/overview.html:82
-msgid "By brands"
-msgstr "Par marques"
-
-#: weights/templates/weights/overview.html:86
-msgid "Top 5 brands"
-msgstr "Top 5 marques"
-
-#: weights/templates/weights/overview.html:94
-msgid "Flop 5 brands"
-msgstr "Flop 5 marques"
 
 #: weights/templates/weights/privacy.html:6
 msgid "User Privacy"
@@ -547,45 +577,50 @@ msgstr ""
 "Vous pouvez exiger la modification / suppression de ces informations à tout "
 "moment en nous contactant sur <a href='/contact'>la page de contact<a>"
 
-#: weights/templates/weights/product.html:24
+#: weights/templates/weights/product.html:27
 msgid "Average weight difference:"
 msgstr "Différence de poids moyenne :"
 
-#: weights/templates/weights/product.html:36
+#: weights/templates/weights/product.html:39
 msgid "# measures:"
 msgstr "# Mesures :"
 
-#: weights/templates/weights/product.html:44
+#: weights/templates/weights/product.html:47
 msgid "Product information"
 msgstr "Informations sur le produit"
 
-#: weights/templates/weights/product.html:47
+#: weights/templates/weights/product.html:50
 msgid "Quantity"
 msgstr "Quantité"
 
-#: weights/templates/weights/product.html:52
-#: weights/templates/weights/product.html:62
-#: weights/templates/weights/product.html:72
+#: weights/templates/weights/product.html:55
+#: weights/templates/weights/product.html:65
+#: weights/templates/weights/product.html:75
 msgid "N/A"
 msgstr "N/A"
 
-#: weights/templates/weights/product.html:57
+#: weights/templates/weights/product.html:60
 msgid "Labels"
 msgstr "Labels"
 
-#: weights/templates/weights/product.html:67
+#: weights/templates/weights/product.html:70
 msgid "Packaging"
 msgstr "Packaging"
 
-#: weights/templates/weights/product.html:78
+#: weights/templates/weights/product.html:81
 msgid "See more"
 msgstr "En savoir plus"
 
-#: weights/templates/weights/product.html:90
+#: weights/templates/weights/product.html:109
 msgid "Last measures on this product"
 msgstr "Dernières mesures de ce produit"
 
-#: weights/templates/weights/profile.html:27
+#: weights/templates/weights/product.html:119
+#: weights/templates/weights/profile.html:57
+msgid "See"
+msgstr "Voir"
+
+#: weights/templates/weights/profile.html:46
 msgid "Last measures added"
 msgstr "Dernières mesures ajoutées"
 
