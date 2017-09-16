@@ -1,0 +1,90 @@
+{% extends 'weights/layout.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block after_body %}
+{% include "weights/social_js.html" %}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1 class="pigeon-title">
+      Measure #{{ measure.id }}
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-3">
+      {% if measure.measure_image %}
+        <img src="/{{ measure.measure_image.url }}" alt=""
+             class="full-width" />
+      {% else %}
+        <img class="full-width" src="{% static 'images/red_scales.png' %}" alt="" />
+      {% endif %}
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <div class="col-lg-6 col-lg-offset-1">
+          <div class="panel panel-default">
+            <div class="panel-body text-center bg-pigeon-grey">
+              <div class="{% if measure.percent_diff < 0 %}pigeon-color{% else %}green{% endif %} full-width">
+                <strong class="big home-diff">
+                  {% if measure.percent_diff > 0 %}+{% endif %}
+                  {{measure.percent_diff|floatformat:"1"}} %
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h4>{% trans "Measure information" %}</h4>
+      <table class="table">
+        <tr>
+          <th scope="row">{% trans "Product" %}</th>
+          <td>
+            <a href="{% url 'product_page' measure.product.code %}">
+              {{ measure.product.product_name }}
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Brands" %}</th>
+          <td>
+            <span class="brand">
+              {{ measure.product.brands }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Added by" %}</th>
+          <td>
+            <a href="{% url 'user_page' measure.user.id measure.user.slug %}">{{measure.user.pseudo}}</a>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Package Weight" %}</th>
+          <td>{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{% trans "Measured Weight" %}</th>
+          <td>{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
+        </tr>
+      </table>
+      <div class="col-lg-12">
+        <div class="fb-share-button"
+             data-href="https://www.rendezmoimesplumes.com/measure/{{ measure.id }}"
+             data-layout="button_count" data-size="small"
+             data-mobile-iframe="true">
+          <a class="fb-xfbml-parse-ignore" target="_blank"
+             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.rendezmoimesplumes.com%2Fmeasure%2F{{ measure.id }}&amp;src=sdkpreparse">Share</a>
+        </div>
+        <div style="display: inline-block;">
+          <div style="position: absolute; top: 0;">
+            <a class="twitter-share-button"
+               href="https://twitter.com/intent/tweet">
+              Tweet</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

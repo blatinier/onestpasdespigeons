@@ -450,3 +450,13 @@ def product_page(request, code):
                    'measures': measures,
                    'nb_measures': nb_measures,
                    'rel_mean_diff': round(float(rel_diff['avg_diff']), 2)})
+
+
+@login_required
+def measure_page(request, measure_id):
+    """
+    Measure page with all details
+    """
+    measure = get_object_or_404(Measure, pk=measure_id)
+    return render(request, 'weights/measure.html',
+                  {'measure': measure})

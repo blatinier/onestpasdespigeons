@@ -51,6 +51,7 @@
               <td class="list_product">
                 <a class="btn btn-default" href="{% url 'edit_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-pencil"></i></a>
                 <a class="btn btn-default confirm-del-measure" data-href="{% url 'delete_measure' measure_id=measure.id %}"><i class="fa fa-2x fa-times"></i></a>
+                <a class="btn btn-default" href="{% url "measure_page" measure.id %}"><i class="fa fa-2x fa-eye"></i></a>
               </td>
             </tr>
           {% endfor %}
