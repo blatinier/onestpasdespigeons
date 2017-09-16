@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-16 23:03+0000\n"
+"POT-Creation-Date: 2017-09-16 23:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Benoît Latinier <benoit@latinier.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,9 +422,8 @@ msgid "Contact"
 msgstr "Contact"
 
 #: weights/templates/weights/measure.html:11
-#, python-format
-msgid "Measure #%(measure.id)s"
-msgstr "Mesure n°%(measure.id)s"
+msgid "Measure #"
+msgstr "Mesure n°"
 
 #: weights/templates/weights/measure.html:38
 msgid "Measure information"
@@ -706,3 +705,6 @@ msgstr "Éditer"
 #: weights/views.py:393
 msgid "Measure deleted!"
 msgstr "Mesure supprimée !"
+
+#~ msgid "Measure #%(measure.id)s"
+#~ msgstr "Mesure n°%(measure.id)s"
