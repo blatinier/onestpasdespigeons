@@ -54,6 +54,7 @@
             <th>{% trans "Package weight" %}</th>
             <th>{% trans "Measured weight" %}</th>
             <th>{% trans "Diff" %}</th>
+            <th>{% trans "See" %}</th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +75,7 @@
               <td class="list_product">{{ measure.package_weight|floatformat:"0" }} {{ measure.unit }}</td>
               <td class="list_product">{{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }}</td>
               <td class="list_product {% if measure.diff > 0 %}green{% else %}pigeon-color{% endif %} big"><strong>{{ measure.percent_diff|floatformat:"1" }} %</strong></td>
+              <td class="list_product"><a class="btn btn-default" href="{% url "measure_page" measure.id %}"><i class="fa fa-eye"></i></a></td>
             </tr>
           {% endfor %}
         </tbody>
