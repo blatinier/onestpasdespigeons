@@ -6,11 +6,12 @@
   <h1 class="text-center col-lg-12 pigeon-font pigeon-color margin-bottom-20">{% trans "Register" %}</h1>
   <form method="post" autocomplete="off" class="form-contact col-lg-offset-2">
     {% csrf_token %}
-    {% for field in user_form %}
-      {% bootstrap_field field layout="horizontal" form_group_class="col-md-12" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
-    {% endfor %}
-    {% for field in profile_form %}
-      {% bootstrap_field field layout="horizontal" form_group_class="col-md-12" field_class="col-md-8 input-form-space" label_class="register-label col-md-1" show_help=False %}
+    {% for field in register_form %}
+      {% if field.name in 'language,country,avatar'|slice:',' %}
+          {% bootstrap_field field layout="horizontal" form_group_class="col-md-12" field_class="col-md-9 input-form-space" show_help=False label_class="register-label col-md-1" %}
+      {% else %}
+          {% bootstrap_field field layout="horizontal" form_group_class="col-md-12" field_class="col-md-9 input-form-space" show_help=False show_label=False %}
+      {% endif %}
     {% endfor %}
     <div class="col-md-9 text-center">
       {% bootstrap_button "Register" button_type="submit" button_class="btn-primary connect-btn" size="large" %}

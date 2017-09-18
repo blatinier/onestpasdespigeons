@@ -68,9 +68,9 @@
                             type="button" id="dropdownMenu1"
                             data-toggle="dropdown">
                       <span class="caret"></span>
-                      <img src="{{ user.pigeonuser.avatar_or_anon }}" alt=""
+                      <img src="{{ user.avatar_or_anon }}" alt=""
                            class="login-menu-avatar" />
-                      {{ user.pigeonuser.pseudo }}
+                      {{ user.pseudo }}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                       <li><a href="{% url 'user_account' %}">{% trans "My account" %}</a></li>

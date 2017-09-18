@@ -1,7 +1,7 @@
 [
   {
-    "model": "auth.user",
-    "pk": 42,
+    "model": "weights.pigeonuser",
+    "pk": 11111111,
     "fields": {
       "password": "pbkdf2_sha256$36000$psdsiWkbmAEF$JnN9xIIe/ok9GxhLSKTDf+QXtubvrT9qYNuwgTpvOIk=",
       "last_login": "2017-07-31T18:50:46.234Z",
@@ -14,13 +14,7 @@
       "is_active": true,
       "date_joined": "2017-07-31T18:50:46.048Z",
       "groups": [],
-      "user_permissions": []}
-  },
-  {
-    "model": "weights.pigeonuser",
-    "pk": 11111111,
-    "fields": {
-      "user": 42,
+      "user_permissions": [],
       "score": 1,
       "avatar": "",
       "nickname": "",
@@ -28,7 +22,7 @@
       "country": "us"}
   },
   {
-    "model": "auth.user",
+    "model": "weights.pigeonuser",
     "pk": 41,
     "fields": {
       "password": "pbkdf2_sha256$36000$psdsiWkbmAEF$JnN9xIIe/ok9GxhLSKTDf+QXtubvrT9qYNuwgTpvOIk=",
@@ -42,13 +36,7 @@
       "is_active": true,
       "date_joined": "2017-07-31T18:50:46.048Z",
       "groups": [],
-      "user_permissions": []}
-  },
-  {
-    "model": "weights.pigeonuser",
-    "pk": 11111110,
-    "fields": {
-      "user": 41,
+      "user_permissions": [],
       "score": 1,
       "avatar": "upload/avatar/test_user_2/pipo.jpg",
       "nickname": "PipoUser",

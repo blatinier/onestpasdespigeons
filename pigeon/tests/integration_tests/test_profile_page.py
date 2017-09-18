@@ -1,5 +1,5 @@
 import os
-from django.contrib.auth.models import User
+from weights.models import PigeonUser
 from django.test import Client, TestCase
 from weights.models import Measure
 from tests import TEST_IMAGE_PATH
@@ -9,7 +9,7 @@ class ProfilePageTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.client.force_login(User.objects.get(username="test_user_1"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_1"))
 
     def test_view_profile(self):
         """
