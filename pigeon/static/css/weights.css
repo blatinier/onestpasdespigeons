@@ -218,6 +218,10 @@ ul.side-about > li > a:hover {
   border-color: #FFAAAF;
   background-color: #FFAAAF;
 }
+.language-box {
+  height: 35.5px;
+  margin-left: 10px;
+}
 .padding-left-0 { padding-left: 0; }
 .padding-right-0 { padding-right: 0; }
 #navbar.in { overflow: visible; }
@@ -270,5 +274,20 @@ ul.side-about > li > a:hover {
     background-size: 70%;
   }
 }
-
 .sweetalert-confirm-button { color: "#DD6B55"; }
+#dropdown-lang {
+  min-width: 57px;
+}
+
+.lang-selector {
+  background-color: transparent;
+  border: 0px none;
+  padding: 10px 0 10px 10px;
+  text-align: left;
+  vertical-align: middle;
+  width: 100%
+}
+
+.lang-selector:hover {
+  background-color: #eee;
+}

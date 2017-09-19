@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-import django.contrib.postgres.fields
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -21,8 +20,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('score', models.IntegerField(default=1)),
-                ('achivements', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=200), blank=True, null=True, size=None)),
                 ('language', models.CharField(default='en', max_length=3)),
+                ('achivements', models.CharField(max_length=300, blank=True, null=True)),
                 ('country', models.CharField(default='us', max_length=3)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

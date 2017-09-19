@@ -1,5 +1,8 @@
 {% load staticfiles %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/ekko-lightbox.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/weights.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flag-icon.min.css' %}">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -58,7 +62,7 @@
                 <li class="visible-xs-block"><a href="{% url 'contribute' %}">{% trans "Contribute" %}</a></li>
                 <li class="visible-xs-block"><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
                 <li class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                <li class="hidden-xs margin-top-lg-20">
+                <li class="margin-top-lg-20">
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle"
                             type="button" id="dropdownMenu1"
@@ -77,6 +81,28 @@
                   </div>
                 </li>
               {% endif %}
+              {# Languages #}
+              <li class="hidden-xs margin-top-lg-20">
+                <form action="{% url 'set_language' %}" method="post" class="language-form input-group input-group-sm">
+                <input name="next" type="hidden" value="{{ request.get_full_path | slice:'3:' }}" />
+                {% csrf_token %}
+                <button class="btn btn-default dropdown-toggle language-box" data-toggle="dropdown" data-target="dropdown-lang">
+                    <span class="caret"></span>
+                    {{ LANGUAGE_CODE|upper }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" id="dropdown-lang">
+                    {% for language in languages %}
+                      <li>
+                        <button type="submit" name="language"
+                                value="{{ language.code }}"
+                                class="lang-selector {% if language.code == LANGUAGE_CODE %}lang-selected{% endif %}">
+                          <span class="flag-icon flag-icon-{% if language.code == "en" %}us{% else %}{{ language.code }}{% endif %}"></span> {{ language.code }}
+                        </button>
+                      </li>
+                    {% endfor %}
+                </ul>
+                </form>
+              </li>
             </ul>
           </div>
         </div>

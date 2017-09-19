@@ -22,7 +22,6 @@
     "fields": {
       "user": 42,
       "score": 1,
-      "achievements": null,
       "avatar": "",
       "nickname": "",
       "language": "en",
@@ -51,7 +50,6 @@
     "fields": {
       "user": 41,
       "score": 1,
-      "achievements": null,
       "avatar": "upload/avatar/test_user_2/pipo.jpg",
       "nickname": "PipoUser",
       "language": "en",

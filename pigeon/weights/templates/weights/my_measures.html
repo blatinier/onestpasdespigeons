@@ -38,7 +38,7 @@
                 {% if measure.measure_image %}
                   <a href="{{measure.measure_image.url}}" data-toggle="lightbox"
                      data-footer="{{ measure.product }} - {{ measure.measured_weight|floatformat:"0" }} {{ measure.unit }} VS {{ measure.package_weigh|floatformat:"0" }} {{ measure.unit }}">
-                    <img class="product_img" src="{{measure.measure_image.url}}" alt="" />
+                    <img class="product_img" src="/{{measure.measure_image.url}}" alt="" />
                   </a>
                 {% else %}
                   <img class="product_img" src="{% static 'images/red_scales.png' %}" alt="" />

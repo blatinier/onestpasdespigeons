@@ -20,7 +20,6 @@ from functools import wraps
 import django_filters
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db.models.signals import post_save
 from django.db import models
@@ -52,8 +51,6 @@ class PigeonUser(models.Model):
     avatar = models.ImageField(upload_to=get_avatar_path, blank=True,
                                null=True)
     score = models.IntegerField(default=1)
-    achievements = ArrayField(models.CharField(max_length=200), blank=True,
-                              null=True)
     language = models.CharField(max_length=3, default="en")
     country = models.CharField(max_length=3, default="us")
 

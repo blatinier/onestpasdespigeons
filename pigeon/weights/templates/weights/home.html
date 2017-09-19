@@ -38,7 +38,7 @@
           <div>
             {% if measure.measure_image %}
               <a href="{{measure.measure_image.url}}" data-toggle="lightbox">
-                <img alt="" src="{{measure.measure_image.url}}" />
+                <img alt="" src="/{{measure.measure_image.url}}" />
               </a>
             {% else %}
               <a href="{% static 'images/red_scales.png' %}" data-toggle="lightbox">
