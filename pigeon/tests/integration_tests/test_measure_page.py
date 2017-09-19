@@ -13,7 +13,7 @@ class MeasurePageTestCase(TestCase):
         """
         Test informations showed
         """
-        resp = self.client.get("/measure/1")
+        resp = self.client.get("/en/measure/1")
         self.assertEqual(resp.status_code, 200)
         # product name shown
         self.assertIn(b'Organic Muesli', resp.content)
