@@ -2,8 +2,7 @@ import os
 from django.contrib.auth import get_user
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
-from pigeon.settings import STATIC_ROOT
-
+from tests import TEST_IMAGE_PATH
 
 class EditUserTestCase(TestCase):
     fixtures = ['user.json']
@@ -14,11 +13,11 @@ class EditUserTestCase(TestCase):
 
     def test_successful_update(self):
         # Go to edit user page
-        resp = self.client.get("/account")
+        resp = self.client.get("/en/account")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Edit my account', resp.content)
 
-        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+        with open(TEST_IMAGE_PATH, 'rb') as data:
             new_user_data = {'user-username': 'aaa',
                              'user-first_name': 'bbb',
                              'user-last_name': 'ccc',
@@ -31,7 +30,7 @@ class EditUserTestCase(TestCase):
                              'profile-avatar': data,
                              }
 
-            resp = self.client.post('/account', new_user_data, follow=True, format="multipart")
+            resp = self.client.post('/en/account', new_user_data, follow=True, format="multipart")
 
         self.assertIn(b'Update successful', resp.content)
 
@@ -48,7 +47,7 @@ class EditUserTestCase(TestCase):
 
     def test_failure_update(self):
         # Go to edit user page
-        resp = self.client.get("/account")
+        resp = self.client.get("/en/account")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'Edit my account', resp.content)
 
@@ -62,7 +61,7 @@ class EditUserTestCase(TestCase):
                          'profile-country': 'us',
                          }
 
-        resp = self.client.post('/account', new_user_data, follow=True)
+        resp = self.client.post('/en/account', new_user_data, follow=True)
 
         self.assertIn(b'This field is required', resp.content)
 

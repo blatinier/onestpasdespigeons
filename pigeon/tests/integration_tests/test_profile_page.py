@@ -1,8 +1,8 @@
 import os
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
-from pigeon.settings import STATIC_ROOT
-
+from weights.models import Measure
+from tests import TEST_IMAGE_PATH
 
 class ProfilePageTestCase(TestCase):
     fixtures = ['user.json', 'products.json', 'measures.json']
@@ -15,7 +15,7 @@ class ProfilePageTestCase(TestCase):
         """
         Test informations showed
         """
-        resp = self.client.get("/profile/11111111/test_user_1")
+        resp = self.client.get("/en/profile/11111111/test_user_1")
         self.assertEqual(resp.status_code, 200)
         # username shown
         self.assertIn(b'test_user_1', resp.content)
@@ -25,7 +25,7 @@ class ProfilePageTestCase(TestCase):
         self.assertIn(b'static/images/logo.png', resp.content)
 
         # set an avatar and a pseudo
-        with open(os.path.join(STATIC_ROOT, 'images', 'benoit.png'), 'rb') as data:
+        with open(TEST_IMAGE_PATH, 'rb') as data:
             new_user_data = {'user-username': 'test_user_1',
                              'user-first_name': 'bbb',
                              'user-last_name': 'ccc',
@@ -37,9 +37,9 @@ class ProfilePageTestCase(TestCase):
                              'profile-nickname': 'pouet',
                              'profile-avatar': data,
                              }
-            resp = self.client.post('/account', new_user_data, follow=True, format="multipart")
+            resp = self.client.post('/en/account', new_user_data, follow=True, format="multipart")
 
-        resp = self.client.get("/profile/11111111/test_user_1")
+        resp = self.client.get("/en/profile/11111111/test_user_1")
         # username shown
         self.assertIn(b'pouet', resp.content)
         # no avatar -> fallback avatar shown

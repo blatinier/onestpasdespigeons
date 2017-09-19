@@ -77,6 +77,25 @@
                   </div>
                 </li>
               {% endif %}
+              {# Languages #}
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              <li class="hidden-xs margin-top-lg-20">
+                <form action="{% url 'set_language' %}" method="post" class="language-form input-group input-group-sm">
+                <input name="next" type="hidden" value="{{ request.get_full_path | slice:'3:' }}" />
+                {% csrf_token %}
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-target="dropdown-lang">
+                    {{ LANGUAGE_CODE|upper }}
+                    <span class="caret"</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right" id="dropdown-lang">
+                    {% for language in languages %}
+                      <li><button type="submit" name="language" value="{{ language.code }}" class="lang-selector {% if language.code == LANGUAGE_CODE %}lang-selected{% endif %}">{{ language.code|upper }}</button></li>
+                    {% endfor %}
+                </ul>
+                </form>
+              </li>
             </ul>
           </div>
         </div>

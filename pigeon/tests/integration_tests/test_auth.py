@@ -17,7 +17,7 @@ class AuthTestCase(TestCase):
         - Login
         """
         # Go to register page:
-        resp = self.client.get("/register/")
+        resp = self.client.get("/en/register/")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b"Register", resp.content)
 
@@ -30,21 +30,21 @@ class AuthTestCase(TestCase):
                      "user-password2": "plokijuh",
                      "profile-language": "en",
                      "profile-country": "us"}
-        resp = self.client.post("/register/", user_data, follow=True)
-        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+        resp = self.client.post("/en/register/", user_data, follow=True)
+        self.assertEqual(resp.redirect_chain, [("/en/my_measures", 302)])
         self.assertIn(b"My measures", resp.content)
         self.assertTrue(auth.get_user(self.client).is_authenticated())
 
         # Logout
-        resp = self.client.get("/logout/", follow=True)
-        self.assertEqual(resp.redirect_chain, [("/", 302)])
+        resp = self.client.get("/en/logout/", follow=True)
+        self.assertEqual(resp.redirect_chain, [("/", 302), ("/en/", 302)])
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # Login
         login_data = {"username": "azec",
                       "password": "plokijuh"}
-        resp = self.client.post("/login/", login_data, follow=True)
-        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+        resp = self.client.post("/en/login/", login_data, follow=True)
+        self.assertEqual(resp.redirect_chain, [("/my_measures", 302), ("/en/my_measures", 302)])
         self.assertIn(b"My measures", resp.content)
         self.assertTrue(auth.get_user(self.client).is_authenticated())
 
@@ -57,33 +57,33 @@ class AuthTestCase(TestCase):
         - No user
         """
         # Logout before test just in case
-        resp = self.client.get("/logout/", follow=True)
+        resp = self.client.get("/en/logout/", follow=True)
 
         # wrong pwd
         login_data = {"username": "azec",
                       "password": "pipo"}
-        resp = self.client.post("/login/", login_data)
+        resp = self.client.post("/en/login/", login_data)
         self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # user non existant
         login_data = {"username": "az",
                       "password": "pipo"}
-        resp = self.client.post("/login/", login_data)
+        resp = self.client.post("/en/login/", login_data)
         self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # no user
         login_data = {"username": "",
                       "password": "pipo"}
-        resp = self.client.post("/login/", login_data)
+        resp = self.client.post("/en/login/", login_data)
         self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
         # no pwd
         login_data = {"username": "az",
                       "password": ""}
-        resp = self.client.post("/login/", login_data)
+        resp = self.client.post("/en/login/", login_data)
         self.assertIn(b"The login/password combination failed. Try again.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
@@ -99,7 +99,7 @@ class AuthTestCase(TestCase):
         user_data = {"user-username": "test_user_1",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh"}
-        resp = self.client.post("/register/", user_data, follow=True)
+        resp = self.client.post("/en/register/", user_data, follow=True)
         self.assertIn(b"A user with that username already exists.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
@@ -107,7 +107,7 @@ class AuthTestCase(TestCase):
         user_data = {"user-username": "abcdefgh",
                      "user-password1": "plo",
                      "user-password2": "plo"}
-        resp = self.client.post("/register/", user_data, follow=True)
+        resp = self.client.post("/en/register/", user_data, follow=True)
         self.assertIn(b"This password is too short. It must contain at least 8 characters.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
@@ -115,7 +115,7 @@ class AuthTestCase(TestCase):
         user_data = {"user-username": "abcdefgh",
                      "user-password1": "aaaaaaaa",
                      "user-password2": "aaaaaaaa"}
-        resp = self.client.post("/register/", user_data, follow=True)
+        resp = self.client.post("/en/register/", user_data, follow=True)
         self.assertIn(b"This password is too common.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
@@ -123,7 +123,7 @@ class AuthTestCase(TestCase):
         user_data = {"user-username": "abcdefgh",
                      "user-password1": "poiuytreza",
                      "user-password2": "plokijuhygtf"}
-        resp = self.client.post("/register/", user_data, follow=True)
+        resp = self.client.post("/en/register/", user_data, follow=True)
         self.assertIn(b"The two password fields didn&#39;t match.", resp.content)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
 
@@ -137,18 +137,18 @@ class AuthTestCase(TestCase):
                      "user-password2": "plokijuh",
                      "profile-language": "en",
                      "profile-country": "us"}
-        self.client.post("/register/", user_data, follow=True)
+        self.client.post("/en/register/", user_data, follow=True)
         self.assertTrue(auth.get_user(self.client).is_authenticated())
         self.assertTrue(auth.get_user(self.client).is_active)
         # Deactivate account
-        resp = self.client.get("/delete_account", follow=True)
+        resp = self.client.get("/en/delete_account", follow=True)
         self.assertFalse(auth.get_user(self.client).is_authenticated())
         self.assertFalse(auth.get_user(self.client).is_active)
-        self.assertEqual(resp.redirect_chain, [("/", 302)])
+        self.assertEqual(resp.redirect_chain, [("/en/", 302)])
         self.assertIn(b"Account deactivated", resp.content)
 
     def test_register_page_locked_for_logged_users(self):
         self.client.force_login(User.objects.get(username="test_user_1"))
-        resp = self.client.get("/register/", follow=True)
-        self.assertEqual(resp.redirect_chain, [("/my_measures", 302)])
+        resp = self.client.get("/en/register/", follow=True)
+        self.assertEqual(resp.redirect_chain, [("/en/my_measures", 302)])
         self.assertIn(b'You already have an account.', resp.content)
