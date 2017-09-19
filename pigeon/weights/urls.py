@@ -15,32 +15,37 @@
 #  This file is part of project: RendezMoiMesPlumes
 #
 from django.conf.urls import include, url
-from . import views
+import weights.views, weights.views.users, weights.views.measures, \
+       weights.views.products
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^overview$', views.overview, name='overview'),
-    url(r'^about$', views.about, name='about'),
-    url(r'^account$', views.user_account, name='user_account'),
-    url(r'^privacy$', views.privacy, name='privacy'),
-    url(r'^contact$', views.contact, name='contact'),
-    url(r'^delete_account$', views.delete_account, name='delete_account'),
-    url(r'^contribute$', views.contribute, name='contribute'),
-    url(r'^my_measures$', views.my_measures, name='my_measures'),
-    url(r'^add_measure$', views.add_measure, name='add_measure'),
-    url(r'^edit_measure/(?P<measure_id>[0-9]+)$', views.edit_measure,
-        name='edit_measure'),
-    url(r'^delete_measure/(?P<measure_id>[0-9]+)$', views.delete_measure,
-        name='delete_measure'),
-    url(r'^list_measures$', views.list_measures, name='list_measures'),
-
-    url(r'^register/$', views.register, name='register'),
-    url(r'^profile/(?P<user>[0-9]+)/(?P<user_slug>[a-z0-9_-]+)$', views.user_page,
+    # Static pages
+    url(r'^$', weights.views.home, name='home'),
+    url(r'^about$', weights.views.about, name='about'),
+    url(r'^privacy$', weights.views.privacy, name='privacy'),
+    url(r'^contact$', weights.views.contact, name='contact'),
+    url(r'^contribute$', weights.views.contribute, name='contribute'),
+    # Users
+    url(r'^account$', weights.views.users.user_account, name='user_account'),
+    url(r'^delete_account$', weights.views.users.delete_account, name='delete_account'),
+    url(r'^register/$', weights.views.users.register, name='register'),
+    url(r'^profile/(?P<user>[0-9]+)/(?P<user_slug>[a-z0-9_-]+)$', weights.views.users.user_page,
         name='user_page'),
-    url(r'^product/(?P<code>[0-9]+)$', views.product_page,
-        name='product_page'),
-    url(r'^measure/(?P<measure_id>[0-9]+)$', views.measure_page,
+    # Measures
+    url(r'^overview$', weights.views.measures.overview, name='overview'),
+    url(r'^my_measures$', weights.views.measures.my_measures, name='my_measures'),
+    url(r'^add_measure$', weights.views.measures.add_measure, name='add_measure'),
+    url(r'^edit_measure/(?P<measure_id>[0-9]+)$', weights.views.measures.edit_measure,
+        name='edit_measure'),
+    url(r'^delete_measure/(?P<measure_id>[0-9]+)$', weights.views.measures.delete_measure,
+        name='delete_measure'),
+    url(r'^list_measures$', weights.views.measures.list_measures, name='list_measures'),
+    url(r'^measure/(?P<measure_id>[0-9]+)$', weights.views.measures.measure_page,
         name='measure_page'),
+    # Products
+    url(r'^product/(?P<code>[0-9]+)$', weights.views.products.product_page,
+        name='product_page'),
+    # Django stuff and 3rd party
     url('^', include('django.contrib.auth.urls')),
     url(r'^select2/', include('django_select2.urls')),
     url(r'^social/', include('social_django.urls', namespace='social')),
