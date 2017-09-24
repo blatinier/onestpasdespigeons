@@ -37,8 +37,8 @@
         <div class="product_img_big full-width {% if measure.measure_image %}{{ measure.image_orientation }}{% endif %}">
           <div>
             {% if measure.measure_image %}
-              <a href="{{measure.measure_image.url}}" data-toggle="lightbox">
-                <img alt="" src="/{{measure.measure_image.url}}" />
+              <a href="/{{measure.measure_image.url}}" data-toggle="lightbox">
+                <img alt="" src="/{{measure.thumbnail}}" />
               </a>
             {% else %}
               <a href="{% static 'images/red_scales.png' %}" data-toggle="lightbox">

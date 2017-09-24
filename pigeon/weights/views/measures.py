@@ -23,6 +23,7 @@ from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
+from utils.images import set_measure_thumbnail
 from weights.charts import ContribBarChart
 from weights.models import (Measure, MeasureFilter, Product,
                             PigeonUser)
@@ -230,7 +231,8 @@ def add_measure(request):
         if add_measure_form.is_valid():
             add_product_form = AddProductForm(request.POST)
             if add_measure_form.cleaned_data['product']:
-                add_measure_form.save()
+                measure = add_measure_form.save()
+                set_measure_thumbnail(measure)
                 messages.success(request, _("Measure added!"))
                 return redirect(redirect_page)
             if add_product_form.is_valid():
@@ -240,6 +242,7 @@ def add_measure(request):
                 measure = add_measure_form.save(commit=False)
                 measure.product = prod
                 measure.save()
+                set_measure_thumbnail(measure)
                 prod.quantity = "%d g" % measure.weight('g', 'package')
                 prod.save()
                 messages.success(request, _("Measure added!"))
