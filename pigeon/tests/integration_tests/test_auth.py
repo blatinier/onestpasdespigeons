@@ -1,5 +1,5 @@
 from django.contrib import auth
-from django.contrib.auth.models import User
+from weights.models import PigeonUser
 from django.test import Client, TestCase
 
 
@@ -28,8 +28,8 @@ class AuthTestCase(TestCase):
                      "user-email": "pipo@lala.com",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh",
-                     "profile-language": "en",
-                     "profile-country": "us"}
+                     "user-language": "en",
+                     "user-country": "us"}
         resp = self.client.post("/en/register/", user_data, follow=True)
         self.assertEqual(resp.redirect_chain, [("/en/my_measures", 302)])
         self.assertIn(b"My measures", resp.content)
@@ -95,7 +95,7 @@ class AuthTestCase(TestCase):
         - Password too common (eg: aaaaaaaa)
         - Password confirmation do not match"""
 
-        # Username already exists
+        # PigeonUsername already exists
         user_data = {"user-username": "test_user_1",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh"}
@@ -135,8 +135,8 @@ class AuthTestCase(TestCase):
                      "user-email": "pipo@lala.com",
                      "user-password1": "plokijuh",
                      "user-password2": "plokijuh",
-                     "profile-language": "en",
-                     "profile-country": "us"}
+                     "user-language": "en",
+                     "user-country": "us"}
         self.client.post("/en/register/", user_data, follow=True)
         self.assertTrue(auth.get_user(self.client).is_authenticated())
         self.assertTrue(auth.get_user(self.client).is_active)
@@ -148,7 +148,7 @@ class AuthTestCase(TestCase):
         self.assertIn(b"Account deactivated", resp.content)
 
     def test_register_page_locked_for_logged_users(self):
-        self.client.force_login(User.objects.get(username="test_user_1"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_1"))
         resp = self.client.get("/en/register/", follow=True)
         self.assertEqual(resp.redirect_chain, [("/en/my_measures", 302)])
         self.assertIn(b'You already have an account.', resp.content)

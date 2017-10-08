@@ -16,27 +16,9 @@
 #  This file is part of project: RendezMoiMesPlumes
 #
 from django.contrib import admin
-from .models import Product, Measure
+from .models import Product, Measure, PigeonUser
 
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.contrib.auth.models import User
-
-from weights.models import PigeonUser
-
-
-class PigeonUserInline(admin.StackedInline):
-    model = PigeonUser
-    can_delete = False
-    verbose_name_plural = 'pigeonuser'
-
-
-class UserAdmin(BaseUserAdmin):
-    inlines = (PigeonUserInline, )
-
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
-
-# Register your models here.
+## Register your models here.
+admin.site.register(PigeonUser)
 admin.site.register(Product)
 admin.site.register(Measure)

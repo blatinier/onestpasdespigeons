@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from weights.models import PigeonUser
 from django.test import Client, TestCase
 from unittest import skipIf
 from django.db import connection
@@ -9,7 +9,7 @@ class OverviewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.client.force_login(User.objects.get(username="test_user_1"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_1"))
 
     @skipIf(connection.vendor == 'sqlite', 'Aggregations have not the same precision on sqlite')
     def test_add_edit_list_delete(self):

@@ -1,15 +1,15 @@
 import os
 from django.contrib.auth import get_user
-from django.contrib.auth.models import User
+from weights.models import PigeonUser
 from django.test import Client, TestCase
 from tests import TEST_IMAGE_PATH
 
-class EditUserTestCase(TestCase):
+class EditPigeonUserTestCase(TestCase):
     fixtures = ['user.json']
 
     def setUp(self):
         self.client = Client()
-        self.client.force_login(User.objects.get(username="test_user_1"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_1"))
 
     def test_successful_update(self):
         # Go to edit user page
@@ -40,10 +40,10 @@ class EditUserTestCase(TestCase):
         self.assertEquals(user.first_name, 'bbb')
         self.assertEquals(user.last_name, 'ccc')
         self.assertEquals(user.email, 'pipo@pouet.com')
-        self.assertEquals(user.pigeonuser.language, 'fr')
-        self.assertEquals(user.pigeonuser.country, 'us')
-        self.assertEquals(user.pigeonuser.nickname, 'pouet')
-        self.assertTrue(user.pigeonuser.avatar.url.startswith('upload/avatar/aaa/benoit'))
+        self.assertEquals(user.language, 'fr')
+        self.assertEquals(user.country, 'us')
+        self.assertEquals(user.nickname, 'pouet')
+        self.assertTrue(user.avatar.url.startswith('upload/avatar/aaa/benoit'))
 
     def test_failure_update(self):
         # Go to edit user page

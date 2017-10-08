@@ -1,5 +1,5 @@
 import os
-from django.contrib.auth.models import User
+from weights.models import PigeonUser
 from django.test import Client, TestCase
 from pigeon.settings import BASE_DIR
 from weights.models import Measure
@@ -10,7 +10,7 @@ class MeasureTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.client.force_login(User.objects.get(username="test_user_1"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_1"))
 
     def test_add_edit_list_delete(self):
         """
@@ -107,7 +107,7 @@ class MeasureTestCase(TestCase):
                                     format="multipart",
                                     follow=True)
         # Change user
-        self.client.force_login(User.objects.get(username="test_user_2"))
+        self.client.force_login(PigeonUser.objects.get(username="test_user_2"))
 
         # Try to delete measure
         measure = Measure.objects.filter(product="0000000003087")[0]

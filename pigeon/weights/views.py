@@ -27,7 +27,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.charts import ContribBarChart
-from weights.forms import (UserForm, ProfileForm, AddMeasureForm,
+from weights.forms import (RegisterForm, ProfileForm, AddMeasureForm,
                            UpdateUserForm, AddProductForm, ContactForm)
 from weights.models import (Measure, MeasureFilter, Product,
                             PigeonUser)
@@ -64,23 +64,14 @@ def register(request):
         messages.error(request, _("You already have an account."))
         return redirect(reverse(my_measures))
     if request.method == 'POST':
-        user_form = UserForm(request.POST, prefix='user')
-        profile_form = ProfileForm(request.POST, prefix='profile')
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            user.refresh_from_db()  # load the profile
-            user.pigeonuser.language = \
-                    profile_form.cleaned_data.get('language')
-            user.pigeonuser.country = profile_form.cleaned_data.get('country')
-            user.save()
-            raw_password = user_form.cleaned_data.get('password1')
-            user = authenticate(username=user.username, password=raw_password)
-            login(request, user)
+        register_form = RegisterForm(request.POST, prefix='user')
+        if register_form.is_valid():
+            user = register_form.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect(reverse(my_measures))
     else:
-        user_form = UserForm(prefix='user')
-        profile_form = ProfileForm(prefix='profile')
-    context = {'user_form': user_form, 'profile_form': profile_form}
+        register_form = RegisterForm(prefix='user')
+    context = {'register_form': register_form}
     return render(request, 'registration/register.html', context)
 
 
@@ -218,16 +209,16 @@ def user_account(request):
         profile_form = ProfileForm(request.POST,
                                    request.FILES,
                                    prefix='profile',
-                                   instance=request.user.pigeonuser)
+                                   instance=request.user)
         context = {'user_form': user_form,
                    'profile_form': profile_form,
                    'update_text': _('Update'),
                    'user': request.user}
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
-            user.pigeonuser.language = \
+            user.language = \
                     profile_form.cleaned_data.get('language')
-            user.pigeonuser.country = profile_form.cleaned_data.get('country')
+            user.country = profile_form.cleaned_data.get('country')
             user.save()
             # Update password
             if user_form.cleaned_data.get('password1'):
@@ -238,7 +229,7 @@ def user_account(request):
     else:
         user_form = UpdateUserForm(prefix='user', instance=request.user)
         profile_form = ProfileForm(prefix='profile',
-                                   instance=request.user.pigeonuser)
+                                   instance=request.user)
     context = {'user_form': user_form,
                'profile_form': profile_form,
                'update_text': _('Update'),
@@ -302,7 +293,7 @@ def my_measures(request):
     """
     Page to list your own measurements.
     """
-    measures = Measure.objects.filter(user=request.user.pigeonuser)
+    measures = Measure.objects.filter(user=request.user)
     return render(request, 'weights/my_measures.html',
                   {'measures': measures,
                    'measures_by_week': ContribBarChart()})
@@ -316,7 +307,7 @@ def add_measure(request):
     page_mode_create = False
     redirect_page = reverse(my_measures)
     if request.method == 'POST':
-        measure_inst = Measure(user=request.user.pigeonuser)
+        measure_inst = Measure(user=request.user)
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
                                           instance=measure_inst)
         if "add_and_continue" in add_measure_form.data:
@@ -364,7 +355,7 @@ def edit_measure(request, measure_id):
     Page to edit your own measurements.
     """
     measure = get_object_or_404(Measure, pk=measure_id)
-    if measure.user != request.user.pigeonuser:
+    if measure.user != request.user:
         return HttpResponseForbidden()
     if request.method == 'POST':
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
@@ -388,7 +379,7 @@ def delete_measure(request, measure_id):
     Page to delete your own measurements.
     """
     measure = get_object_or_404(Measure, pk=measure_id)
-    if measure.user == request.user.pigeonuser:
+    if measure.user == request.user:
         measure.delete()
         messages.success(request, _("Measure deleted!"))
     else:

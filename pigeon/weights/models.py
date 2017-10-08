@@ -19,7 +19,6 @@ from functools import wraps
 
 import django_filters
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db.models.signals import post_save
 from django.db import models
@@ -42,11 +41,11 @@ def disable_for_loaddata(signal_handler):
 
 def get_avatar_path(user, filename):
     return os.path.join('upload', 'avatar',
-                        str(user.user.username), filename)
+                        str(user.username), filename)
 
 
-class PigeonUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+from django.contrib.auth.models import AbstractUser
+class PigeonUser(AbstractUser):
     nickname = models.CharField(max_length=100, blank=True, null=True)
     avatar = models.ImageField(upload_to=get_avatar_path, blank=True,
                                null=True)
@@ -63,23 +62,15 @@ class PigeonUser(models.Model):
 
     @property
     def slug(self):
-        return slugify(self.user.username)
+        return slugify(self.username)
 
     @property
     def pseudo(self):
         if self.nickname:
             return self.nickname
         else:
-            return self.user.username
+            return self.username
 
-
-
-@receiver(post_save, sender=User)
-@disable_for_loaddata
-def update_user_profile(sender, instance, created, **kwargs):
-    if created and not kwargs.get('raw', False):
-        PigeonUser.objects.create(user=instance)
-    instance.pigeonuser.save()
 
 
 class Product(models.Model):
@@ -147,7 +138,7 @@ class Product(models.Model):
 
 def get_image_path(instance, filename):
     return os.path.join('upload', 'measures',
-                        str(instance.user.user.username), filename)
+                        str(instance.user.username), filename)
 
 
 class Measure(models.Model):
@@ -213,11 +204,11 @@ class MeasureFilter(django_filters.FilterSet):
         fields = {
             'product__product_name': ['icontains'],
             'product__brands': ['icontains'],
-            'user__user__username': ['icontains'],
+            'user__username': ['icontains'],
         }
 
     def __init__(self, *args, **kwargs):
         super(MeasureFilter, self).__init__(*args, **kwargs)
-        self.filters['user__user__username__icontains'].label = _('Username')
+        self.filters['user__username__icontains'].label = _('Username')
         self.filters['product__product_name__icontains'].label = _('Product')
         self.filters['product__brands__icontains'].label = _('Brand')

@@ -18,7 +18,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from django_select2.forms import ModelSelect2Widget
 from weights.models import PigeonUser, Product, Measure
@@ -35,11 +34,22 @@ def file_size(value): # add this to some file where you can import it from
         raise ValidationError(_('File too large. Size should not exceed %d MiB.') % limit_mib)
 
 
-class UserForm(UserCreationForm):
+class ProfileForm(forms.ModelForm):
+    nickname = forms.CharField(required=False)
+    avatar = forms.ImageField(required=False, validators=[file_size])
+    language = forms.ChoiceField(choices=LANGUAGE_CHOICES)
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES)
+
     class Meta:
-        model = User
+        model = PigeonUser
+        fields = ('nickname', 'language', 'country', 'avatar')
+
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = PigeonUser
         fields = ('username', 'first_name', 'last_name', 'email', 'password1',
-                  'password2')
+                  'password2') + ProfileForm.Meta.fields
 
 
 class UpdateUserForm(forms.ModelForm):
@@ -55,7 +65,7 @@ class UpdateUserForm(forms.ModelForm):
         help_text=_("Enter the same password as above, for verification."))
 
     class Meta:
-        model = User
+        model = PigeonUser
         fields = ('username', 'first_name', 'last_name', 'email', 'password1',
                   'password2')
 
@@ -77,17 +87,6 @@ class UpdateUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-
-
-class ProfileForm(forms.ModelForm):
-    nickname = forms.CharField(required=False)
-    avatar = forms.ImageField(required=False, validators=[file_size])
-    language = forms.ChoiceField(choices=LANGUAGE_CHOICES)
-    country = forms.ChoiceField(choices=COUNTRY_CHOICES)
-
-    class Meta:
-        model = PigeonUser
-        fields = ('language', 'country', 'nickname', 'avatar')
 
 
 class AddMeasureForm(forms.ModelForm):
