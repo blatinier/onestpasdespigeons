@@ -61,7 +61,7 @@ def import_OFF_db():
                     csv_product.save()
                     counts["created"] += 1
         except Exception:
-            print("Dunno")
+            print("dunno")
     print('Parsed {total} products. Created {created}.'.format(**counts))
 
     # Clean up
