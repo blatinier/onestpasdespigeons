@@ -156,6 +156,8 @@ class Measure(models.Model):
     unit = models.CharField(max_length=6, choices=UNIT_CHOICES, default='g')
     measure_image = models.ImageField(upload_to=get_image_path, blank=True,
                                       null=True)
+    thumbnail = models.CharField(max_length=1024, blank=True,
+                                 null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def weight(self, unit, weight_type="measured"):
