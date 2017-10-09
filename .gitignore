@@ -11,3 +11,16 @@ OnEstPasDesPigeons.add_lcs.log
 pigeon/upload/measures/
 pigeon/upload/avatar/
 .coverage
+
+# Database
+*.db
+
+# Git merge
+*.orig
+*_BASE_*
+*_REMOTE_*
+*_BACKUP_*
+*_LOCAL_*
+
+# Vim
+*.swp

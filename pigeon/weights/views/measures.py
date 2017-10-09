@@ -14,66 +14,71 @@
 #  Copyright (c) 2017 Benoit Latinier, Fabien Bourrel
 #  This file is part of project: RendezMoiMesPlumes
 #
+
 import urllib.parse
-from django.conf import settings
-from django.contrib.auth import (authenticate, login, logout,
-                                 update_session_auth_hash)
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Max, Min, Avg, F
 from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.charts import ContribBarChart
-from weights.forms import (RegisterForm, ProfileForm, AddMeasureForm,
-                           UpdateUserForm, AddProductForm, ContactForm)
 from weights.models import (Measure, MeasureFilter, Product,
                             PigeonUser)
+from weights.validators import file_size
+from django import forms
+from django.core.exceptions import ValidationError
+from django_select2.forms import ModelSelect2Widget
+
+#
+# Forms
+#
+
+class AddMeasureForm(forms.ModelForm):
+    product = forms.ModelChoiceField(
+            widget=ModelSelect2Widget(
+                model=Product,
+                search_fields=['product_name__icontains',
+                               'brands__icontains'],
+                attrs={"data-ajax--delay": 500},
+                max_results=10,
+            ),
+            queryset=Product.objects.all(),
+            required=False,
+        )
+    unit = forms.ChoiceField(choices=Measure.UNIT_CHOICES, initial='g')
+    package_weight = forms.DecimalField(min_value=0, decimal_places=3)
+    measured_weight = forms.DecimalField(min_value=0, decimal_places=3)
+    measure_image = forms.ImageField(required=False, validators=[file_size])
+
+    class Meta:
+        model = Measure
+        fields = ('product', 'package_weight', 'measured_weight',
+                  'measure_image', 'unit')
 
 
-def home(request):
-    """
-    Pretty home page.
-    """
-    last_measures = Measure.objects.all().order_by('-created_at')[:6]
-    return render(request, 'weights/home.html',
-                  {'last_measures': last_measures})
+class AddProductForm(forms.ModelForm):
+    code = forms.CharField(required=False)
+    product_name = forms.CharField(required=False)
+    brands = forms.CharField(required=False)
+    class Meta:
+        model = Product
+        fields = ('code', 'product_name', 'brands')
 
+    def clean(self):
+        cleaned_data = super().clean()
+        code = cleaned_data.get("code")
+        product_name = cleaned_data.get("product_name")
+        brands = cleaned_data.get("brands")
 
-def privacy(request):
-    """
-    User privacy
-    """
-    return render(request, 'weights/privacy.html', {})
+        if not (code and product_name and brands):
+            raise forms.ValidationError(_("All product fields must be set"),
+                                        code='invalid')
 
-
-def about(request):
-    """
-    Everything about licensing/opensource/OpenFoodFacts...
-    """
-    return render(request, 'weights/about.html', {})
-
-
-def register(request):
-    """
-    Register page.
-    """
-    if request.user.is_authenticated:
-        messages.error(request, _("You already have an account."))
-        return redirect(reverse(my_measures))
-    if request.method == 'POST':
-        register_form = RegisterForm(request.POST, prefix='user')
-        if register_form.is_valid():
-            user = register_form.save()
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect(reverse(my_measures))
-    else:
-        register_form = RegisterForm(prefix='user')
-    context = {'register_form': register_form}
-    return render(request, 'registration/register.html', context)
-
+#
+# Views
+#
 
 @login_required
 def list_measures(request):
@@ -199,96 +204,6 @@ def overview(request):
 
 
 @login_required
-def user_account(request):
-    """
-    Everything about user managing his account.
-    """
-    if request.method == 'POST':
-        user_form = UpdateUserForm(request.POST, prefix='user',
-                                   instance=request.user)
-        profile_form = ProfileForm(request.POST,
-                                   request.FILES,
-                                   prefix='profile',
-                                   instance=request.user)
-        context = {'user_form': user_form,
-                   'profile_form': profile_form,
-                   'update_text': _('Update'),
-                   'user': request.user}
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save(commit=False)
-            user.language = \
-                    profile_form.cleaned_data.get('language')
-            user.country = profile_form.cleaned_data.get('country')
-            user.save()
-            # Update password
-            if user_form.cleaned_data.get('password1'):
-                update_session_auth_hash(request, user)
-            context['message'] = {'status': 'success',
-                                  'text': _("Update successful!")}
-        return render(request, 'weights/user_account.html', context)
-    else:
-        user_form = UpdateUserForm(prefix='user', instance=request.user)
-        profile_form = ProfileForm(prefix='profile',
-                                   instance=request.user)
-    context = {'user_form': user_form,
-               'profile_form': profile_form,
-               'update_text': _('Update'),
-               'user': request.user}
-    return render(request, 'weights/user_account.html', context)
-
-
-@login_required
-def delete_account(request):
-    """
-    Delete user account.
-    In fact just inactivate it.
-    """
-    user = request.user
-    user.is_active = False
-    user.save()
-    logout(request)
-    messages.info(request, _("Account deactivated."))
-    return redirect(reverse(home))
-
-
-def contribute(request):
-    """
-    Page to explain how to crontibute.
-    (e.g issu github, add measures, add products, ideas, ...)
-    """
-    return render(request, 'weights/contribute.html', {})
-
-
-def contact(request):
-    """
-    Contact form
-    """
-    success = False
-    if request.method == 'POST':
-        contact_form = ContactForm(request.POST)
-        if contact_form.is_valid():
-            send_mail(
-                "[pigeon] %s" % contact_form.cleaned_data['subject'],
-                """From: %s %s
-
-%s""" % (contact_form.cleaned_data['name'],
-         contact_form.cleaned_data['email'],
-         contact_form.cleaned_data['content']),
-                contact_form.cleaned_data['email'],
-                settings.ADMINS,
-            )
-            success = True
-            messages.success(request, _("Email sent!"))
-        else:
-            messages.error(request, _("All fields are required!"))
-    else:
-        contact_form = ContactForm()
-    return render(request, 'weights/contact.html',
-                  {'form': contact_form,
-                   'success': success})
-
-
-@login_required
 def my_measures(request):
     """
     Page to list your own measurements.
@@ -305,13 +220,13 @@ def add_measure(request):
     Page to add your own measurements.
     """
     page_mode_create = False
-    redirect_page = reverse(my_measures)
+    redirect_page = reverse('my_measures')
     if request.method == 'POST':
         measure_inst = Measure(user=request.user)
         add_measure_form = AddMeasureForm(request.POST, request.FILES,
                                           instance=measure_inst)
         if "add_and_continue" in add_measure_form.data:
-            redirect_page = reverse(add_measure)
+            redirect_page = reverse('add_measure')
         if add_measure_form.is_valid():
             add_product_form = AddProductForm(request.POST)
             if add_measure_form.cleaned_data['product']:
@@ -363,7 +278,7 @@ def edit_measure(request, measure_id):
         if add_measure_form.is_valid():
             add_measure_form.save()
             messages.success(request, _("Measure edited!"))
-            return redirect(reverse(my_measures))
+            return redirect(reverse('my_measures'))
     add_measure_form = AddMeasureForm(instance=measure)
     title = _('Edit measure {measure_id}').format(measure_id=measure.id)
     return render(request, 'weights/add_measure.html',
@@ -384,63 +299,7 @@ def delete_measure(request, measure_id):
         messages.success(request, _("Measure deleted!"))
     else:
         return HttpResponseForbidden()
-    return redirect(reverse(my_measures))
-
-
-@login_required
-def user_page(request, user, user_slug):
-    """
-    Public profile page of users
-    """
-    items_per_page = request.GET.get('items_per_page', 25)
-    page = request.GET.get('page', 1)
-    user = get_object_or_404(PigeonUser, pk=user)
-    measures = Measure.objects.filter(user=user).order_by("-created_at")
-    paginator = Paginator(measures, items_per_page)
-    try:
-        measures = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        measures = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        measures = paginator.page(paginator.num_pages)
-    return render(request, 'weights/profile.html',
-                  {'viewed_user': user,
-                   'measures': measures,
-                   'nb_measures': measures.count('user'),
-                   'measures_by_week': ContribBarChart()})
-
-
-@login_required
-def product_page(request, code):
-    """
-    Product page with measures
-    """
-    items_per_page = request.GET.get('items_per_page', 25)
-    page = request.GET.get('page', 1)
-    product = get_object_or_404(Product, pk=code)
-    measures = Measure.objects.filter(product=product).order_by("-created_at")
-    nb_measures = measures.count()
-    paginator = Paginator(measures, items_per_page)
-    rel_diff_measures = Measure.objects.filter(product=product).annotate(
-            mdiff=((F('measured_weight') - F('package_weight')) /
-                   F('package_weight') * 100))
-    rel_diff = rel_diff_measures.aggregate(avg_diff=Avg('mdiff'))
-
-    try:
-        measures = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        measures = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        measures = paginator.page(paginator.num_pages)
-    return render(request, 'weights/product.html',
-                  {'product': product,
-                   'measures': measures,
-                   'nb_measures': nb_measures,
-                   'rel_mean_diff': round(float(rel_diff['avg_diff']), 2)})
+    return redirect(reverse('my_measures'))
 
 
 @login_required
