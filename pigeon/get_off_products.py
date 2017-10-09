@@ -46,19 +46,22 @@ def import_OFF_db():
     counts = Counter()
     with open(DUMP_FILE_PATH) as csv_off:
         reader = csv.DictReader(csv_off, dialect="excel-tab")
-        for line in reader:
-            counts["total"] += 1
-            if "code" not in line or not line["code"] or not line["product_name"]:
-                continue
-            product_dict = {k: line[pigeon_to_off.get(k, k)]
-                            for k in Product.sourced_OFF_fields + ["code"]}
-            csv_product = Product(**product_dict)
-            try:
-                local_product = Product.objects.get(code=csv_product.code)
-                local_product.update_with_OFF_product(csv_product)
-            except Product.DoesNotExist:
-                csv_product.save()
-                counts["created"] += 1
+        try:
+            for line in reader:
+                counts["total"] += 1
+                if "code" not in line or not line["code"] or not line["product_name"]:
+                    continue
+                product_dict = {k: line[pigeon_to_off.get(k, k)]
+                                for k in Product.sourced_OFF_fields + ["code"]}
+                csv_product = Product(**product_dict)
+                try:
+                    local_product = Product.objects.get(code=csv_product.code)
+                    local_product.update_with_OFF_product(csv_product)
+                except Product.DoesNotExist:
+                    csv_product.save()
+                    counts["created"] += 1
+        except Exception:
+            print("dunno")
     print('Parsed {total} products. Created {created}.'.format(**counts))
 
     # Clean up
