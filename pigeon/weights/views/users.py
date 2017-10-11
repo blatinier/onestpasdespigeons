@@ -18,13 +18,12 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import (authenticate, login, logout,
+from django.contrib.auth import (login, logout,
                                  update_session_auth_hash)
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from weights.models import PigeonUser, Measure
 from django import forms
-from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from weights.validators import file_size
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger

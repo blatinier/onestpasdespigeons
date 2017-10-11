@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'django_select2',
     'django_filters',
     'bootstrap_pagination',
     'social_django',
@@ -219,13 +218,11 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/my_measures'
 LOGOUT_REDIRECT_URL = '/'
 
-# Select2
-SELECT2_JS = '/static/js/select2.min.js'
-SELECT2_CSS = '/static/css/select2.min.css'
-SELECT2_I18N_PATH = '/static/js/select2-i18n'
-
 # Social
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# Select2
+SELECT2_CACHE_PREFIX = "select2_cache"
 
 try:
     from pigeon.local_settings import *

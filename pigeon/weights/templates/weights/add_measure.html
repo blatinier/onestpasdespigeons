@@ -8,13 +8,27 @@
   <form enctype="multipart/form-data" method="post"
         autocomplete="off" class="form-contact">
     {% csrf_token %}
-    {{ add_measure_form.media.js }}
-    {{ add_measure_form.media.css }}
     {% if edit_mode %}
-      {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False %}
+      {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space select2-field" show_help=False %}
     {% else %}
     <div class="row">
-      {% bootstrap_field add_measure_form.product form_group_class="form-group select-product" layout="horizontal" field_class="col-md-9 input-form-space" show_help=False addon_after='<a class="btn btn-default connect-btn" id="switch-create"><i class="fa fa-plus white"></i></a>' addon_after_class='input-group-btn' %}
+      <div class="form-group">
+        <label class="col-md-3 control-label" for="id_product">Product</label>
+        <div class="col-md-9">
+          <div class="input-group input-form-space select-product">
+            <select name="product" data-ajax--type="GET" data-ajax--url="/en/product/select-json"
+                    class="form-control django-select2 django-select2-heavy select2-field"
+                    data-field_id="{{ add_measure_form.product.field_id }}"
+                    data-placeholder="" data-allow-clear="true" id="id_product">
+            </select>
+            <span class="input-group-btn">
+              <a class="btn btn-default connect-btn" id="switch-create">
+                <i class="fa fa-plus white"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     {% endif %}
 
@@ -71,6 +85,13 @@ $('#switch-select').on('click', function(event){
   $('#product-form').removeClass('hidden');
   $('.select-product').addClass('hidden');
 {% endif %}
+$('.select2-field').select2({
+  ajax: {
+    url: "{% url 'django_select2-json' %}",
+    dataType: 'json',
+    delay: 500
+  }
+});
 </script>
 {% endif %}
 {% endblock %}
