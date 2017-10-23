@@ -171,6 +171,12 @@ ul.side-about > li > a:hover {
   background-color: #FF3A3F;
   border-color: #FF3A3F;
 }
+.connect-btn:active:focus,
+.connect-btn:active:hover,
+.connect-btn:active {
+  background-color: #FF2A2F;
+  border-color: #FF2A2F;
+}
 .register-label {
   line-height: 35px;
   text-align: center;
