@@ -45,8 +45,9 @@ urlpatterns = [
     # Products
     url(r'^product/(?P<code>[0-9]+)$', weights.views.products.product_page,
         name='product_page'),
+    url(r'^product/select-json$', weights.views.products.select_list,
+        name='django_select2-json'),
     # Django stuff and 3rd party
     url('^', include('django.contrib.auth.urls')),
-    url(r'^select2/', include('django_select2.urls')),
     url(r'^social/', include('social_django.urls', namespace='social')),
 ]

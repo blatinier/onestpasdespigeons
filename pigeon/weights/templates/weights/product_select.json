@@ -1,0 +1,12 @@
+{
+  "results": [
+    {% for product in products %}
+      {
+        "id": "{{ product.code }}",
+        "text": "{{ product.product_name }} ({{ product.brands }})",
+        "weight": "{{ product.quantity }}"
+      }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "pagination": { "more": false }
+}

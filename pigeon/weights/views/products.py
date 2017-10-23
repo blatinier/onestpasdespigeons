@@ -16,11 +16,11 @@
 #
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Max, Min, Avg, F
-from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.utils.translation import ugettext as _
-from weights.models import Measure, Product
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg, F, Q
+from django.shortcuts import render, get_object_or_404
+from weights.models import Measure, Product
+
 
 @login_required
 def product_page(request, code):
@@ -53,3 +53,9 @@ def product_page(request, code):
                    'rel_mean_diff': round(float(rel_diff['avg_diff']), 2)})
 
 
+def select_list(request):
+    term = request.GET.get('term', '')
+    products = Product.objects.filter(Q(product_name__icontains=term) |
+                                      Q(brands__icontains=term))[0:25]
+    return render(request, 'weights/product_select.json',
+                  {'products': products})

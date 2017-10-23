@@ -16,6 +16,7 @@
 #
 
 import urllib.parse
+from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -25,28 +26,20 @@ from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils.translation import ugettext as _
 from utils.images import set_measure_thumbnail
 from weights.charts import ContribBarChart
-from weights.models import (Measure, MeasureFilter, Product,
-                            PigeonUser)
+from weights.models import Measure, MeasureFilter, Product
 from weights.validators import file_size
-from django import forms
-from django.core.exceptions import ValidationError
-from django_select2.forms import ModelSelect2Widget
+from weights.widgets import ModelSelect2Widget
 
-#
-# Forms
-#
-
+# TODO https://github.com/applegrew/django-select2/blob/master/django_select2/forms.py
 class AddMeasureForm(forms.ModelForm):
     product = forms.ModelChoiceField(
             widget=ModelSelect2Widget(
-                model=Product,
-                search_fields=['product_name__icontains',
-                               'brands__icontains'],
-                attrs={"data-ajax--delay": 500},
-                max_results=10,
-            ),
-            queryset=Product.objects.all(),
+                       model=Product,
+                       search_fields=['product_name__icontains',
+                                      'brands__icontains']
+                   ),
             required=False,
+            queryset=Product.objects.all(),
         )
     unit = forms.ChoiceField(choices=Measure.UNIT_CHOICES, initial='g')
     package_weight = forms.DecimalField(min_value=0, decimal_places=3)

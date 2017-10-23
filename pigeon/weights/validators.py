@@ -16,6 +16,7 @@
 #
 
 from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
 
 def file_size(value):
     """ Validator for exceding file size """
