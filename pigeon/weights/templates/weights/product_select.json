@@ -4,7 +4,7 @@
       {
         "id": "{{ product.code }}",
         "text": "{{ product.product_name }} ({{ product.brands }})",
-        "weight": "{{ product.quantity }}"
+        "weight": "{{ product.quantity_grams }}"
       }{% if not forloop.last %},{% endif %}
     {% endfor %}
   ],

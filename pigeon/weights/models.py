@@ -15,6 +15,7 @@
 #  This file is part of project: RendezMoiMesPlumes
 #
 import os
+import re
 from functools import wraps
 
 import django_filters
@@ -26,6 +27,12 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext as _
 import PIL.ExifTags
 import PIL.Image
+
+
+CONVERSIONS = {"oz__g": 28.3,
+               "kg__g": 1000,
+               "lb__oz": 16,
+               "lb__g": 16 * 28.3}
 
 
 def disable_for_loaddata(signal_handler):
@@ -133,6 +140,26 @@ class Product(models.Model):
             if off_field != getattr(self, field):
                 setattr(self, field, off_field)
 
+    @property
+    def quantity_grams(self):
+        if self.quantity:
+            qte = self.quantity.lower()
+            qte = re.sub(r"\s+", "", qte)
+            kg_pat = re.match(r'^([\d.,]+)kg$', qte)
+            if kg_pat:
+                return float(kg_pat.groups()[0]) * CONVERSIONS['kg__g']
+            oz_pat = re.match(r'^([\d.,]+)oz$', qte)
+            if oz_pat:
+                return float(oz_pat.groups()[0]) * CONVERSIONS['oz__g']
+            lb_pat = re.match(r'^([\d.,]+)lbs?$', qte)
+            if lb_pat:
+                return float(lb_pat.groups()[0]) * CONVERSIONS['lb__g']
+            g_pat = re.match(r'^([\d.,]+)(g|gr|grammes|gramm|gram|grams)$', qte)
+            if g_pat:
+                return float(g_pat.groups()[0])
+            return ""
+        return self.quantity
+
 
 def get_image_path(instance, filename):
     return os.path.join('upload', 'measures',
@@ -144,9 +171,6 @@ class Measure(models.Model):
     product = models.ForeignKey(Product)
     package_weight = models.DecimalField(decimal_places=3, max_digits=12)
     measured_weight = models.DecimalField(decimal_places=3, max_digits=12)
-    CONVERSIONS = {"oz__g": 28.3,
-                   "kg__g": 1000,
-                   "lb__oz": 16}
     UNIT_CHOICES = (
         ('g', 'g'),
         ('oz', 'oz'),
@@ -167,18 +191,18 @@ class Measure(models.Model):
             return w
         elif unit == 'g' and self.unit == 'oz':
             # Convert oz to g
-            return w * self.CONVERSIONS["oz__g"]
+            return w * CONVERSIONS["oz__g"]
         elif unit == 'oz' and self.unit == 'g':
             # Convert g to oz
-            return w / self.CONVERSIONS["oz__g"]
+            return w / CONVERSIONS["oz__g"]
         elif unit == 'kg':
             # return kg by requiring g conversion
             return self.weight('g', weight_type=weight_type) \
-                    / self.CONVERSIONS["kg__g"]
+                    / CONVERSIONS["kg__g"]
         elif unit == 'lb':
             # return pounds by requiring oz conversion
             return self.weight('oz', weight_type=weight_type) \
-                    / self.CONVERSIONS["lb__oz"]
+                    / CONVERSIONS["lb__oz"]
 
     @property
     def percent_diff(self):

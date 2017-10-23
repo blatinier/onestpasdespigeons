@@ -89,7 +89,19 @@ $('.select2-field').select2({
   ajax: {
     url: "{% url 'django_select2-json' %}",
     dataType: 'json',
-    delay: 500
+    delay: 500,
+    templateSelection: function (data, container) {
+      // Add custom attributes to the <option> tag for the selected option
+      $(data.element).attr('data-weight', data.weight);
+      return data.text;
+    }
+  }
+});
+$('.select2-field').on('select2:select', function (e) {
+  var weight = $('.select2-field').find(':selected').data().data.weight;
+  if (!$('#id_package_weight').val()) {
+    $('#id_package_weight').val(weight);
+    $('#id_unit').val('g');
   }
 });
 </script>
