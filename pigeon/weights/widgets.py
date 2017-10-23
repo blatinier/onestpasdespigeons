@@ -21,7 +21,7 @@ except ImportError:
     from django.core.urlresolvers import reverse
 
 
-class HeavySelect2Mixin(object):
+class HeavySelect2Mixin:
 
     def __init__(self, attrs=None, choices=(), **kwargs):
         self.choices = choices
@@ -30,7 +30,6 @@ class HeavySelect2Mixin(object):
         else:
             self.attrs = {}
         self.userGetValTextFuncName = kwargs.pop('userGetValTextFuncName', 'null')
-
 
 
 class ModelSelect2Widget(HeavySelect2Mixin, forms.Select):
