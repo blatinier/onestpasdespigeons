@@ -142,23 +142,21 @@ class Product(models.Model):
 
     @property
     def quantity_grams(self):
-        if self.quantity:
-            qte = self.quantity.lower()
-            qte = re.sub(r"\s+", "", qte)
-            kg_pat = re.match(r'^([\d.,]+)kg$', qte)
-            if kg_pat:
-                return float(kg_pat.groups()[0]) * CONVERSIONS['kg__g']
-            oz_pat = re.match(r'^([\d.,]+)oz$', qte)
-            if oz_pat:
-                return float(oz_pat.groups()[0]) * CONVERSIONS['oz__g']
-            lb_pat = re.match(r'^([\d.,]+)lbs?$', qte)
-            if lb_pat:
-                return float(lb_pat.groups()[0]) * CONVERSIONS['lb__g']
-            g_pat = re.match(r'^([\d.,]+)(g|gr|grammes|gramm|gram|grams)$', qte)
-            if g_pat:
-                return float(g_pat.groups()[0])
-            return ""
-        return self.quantity
+        qte = self.quantity.lower()
+        qte = re.sub(r"\s+", "", qte)
+        kg_pat = re.match(r'^([\d.,]+)kg$', qte)
+        if kg_pat:
+            return float(kg_pat.groups()[0]) * CONVERSIONS['kg__g']
+        oz_pat = re.match(r'^([\d.,]+)oz$', qte)
+        if oz_pat:
+            return float(oz_pat.groups()[0]) * CONVERSIONS['oz__g']
+        lb_pat = re.match(r'^([\d.,]+)lbs?$', qte)
+        if lb_pat:
+            return float(lb_pat.groups()[0]) * CONVERSIONS['lb__g']
+        g_pat = re.match(r'^([\d.,]+)(g|gr|grammes|gramm|gram|grams)$', qte)
+        if g_pat:
+            return float(g_pat.groups()[0])
+        return ""
 
 
 def get_image_path(instance, filename):
