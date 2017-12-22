@@ -8,4 +8,4 @@ pytz==2017.3
 Pillow==4.3.0
 pilkit==2.0
 Django==2.0
-social-auth-app-django==2.0.0
+social-auth-app-django==2.1.0
