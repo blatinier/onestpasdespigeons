@@ -7,5 +7,5 @@ gunicorn==19.7.1
 pytz==2018.3
 Pillow==5.1.0
 pilkit==2.0
-Django==2.0.3
+Django==2.0.4
 social-auth-app-django==2.1.0
