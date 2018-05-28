@@ -42,9 +42,9 @@ ekko-lightbox@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ekko-lightbox/-/ekko-lightbox-5.2.0.tgz#84841af40240455a894a639661afc082a27257dd"
 
-flag-icon-css@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-2.8.0.tgz#ec10c20fe417ade787a095200630069ca436a569"
+flag-icon-css@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-2.9.0.tgz#5793c15244e3c63ae36631478a758a3fc29c86be"
 
 jquery-mousewheel@~3.1.13:
   version "3.1.13"
