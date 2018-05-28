@@ -6,6 +6,6 @@
     "flag-icon-css": "^2.8.0",
     "jquery": "^3.2.1",
     "select2": "^4.0.3",
-    "sweetalert": "^2.0.0"
+    "sweetalert": "^2.1.0"
   }
 }
