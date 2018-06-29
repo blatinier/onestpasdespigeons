@@ -4,7 +4,7 @@ django-bootstrap3==10.0.1
 django-filter==1.1.0
 django-jchart==0.4.2
 gunicorn==19.8.1
-pytz==2018.4
+pytz==2018.5
 Pillow==5.1.0
 pilkit==2.0
 Django==2.0.6
