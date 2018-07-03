@@ -3,7 +3,7 @@ django-bootstrap-pagination==1.6.4
 django-bootstrap3==10.0.1
 django-filter==1.1.0
 django-jchart==0.4.2
-gunicorn==19.8.1
+gunicorn==19.9.0
 pytz==2018.5
 Pillow==5.2.0
 pilkit==2.0
