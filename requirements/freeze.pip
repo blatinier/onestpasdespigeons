@@ -5,7 +5,7 @@ django-filter==2.1.0
 django-jchart==0.4.2
 gunicorn==19.9.0
 pytz==2019.1
-Pillow==6.0.0
+Pillow==6.1.0
 pilkit==2.0
 Django==2.2.3
 social-auth-app-django==3.1.0
