@@ -1,4 +1,4 @@
-django-autotranslate==1.1.0
+django-autotranslate==1.1.1
 django-bootstrap-pagination==1.7.1
 django-bootstrap3==12.1.0
 django-filter==2.2.0
