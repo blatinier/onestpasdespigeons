@@ -1,7 +1,7 @@
 django-autotranslate==1.1.1
 django-bootstrap-pagination==1.7.1
 django-bootstrap3==14.1.0
-django-filter==2.3.0
+django-filter==2.4.0
 django-jchart==0.4.2
 gunicorn==20.0.4
 pytz==2020.1
